@@ -1,8 +1,3 @@
 /mup.json
 /settings.json
-server/kadira.js
-server/server.js
-server/parsing.js
-server/tagss.js
 server/policy.js
-server/formValidate.js
