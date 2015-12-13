@@ -1,0 +1,57 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+dburles:collection-helpers
+accounts-password
+accounts-ui
+alanning:roles
+momentjs:moment
+twbs:bootstrap
+percolate:synced-cron
+http
+ongoworks:security
+iron:router
+reactive-var
+froatsnook:request
+matb33:collection-hooks
+meteorhacks:npm
+meteorhacks:kadira
+amr:parsley.js
+themeteorchef:jquery-validation
+matteodem:easy-search
+browser-policy
+lyuyea:md-editor
+summernote:standalone
+vazco:universe-html-purifier
+themeteorchef:bert
+
+manuelschoebel:ms-seo
+natestrauser:animate-css
+stylus
+meteorhacks:fast-render
+meteorhacks:zones
+
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check
+
+
+npm-container
+okgrow:analytics
+gadicohen:sitemaps
+wizonesolutions:canonical
+ongoworks:spiderable

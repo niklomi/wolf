@@ -1,0 +1,123 @@
+@import 'colors.import';
+
+.table_nav{
+  background-color: #FFF;
+}
+
+.table_ul_nav
+	display: table
+	width:100%
+	list-style: outside none none
+	padding-left: 0px
+	margin-bottom: 0px
+	text-align: center
+
+
+.logo-nav a
+	font-size: 1.4rem;
+
+.logo-nav a .fa{
+	font-size: 1.4em;
+}
+.logo-nav a .pic{
+	width: 3.6em;
+	vertical-align: baseline;
+	height: 1.5em;
+    -webkit-transition: background-image 0.1s ease-in-out 0s;
+    -moz-transition: background-image 0.1s ease-in-out 0s;
+    -o-transition: background-image 0.1s ease-in-out 0s;
+    transition: background-image 0.1s ease-in-out 0s;
+}
+.logo-nav a .WWM{
+	height: 1.9em;
+	width: 2em;
+	right: 3px;
+	position: relative;
+}
+.logo-nav a .WWR{
+	height: 1.7em;
+	width: 2.9em;
+}
+.logo-nav a .WFH{
+	width: 3.7em;height: 1.6em;
+}
+.table_ul_nav>li
+	cursor: pointer;
+	display: table-cell;
+	text-align: center;
+	margin-top: 6px;
+	font-size: 18px;
+	width: auto
+	padding-top:5px
+	font-weight: bold;
+	border-color: main-color;
+	border-bottom: 3px solid transparent;
+	-webkit-transition: all 0.1s ease-in-out 0s;
+	-moz-transition: all 0.1s ease-in-out 0s;
+	-o-transition: all 0.1s ease-in-out 0s;
+	transition: all 0.1s ease-in-out 0s;
+	@media (max-width:460px)
+		width:25%
+
+.table_ul_nav>li>a
+	color:#232323
+	padding: 0.5rem 1.8rem;
+	@media (max-width:740px)
+		padding: 0.5rem 1.4rem;
+	@media (max-width:680px)
+		padding: 0.5rem 1rem;
+	@media (max-width:620px)
+		padding: 0.5rem 0.5rem;
+	@media (max-width:540px)
+		padding: 0.5rem 1.4rem;
+
+.table_ul_nav>li.active{
+	border-bottom: 3px solid main-color;
+}
+.table_ul_nav>li.active>a{
+	color: main-color;
+
+}
+
+.table_ul_nav li.active a .WWR{
+	background-image: url("image/picWWR1-active.png"); 
+}
+.table_ul_nav li.active a .WWM{
+	background-image: url("image/picWWM1-active.png"); 
+}
+.table_ul_nav li.active a .WFH{
+	background-image: url("image/picWFH-active.png"); 
+}
+.table_ul_nav li.active a .AUTHENTIC{
+	background-image: url("image/authentic-active.png"); 
+
+}
+
+
+.table_ul_nav>li:hover{
+	border-bottom: 3px solid main-color;
+}
+.table_ul_nav li:hover a{
+	color: main-color;
+	-webkit-transition: all 0.1s;
+    -moz-transition:  all 0.1s;
+    -o-transition:  all 0.1s;
+	transition:  all 0.1s;
+}
+
+.table_ul_nav li:hover a .WWR{
+	background-image: url("image/picWWR1-active.png"); 
+}
+.table_ul_nav li:hover a .WWM{
+	background-image: url("image/picWWM1-active.png"); 
+}
+.table_ul_nav li:hover a .WFH{
+	background-image: url("image/picWFH-active.png"); 
+}
+.table_ul_nav li:hover a .AUTHENTIC{
+	background-image: url("image/authentic-active.png"); 
+}
+
+.logo-nav .navigate{
+	display: block;
+}

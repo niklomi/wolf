@@ -1,0 +1,55 @@
+@import 'colors.import';
+
+.video_wrapper{
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+  overflow: hidden;
+  background: #000 none repeat scroll 0% 0%;
+}
+.video
+	min-height: 20rem;
+	min-width: 100%;
+	opacity: 0.9;
+	z-index: 1;
+	background: #000 none repeat scroll 0% 0%;
+	background-image: url('image/main.jpg');
+	background-size: cover;
+	@media (max-width: 350px)
+		min-height: 12rem !important
+
+.main_intro
+  box-shadow: 0px 0px 2rem rgba(0, 0, 0, 0.2) inset
+  position: relative
+  min-height: 20rem
+  text-align: center
+  padding:0.5rem 0
+
+
+.hidden-threight
+  @media (max-width:380px)
+    display: none
+
+.visible-threight
+  display : none
+  @media (max-width:380px)
+    display: block
+
+@media only screen and (max-width: fourfiv) {
+  .video{
+    min-height: 17rem;
+  }
+  .main_intro {
+    min-height: 17rem;
+  }
+
+}
+
+@media only screen and (max-width: 380px) {
+  .main_intro {
+    min-height: 10rem;
+  }
+
+}

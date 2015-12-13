@@ -1,0 +1,58 @@
+<template name="newJob">
+  {{> bertAlert}}
+		<div class="container-l">
+				<div class="steps">
+					<h1><strong>Let's create your job</strong></h1>
+					<h3 class="job-info">Your ad will be shown for 30 days</h3>
+					<h4 style="font-weight: 300;">If you need help or have questions, please contact us <ins><span id="secr"></span></ins> </h4>
+				</div>
+		
+		<form  class="post-job-form col-md-8 col-md-offset-2" id="jobForm" data-parsley-validate 
+		data-parsley-excluded="input[type=radio],input[type=checkbox], :hidden">
+			<div class="row">
+			<div class="col-md-12">
+				<table class="newjob-table">
+					<tr> 
+						<td><span class="job-value">Job Title (require)</span></td>
+						<td><input class="form-control" id="f_position" data-parsley-minlength="3" maxlength="100" data-parsley-required="true" data-parsley-maxlength="100" placeholder="PHP Developer or UI/UX Designer"></td>
+					</tr>
+					<div class="tr-margin"></div>
+					<tr> 
+						<td><span class="job-value"  >Company name (require)</span></td>
+						<td ><input class="form-control" maxlength="100" data-parsley-minlength="2" data-parsley-required="true" data-parsley-maxlength="100" id="f_company" placeholder="Your company name"></td>
+					</tr>
+					<div class="tr-margin"></div>
+					<tr> 
+						<td><span class="job-value"  >Company URL </span></td>
+						<td><input class="form-control" maxlength="100" type="url" data-parsley-required="false" data-parsley-maxlength="100" id="f_company_url" placeholder="companyurl.com"></td>
+					</tr>
+					<div class="tr-margin"></div>
+				</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+
+					<span class="job-value">Description (require)</span>
+					<div id="summernote">Description and how to apply ..</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 style="text-decoration: underline;" class="stay-top"><strong>Get more views</strong></h3>
+					<div id="example-img"></div>
+					<p>For <strong>only 20$ more</strong> you can help your ad stand out and highlight it. <br>
+					Your ad will <strong>attract attention and look better</strong></p>
+					<div class="checkbox highlight_checkbox" >
+					    <label>
+					      <input id="f_highlight" type="checkbox"> <strong>Yes, I want stay in the top</strong> for only 20$ more.
+					    </label>
+					 </div>
+				</div>
+			</div>
+			<div class="row">
+				<div id="btn-margin" ><button type="submit" class="btnM btnM-apply">PUBLISH NOW</button></div>
+			</div>
+		</form>
+	</div>
+</template>
