@@ -1,0 +1,45 @@
+<template name="jobs">
+	<div itemscope itemtype="http://schema.org/JobPosting" class="smurf {{premium_back}}">
+		<div class="hidden-xs-sl td-pics">
+			{{#if image}}
+				<div class="company-image" style="background-image: url('{{check_img image}}');"></div>
+			{{else}}
+				<div class="company-image no-image">{{set_image_name position}}</div>
+			{{/if}}
+		</div>
+		<div class="job-companents">
+			<p class="position"><a href="job/{{_id}}"> <span class="b-600">{{checklength position}}</span></a> <span class="company "> in {{company}}</span></p>
+		</div>
+		<a href="job/{{_id}}"><p class="description">{{{description}}}</p></a>
+		<div  class="hidden-xs-l td-tags" >
+			{{#each tags}}
+				{{> tag}}
+			{{/each}}
+		</div>
+		<div>
+			<div class="param-group">
+				{{#if new_job}}
+				<div class="new-job inline hidden-xs-ml">new</div>
+				{{/if}}
+			</div>
+		</div>
+		<div class="job-date">
+			{{date_from_now createdAt}}
+		</div>
+		<div class="schemaorg">
+			<span><a itemprop="url" href="job/{{_id}}"> <span itemprop="title">{{position}} </span><span itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization"><span itemprop="name">{{company}} </span></span></a></span>
+			<span itemprop="skills"> {{#each tags}} {{this}} {{/each}} </span>
+			<span itemprop="datePosted">{{formatTimeshema createdAt}}</span>
+			<span itemprop="workHours">Flexible</span>
+			<span itemprop="jobLocation">Remote</span>
+		</div>
+	</div>
+</template>
+
+<template name="tag">
+	<p class="inline-block" data-toggle="tooltip" data-placement="top" title="View all {{this}} remote jobs">
+		<div class="btn-outline-big  tagsJobs btn btn-outline tags-main" id="tag-hover">
+			<div class="tags">{{this}}</div>
+		</div>
+	</p>
+</template>

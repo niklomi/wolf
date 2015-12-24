@@ -1,53 +1,46 @@
-# Meteor packages used by this project, one per line.
-# Check this file (and the other files in this directory) into your repository.
-#
-# 'meteor add' and 'meteor remove' will edit this file for you,
-# but you can also edit it by hand.
+#Meteor
+meteor-base             # Packages every Meteor app needs to have
+mobile-experience       # Packages for a great mobile UX
+mongo                   # The database Meteor supports right now
+blaze-html-templates    # Compile .html files into Meteor Blaze views
+session                 # Client-side reactive dictionary for your app
+jquery                  # Helpful client-side library
+tracker                 # Meteor's client-side reactive programming library
 
-dburles:collection-helpers
+standard-minifiers      # JS/CSS minifiers run for production mode
+es5-shim                # ECMAScript 5 compatibility for older browsers.
+ecmascript              # Enable ECMAScript2015+ syntax in app code
+
+meteorhacks:ssr
+# Flow Router
+kadira:dochead
+kadira:blaze-layout
+kadira:flow-router
+meteorhacks:fast-render
+
+meteorhacks:npm
+amr:parsley.js
+msavin:mongol
+themeteorchef:jquery-validation
+vazco:universe-html-purifier
+check
+natestrauser:animate-css
+stylus
+fortawesome:fontawesome
+themeteorchef:bert
 accounts-password
 accounts-ui
 alanning:roles
 momentjs:moment
 twbs:bootstrap
 percolate:synced-cron
+matb33:collection-hooks
 http
 ongoworks:security
-iron:router
 reactive-var
-froatsnook:request
-matb33:collection-hooks
-meteorhacks:npm
-meteorhacks:kadira
-amr:parsley.js
-themeteorchef:jquery-validation
-matteodem:easy-search
+easy:search
 browser-policy
-lyuyea:md-editor
 summernote:standalone
-vazco:universe-html-purifier
-themeteorchef:bert
-
-manuelschoebel:ms-seo
-natestrauser:animate-css
-stylus
-meteorhacks:fast-render
-meteorhacks:zones
-
-standard-minifiers
-meteor-base
-mobile-experience
-mongo
-blaze-html-templates
-session
-jquery
-tracker
-logging
-reload
-random
-ejson
-spacebars
-check
 
 
 npm-container

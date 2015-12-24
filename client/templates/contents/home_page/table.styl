@@ -1,0 +1,63 @@
+
+@import '{}/client/stylesheets/colors.import';
+.main-table
+	border-collapse: separate;
+	.no-results
+		font-size:16px
+		font-weight:600
+		padding:2rem 0 0
+	.smurf
+		border-bottom:1px solid border-color-card
+		padding: 2rem 2rem 2rem 2.5rem;
+		position:relative
+		.job-date
+			position:absolute
+			top:2.2rem
+			right:2rem
+			font-size:16px
+			color:color-999
+		.job-companents
+			padding-right: 9rem
+			.position
+				font-size:18px
+				display:inline-block
+			.company
+				color:color-999
+				font-size:18px
+				display:inline-block
+		.description
+			color:body-color
+			font-size: 16px;
+			line-height: 24px;
+			margin-top: 1rem;
+		.company-image
+			background-size: cover;
+			width: 4rem;
+			height: 4rem;
+			left: -2.5rem;
+			top: 3rem;
+			background-color: #FFF;
+			position: absolute;
+			border: 1px solid #E2E2E2;
+			border-radius: 50%;
+			@media (max-width:960px)
+				display:none
+		.no-image
+			font-size: 20px;
+			text-align: center;
+			line-height: 40px;
+			font-weight: 600;
+			text-transform: uppercase;
+			color: color-747;
+		.trend-job
+			background: #F7E92E;
+			position: absolute;
+			top: 0;
+			border-bottom-right-radius: 4px;
+			left: 0;
+			padding: 0 0.5rem;
+			p
+				color:color-747
+
+.hidden-xs-l.td-tags
+	margin-top: 0.5rem

@@ -1,0 +1,50 @@
+<template name="exist_job">
+{{#if Template.subscriptionsReady}}
+	{{#with job}}
+	<div itemscope itemtype="http://schema.org/JobPosting" class="card">
+		<div class="schemaorg">
+			<span itemprop="skills"> {{#each tag}} {{this}} {{/each}} </span>
+			<span itemprop="datePosted">{{formatTimeshema createdAt}}</span>
+			<span itemprop="workHours">Flexible</span>
+			<span itemprop="jobLocation">Remote</span>
+		</div>
+		<div class="single-job-info smurf">
+				{{#if image}}
+					<div class="company-image" style="background-image: url('{{check_img image}}');"></div>
+				{{else}}
+					<div class="company-image no-image">{{set_image_name position}}</div>
+				{{/if}}
+
+			<div class="ograde">
+				<h3 itemprop="title" class="ograde-position">{{position}}</h3>
+
+				{{#if company_have_url}}
+					<h4> <a href="{{company_url}}" target="_blank" >in <span itemprop="hiringOrganization">{{company}}</span></a></h4>
+				{{else}}
+					<h4>in <span itemprop="hiringOrganization">{{company}}</span></h4>
+				{{/if}}
+
+				<p class="date">{{date_from_now createdAt}}</p>
+
+				<h3 class="exist-job-tags">
+					{{#each tags}}<p data-toggle="tooltip" data-placement="top" title="View all {{this}} remote jobs" class="inline-block"><div class="btn-outline-big  tagsJobs btn btn-outline tags-job-ex" id="tag-hover"><div class="tags">{{this}}</div></div></p> {{/each}}
+				</h3>
+			</div>
+		</div>
+
+		<div class="single-job-description smurf">
+			<div id="fullDescr" itemprop="description">{{{description}}}</div>
+		</div>
+	</div>
+	{{/with}}
+{{else}}
+	{{> loading}}
+{{/if}}
+</template>
+
+<template name="exist_job_apply_url">
+	<div class="card apply-for-job">
+		<p class="post-job-text">Interested in the job and would like to be a part of company?</p>
+		<div class="text-center"><a href="{{#with job}}{{apply_url}}{{/with}}"><button class="btnM effect-for-buttons btnM-apply">Apply</button></a></div>
+	</div>
+</template>

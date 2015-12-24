@@ -1,309 +1,181 @@
 @import 'colors.import';
 
-.south
-  font-family: 'Oleo Script'
-  font-size: 60px
-  color: #FFF
-  text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2)
-  line-height: 1.42857143
-  margin: 0
-  @media (max-width: 380px)
-    font-size: 40px
+html
+	min-height: 101%;
 
-body{
-  color:#232323;
-  font-family: 'Open Sans',"Helvetica Neue",Arial,Helvetica,sans-serif;
+body
+	color:body-color
+	font-family: 'Proxima Nova',"Helvetica Neue",Arial,Helvetica,sans-serif;
+	position:relative
+	background:#f4f4f4
+	min-height:101%
 
-}
+h1, h2, h3, h4, h5, h6, p
+	margin:0
+	padding:0
 
+.cursor-default
+	cursor: default !important;
 
-h4.position
-  margin-bottom: 3px
-  @media (max-width: xs-l)
-    margin-bottom: 0px
-  @media (max-width: xs-sl)
-    margin-top: 5px
+.effect-for-text
+	&:hover,&:active,&:focus
+		color:body-color
+		transition:all 0.1s
 
-button{
-  outline-style: none;
-}
+.b-600
+	font-weight:600
+
+.no-select
+	-webkit-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+
+.card
+	background:#FFF
+	border:1px solid border-color-card
+	border-radius:4px
+	box-shadow: 0px 0px 1px 0 rgba(0,0,0,.1)
+
+button
+	outline-style: none;
+
+.inline-block
+	display:inline-block
 
 a
-  color:main-color
-  outline-style: none
+	color:main-color
+	outline-style: none
 
-a:hover, a:focus{
-  text-decoration: none;
-  color: main-color;
-  outline-style: none;
-}
-.main{
-  position: relative;
-  z-index: 1;
-}
-.h4{
-  font-weight: bold;
-}
+a:hover, a:focus
+	text-decoration: none;
+	color: main-color;
+	border-bottom:2px solid main-color
+	outline-style: none;
 
-.date-wrap
-  display: table
-  margin: 20px 0
-  @media (max-width: xs-l)
-    display: block !important
+.main
+	position: relative;
+	z-index: 1;
 
-.table_date_wrap
-  display: table-cell
-  text-align: center
-  max-width: 20%
-  h1
-    margin-top: 10px
-  @media (max-width: xs-l)
-    display: block !important
-    max-width: 100% !important
+.h4
+	font-weight: bold;
 
-.table_date_wrap span{
-  color:#777;
-}
-.table_date
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.8);
-  @media (max-width: xs-sl)
-    margin-top: 0px !important
+.border
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
 
-.table_date_h3
-  font-weight: normal
-  margin-left: 15px
-  color: #555
-
-
-
-.border{
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
 #orr
-  margin-top: 10px
-  font-weight: bold
-  font-weight: 20px
-  text-align: center
-  padding: 0 2rem
-  @media (max-width: xs-l)
-    padding: 0 1rem
+	margin-top: 10px
+	font-weight: bold
+	font-weight: 20px
+	text-align: center
+	padding: 0 2rem
+	@media (max-width: xs-l)
+		padding: 0 1rem
 
-.logo-source
-  width: 100%
-  text-align: center
+.show-780
+	display:none !important;
+	@media (max-width:770px)
+		display:block !important;
+
+.hide-780
+	@media (max-width:770px)
+		display:none !important;
 
 .details{
-  font-weight: 700;
-  font-size: 16px;
+	font-weight: 700;
+	font-size: 16px;
 }
 .tagsJobs{
-  display: inline-block;
-  margin-right: 3px;
-  margin-bottom: 3px;
-  margin-top: 3px;
-}
-
-.mark-h{
-  //background-color: #FFF12D;
+	display: inline-block;
+	margin-right: 3px;
+	margin-bottom: 3px;
+	margin-top: 3px;
 }
 
 .tags{
-  font-size: 10px;
-  text-transform: uppercase;
-  color:#232323;
+	font-size: 10px;
+	text-transform: uppercase;
+	color:body-color
 }
 
 #tag-hover:hover {
-  background: rgba(0, 0, 0, 0.2) none repeat scroll 0% 0%;
-  transition:all 0.1s;
+	background: rgba(0, 0, 0, 0.2) none repeat scroll 0% 0%;
+	transition:all 0.1s;
 }
 #tag-hover:hover .tags{
-  transition:all 0.1s;
+	transition:all 0.1s;
 }
-.jobCompanents
-  font-weight: normal
-  text-align: left
-  width: 34rem
-  @media (max-width: xs-ml)
-    min-width: 3rem
-
-
-.bigInfo{
-    -webkit-animation-duration: 0.3s;
-    -moz-animation-duration: 0.3s;
-    -o-animation-duration: 0.3s;
-    animation-duration: 0.3s;
-}
-
-.color-font
-  color: #232323
 
 .body-color
-  color: body-color
+	color: body-color
 
-.position{
-  font-size: 1.1em;
-  font-weight: 700;
-}
-.position>a{
-  color:main-color;
-  line-height: 1.35;
-}
-h4.position>a:hover{
-  color: main-color;
-  text-decoration: underline;
-}
-.company{
-  font-size: 16px;
-  color: #232323;
-  margin: 0 0 9px;
-}
 .fullCont{
-  padding: 2em;
-  font-size: 16px;
+	padding: 2em;
+	font-size: 16px;
 }
 .moreInfo{
-  margin:30px 0;
+	margin:30px 0;
 }
 .wrap-bigInfo
-  margin: 2rem
+	margin: 2rem
 
-.main-table > .smallInfo
-  border-left: 3px solid transparent
-  @media (max-width: xs-sl)
-    border-bottom: 1px solid #f2f2f2;
-
-.main-table > .smallInfo>td
-  cursor: pointer
-  padding: 8px
-  padding-top: 0px
-  padding-bottom: 0px
-  position:relative
-  @media (max-width: xs-sl)
-    padding: 5px 0
-
-.main-table > .smallInfo:hover
-    background: none repeat scroll 0 0 #f4f5f4;
-    transition: all 0.1s;
-    border-left: 3px solid main-color
-    @media (max-width: xs-sl)
-      border-left: 3px solid transparent
-
-.bigInfo>td{
-  border-bottom: 1px solid #E7EFF2;
-
-}
 .main-table tr
-  -webkit-user-select: none
-  -moz-user-select: none
-  -ms-user-select: none
-  user-select: none
+	-webkit-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
 
 .jumbotron{
-  text-align: center;
-}
-
-.no-job{
-  font-weight: bold;
-  color: #555;
+	text-align: center;
 }
 
 #del-pad{
-  padding-top: 0px;
+	padding-top: 0px;
 }
-
-.pic{
-  background-size: cover;
-  height: 2.5em;
-  width: 4.2em;
-  display: inline-block;
-  vertical-align: middle;
-}
-.WFH{
-  background-image: url("image/picWFH.png");
-
-}
-.WOLFY{
-  background-image: url("image/picWOLFY.png");
-  height: 4em;
-}
-.WWR{
-  background-image: url("image/picWWR1.png");
-}
-.WWM{
-  background-image: url("image/picWWM1.png");
-  height: 3.4em;
-  width: 3.5em;
-}
-.AUTHENTIC{
-  background-image: url('image/authentic.png');
-  height: 1.9em;
-  width: 4.3em;
-}
-.logo-source .fa{
-  font-size: 2.8em;
-}
-.submitDate .fa{
-  display: none;
-}
-/*tr:hover > td > .fa{
-  display: inline-block;
-}*/
 
 .container-l
-  max-width: 85rem
-  margin: 0 auto
-  padding: 0 5px
-  @media (max-width: xs-l)
-    padding: 0
+	max-width: 90rem
+	margin: 0 auto
+	padding: 0 5px
+	@media (max-width: xs-l)
+		padding: 0
 
 .table-start
-  @media (max-width: xs-l)
-    padding: 0 5px
+	@media (max-width: xs-l)
+		padding: 0 5px
 
 .bigInfo.clicked {
-  background-color: #FDFCED;
+	background-color: #FDFCED;
 }
 .smallInfo.clicked {
-      background-color: #FDFCED;
+	background-color: #FDFCED;
 }
-.submitDate
-  text-align: center
-  font-size: 20px
-  font-weight: 600
-  color: rgba(0, 0, 0, 0.8)
-  width:120px
-  @media (max-width: xs-sl)
-    width: 60px !important
-    font-size: 15px
 
 #highlighte{
-  background-color: #FFFCCE;
+	background-color: #FFFCCE;
 }
 
 .loading-message {
-  color: #fff;
-  font-size: 25px;
-  font-weight: 300;
-  font-family: sans-serif;
+	color: #fff;
+	font-size: 25px;
+	font-weight: 300;
+	font-family: sans-serif;
 }
 
 input:focus
-  outline: none
+	outline: none
 
 .typeahead,
 .tt-query,
-.tt-hint {
-  width: 396px;
-  padding: 8px 12px;
-  line-height: 30px;
-  border: 2px solid #ccc;
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px;
-  outline: none;
-}
+.tt-hint
+	width: 396px;
+	padding: 8px 12px;
+	line-height: 30px;
+	border: 2px solid #ccc;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	outline: none;
 
 .typeahead {
   background-color: #fff;
@@ -313,377 +185,221 @@ input:focus
   border: 2px solid #0097cf;
 }
 
-.tt-query {
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-}
+.tt-query
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
 
 .tt-hint {
-  color: #999
+	color: #999
 }
 
 .tt-menu {
-  width: 422px;
-  margin: 4px 0;
-  padding: 8px 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	width: 422px;
+	margin: 4px 0;
+	padding: 8px 0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 
 .tt-suggestion {
-  padding: 3px 20px;
-  font-size: 18px;
-  line-height: 24px;
+	padding: 3px 20px;
+	font-size: 18px;
+	line-height: 24px;
 }
 
 .tt-suggestion:hover {
-  cursor: pointer;
-  color: #fff;
-  background-color: #0097cf;
+	cursor: pointer;
+	color: #fff;
+	background-color: #0097cf;
 }
 
 .tt-suggestion.tt-cursor {
-  color: #fff;
-  background-color: #0097cf;
-
+	color: #fff;
+	background-color: #0097cf;
 }
 
-.tt-suggestion p {
-  margin: 0;
-}
-.loading{
-  min-height: 100%;
-  display: flex;
-  align-items: center;
-}
-#loading-h1{
-  color:#555;
-  font-weight: bold;
-}
 
-#loading-span{
-  color: #777;
-  font-size: 22px;
-}
+.search-more:hover
+	color: main-color;
 
-.search-input
-  width: 100%
-  border-radius: 999px
-  color: #232323
-  height: 35px
-  display: block
-  padding: 8px 8px 8px 30px
-  font-size: 14px
-  line-height: 1.42857
-  border: 1px solid #CCC
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset
-  background: #FFF url("image/icon-search.png") no-repeat scroll 11px 11px
-  &:focus
-    border-color: #B1B1B1
+.hidden
+	display: none;
 
+.bert-alert.visible
+	border-radius:4px;
+	border-color: #912D2B;
 
-.search-input:active{
-  outline: none;
-}
+.bert-alert.growl-top-right span
+	padding: 4px 0px 4px;
 
-.search-box{
-  z-index: 3;
-  position: absolute;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.35);
-  border-radius: 4px;
-}
-.search-box:first:child{
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
-}
-.search-date{
-  font-weight: bold;
-  display: inline-block;
-float: right;
-}
-.search-more{
-border: medium none;
-background: transparent none repeat scroll 0% 0%;
-display: block;
-width: 100%;
-font-weight: bold;
-font-size: 20px;
-color: #09AEF2;
-transition: all 0.1s;
-}
-.search-more:hover{
-  color: main-color;
-}
-
-.hidden{
-  display: none;
-}
-
-.bert-alert.visible{
-  border-radius:4px;
-  border-color: #912D2B;
-}
-.bert-alert.growl-top-right span{
-  padding: 4px 0px 4px;
-}
-.bert-alert.danger {
-  background-color: #FFF6F6;
-  color: #912D2B;
-}
+.bert-alert.danger
+	background-color: #FFF6F6;
+	color: #912D2B;
 
 #error404
-  height: 100vh
-  width: 100%
-  background-color:#EBEBEB
-  padding:10rem 0
-  h1
-    margin-top: 0
-    font-weight:bold
-    font-size:8rem
-    @media(max-width:xs-sl)
-      font-size: 7rem
-  h2
-    color: #555 !important
-    @media(max-width:xs-l)
-      font-size: 2.5rem
-    @media(max-width:xs-sl)
-      font-size: 1.5rem
+	height: 100vh
+	width: 100%
+	background-color:#f4f4f4
+	padding:10rem 0
+	h1
+		margin-top: 0
+		font-weight:bold
+		font-size:8rem
+		@media(max-width:xs-sl)
+			font-size: 7rem
+	h2
+		color: #555 !important
+		@media(max-width:xs-l)
+			font-size: 2.5rem
+		@media(max-width:xs-sl)
+			font-size: 1.5rem
 
-.loading{
-  text-align: center;
-}
-#id-medium
-  position: fixed;
-  background-image: url('image/picWOLFY.png');
-  bottom: 0px;
-  right: 0px;
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
-  z-index: 999;
-
-#wolfy
-  display: inline-block
-  background-size: cover
-  background-image: url('image/picWOLFY.png')
-  height: 8rem
-  width: 8rem
-
-p.company
-  @media (max-width: xs-l)
-    margin: 0
-  @media (max-width: xs-sl)
-    font-size:0.95em
-
-#id-medium:hover
-  height: 60px
-  width: 60px
-  transition: all 0.3s ease-in-out 0s
-  @media (max-width: 870px)
-    height: 50px
-    width: 50px
-
-
-.tags-main
-  @media (max-width: xs-l)
-    padding: 4px 8px !important
-  @media (max-width: xs-sl)
-    font-weight: normal !important
-    border: 1px solid #232323 !important
-
-
-.hero-title
-  color: #fff
-  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1)
-  font-size: 26px
-  line-height: 40px
-  letter-spacing: -0.5px
-  margin: 0
-  @media (max-width: seventt)
-    font-size: 2.5rem
-  @media (max-width: xs-l)
-    font-size: 2rem
-    line-height: 30px
-  @media (max-width: fourfiv)
-    font-size: 1.7rem
-    line-height: 25px
-
-#checkout-link{
-  text-decoration: underline;
-}
-
-
-.visible-xs-inline-l
-  display:none !important
-  @media (max-width: xs-l)
-    display: inline !important
-
-.hidden-xs-l
-  @media (max-width: xs-l)
-    display: none !important
-
-.hidden-xs-sl
-  @media (max-width: xs-sl)
-    display: none !important
-.td-tags
-  min-width: 20rem;
+.loading
+	width:100%
+	text-align: center
+	margin:2rem 0
+	.loading-gif
+		background-image: url('image/rolling.gif')
+		width: 5rem;
+		height: 5rem;
+		display: inline-block;
+		background-size:cover
+	p
+		font-weight: 600;
 
 #loadmore
-  display: inline-block
-  cursor: pointer
+	display: inline-block
+	cursor: pointer
 
 .viewInfo
-  display: inline-block;
+	display: inline-block;
 
 div.viewInfo
-  width: 15rem
-  @media (max-width: xs-sl)
-    width: 10rem;
-    font-size: 0.8em;
-    padding: 10px 5px;
+	width: 15rem
+	@media (max-width: xs-sl)
+		width: 10rem;
+		font-size: 0.8em;
+		padding: 10px 5px;
 
 .footer
-  position: absolute
-  bottom: 0
-  right: 0
-  left: 0
-  background: #f4f5f4 none repeat scroll 0% 0%
-  padding:2rem
-  p
-    font-size: 1.5em
-    color: #555
-    @media (max-width: xs-sl)
-      font-size: 1.2em
-  span
-    color: #777
+	position: absolute
+	bottom: 0
+	right: 0
+	left: 0
+	background: #f4f5f4 none repeat scroll 0% 0%
+	padding:2rem
+	p
+		font-size: 1.5em
+		color: #555
+		@media (max-width: xs-sl)
+			font-size: 1.2em
+	span
+		color: #777
 
 .steps > h3
-  @media (max-width: xs-sl)
-    font-size: 1.2em
+	@media (max-width: xs-sl)
+		font-size: 1.2em
+
 .steps > h1
-  @media (max-width: xs-sl)
-    font-size: 2em
-
-.td-pics
-  max-width: 10rem
-  width: 8rem
-
-#loa-cen
-  padding: 10rem 1rem
-  h2
-    margin-top:5px
-    color:#555
-    @media (max-width:xs-l)
-      font-size:2rem
-    @media (max-width:xs-sl)
-      font-size:1.5rem
+	@media (max-width: xs-sl)
+		font-size: 2em
 
 .loader
-  text-align: center
-  display: inline-block
-  vertical-align: top
+	text-align: center
+	display: inline-block
+	vertical-align: top
 
 #give-some-padding
-  width:100%
-  padding:5rem 0
-
-svg path,
-svg rect
-  fill: main-color
-
-#svg-search
-  padding-top: 2rem
+	width:100%
+	padding:5rem 0
 
 .hide-sev
-  @media (max-width:700px)
-    display: none !important
+	@media(max-width:700px)
+		display: none !important
 
 .hide-fit
-  @media (max-width:540px)
-    display: none !important
+	@media(max-width:540px)
+		display: none !important
 
 .hide-fot
-  @media (max-width:500px)
-    display: none !important
+	@media(max-width:500px)
+		display : none !important
 
 .show-fit
-  @media (max-width:340px)
-    display: none !important
+	@media(max-width:340px)
+		display : none !important;
 
 #contactwolf
-  &:hover,&:active,&:focus,&:visited
-    color:#FFF
+	&:hover,&:active,&:focus,&:visited
+		color:#FFF
 
 .new-job
-  padding:1px 3px
-  font-weight:bold
-  text-align:center
-  border-radius:3px
-  background-color:#FFF12D
+	padding:1px 3px
+	font-weight:bold
+	text-align:center
+	border-radius:4px
+	background-color:#FFF12D
+
+td
+	position:relative
 
 .inline
-  display:inline-block
+	display:inline-block
 
 .param-group
-  text-align:center
+	text-align:center
 
 .wolfy-back
-  background-color: rgba(255,252,213,0.8)
-  &:hover
-    background-color: rgba(255,252,213,0.8) !important
+	background-color: rgba(255,252,213,0.8)
+	&:hover
+		background-color: rgba(255,252,213,0.8) !important
 
 .hidden-xs-ml
-  @media (max-width: xs-ml)
-    display: none !important
-
-.position>a{
-  color:main-color;
-  line-height: 1.35;
-}
-
-.company-job
-  display:inline
-  padding:0 2px
-
-.trend-job
-  color:#FFF12D
-  position:absolute
-  top: 3px
-  left: 5px
+	@media (max-width: xs-ml)
+		display: none !important
 
 .schemaorg
-  display:none
+	display:none
 
 .tweet_follow
-  position:fixed
-  right: 7px
-  top: 7px
-  z-index: 999;
+	position:fixed
+	right: 7px
+	top: 7px
+	z-index: 999;
 
 .count-new-job
-  float: right
+	float: right
 
 .number-count
-  text-decoration: underline
-  font-size: 24px
+	text-decoration: underline
+	font-size: 24px
 
 #count-num
-  color: main-color
+	color: main-color
 
 #twent-hour
-  float: right
-  color: #777
+	float: right
+	color: #777
 
 .login-but
 	position: absolute
 	top: 0
 	left: 0
 	z-index:20
+
+.do-it-like-input
+	box-shadow: inset 0 1px 2px rgba(137,140,144,.2),0 0 0 #fff;
+	transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,background-color .15s ease-in-out;
+
+.give-me-shadow
+	box-shadow: 0 2px 10px rgba(34,36,38,.15);
+

@@ -1,0 +1,26 @@
+<template name="filter">
+	<div class="filter-wrap select-no {{#if input}}{{else}}filter-body-hover{{/if}}">
+		<div class="relative">
+			{{#if input}}
+			<section class="filter-head-search-section">
+				<label><i class="fa fa-search"></i></label>
+				{{> EasySearch.Input index=postsIndex attributes=getInputAttributes}}
+			</section>
+			{{else}}<section class="filter-head pointer filter-head-block filter-head-input do-it-like-input">{{name}} <i class="fa fa-sort-desc"></i></section>
+			{{/if}}
+
+			<div class="filter-body" style="{{#if show}} display:block !important; {{/if}}" >
+				<ul class="spisok give-me-shadow">
+					{{#if this_is_tags}}
+						{{#if tags}}
+							{{#each tags}}
+								<li class="chose-tag {{#if active_tag this}}effect-for-buttons active-item{{/if}}"> <i class="fa fa-hashtag"></i> {{this}}</li>
+							{{/each}}
+						{{else}} {{> loading}} {{/if}}
+					{{/if}}
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</template>

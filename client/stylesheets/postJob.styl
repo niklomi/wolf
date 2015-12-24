@@ -1,48 +1,22 @@
 @import 'colors.import';
 
-.post-job
-	padding: 25px 10px
-	background: #232323 none repeat scroll 0% 0%
-	border-radius: 3px
-	text-align: center
-	@media (max-width: 850px)
-		border-radius:0px
-	@media (max-width: 350px)
-		display:none
-
 .post-job-text
-	display:inline-block;
-	padding: 0 4rem;
-	h3
-		margin: 15px 0px 10px;
-		font-weight: bold;
-		font-size: 20px;
-		color: #FFF;
-		@media (max-width: 800px)
-			margin:0 0 2rem
+	font-size:16px
+	color:body-color
+	padding:0 0 1rem
 
+.post-job
+	padding: 1rem 2rem 2rem;
 
-.post-job-p
-	text-align: center
-	font-size: 18px
-	padding: 0 5px
-	margin-bottom: 30px
-	color: #333
-	@media (max-width: xs-sl)
-		font-size: 1.2em
+.post-job-head
+	border-bottom:1px solid border-color-card
+	color:body-color
+	font-size:24px
+	padding: 1.5rem 2rem 0.5rem
+	font-weight: 600
 
-.post-job-btn{
-	text-align: center;
-	display: inline-block;
-	position: relative;
-	top: -5px;
-}
-#showjob{
+#showjob
 	cursor: pointer;
-}
-
-.newjob-table
-	width: 100%
 
 .wout-m
 	margin: 0 !important
@@ -50,87 +24,22 @@
 .container-post
 	padding: 0 !important
 
-body
-	position:relative
-
-.overlay
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(0,0,0,0.5);
-	z-index: 10;
-	display:none;
-
-.overlay-body
-	width: 46rem
-	position: fixed
-	top: 50%
-	color:#232323 !important
-	left: 50%
-	margin-top: -23rem
-	margin-left: -23rem
-	background-color: #f4f5f4
-	border-radius: 3px
-	text-align: center
-	z-index: 11
-	display:none
-	-webkit-animation-duration: 0.3s;
-	-webkit-animation-delay: 0.15s;
-	-moz-animation-duration: 0.3s;
-	-moz-animation-delay: 0.15s;
-	-ms-animation-duration: 0.3s;
-	-ms-animation-delay: 0.15s;
-	@media (max-width: 700px)
-		width: 38rem
-
 #job-send
-	box-shadow: 0 1px 10px rgba(0,0,0,.6)
 	.form-group
+		margin:2rem 0
 		input
-			border-color:#C5C5C5
-			color:#555459
-			&:active,&:focus
-				border-color: #989898
-				box-shadow: none !important
+			margin-top:0.5rem
 		label
-			float: left
-	h4
-		margin:0
-		padding:2rem
-		font-weight:bold
-		backgound-color:#f4f5f4
-	.niz-form
-		padding: 1rem 2rem
-		background: #FFF
-		border-radius: 3px
-
+			font-size:18px
+			margin:0
+			font-weight:600
+			color:color-747
 
 #pop-submit-job
 	margin:0.5rem 0 2rem
 
-.spin{
-	-webkit-animation-name: spinnerRotate;
-	-webkit-animation-duration: 1s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
-	-moz-animation-name: spinnerRotate;
-	-moz-animation-duration: 1s;
-	-moz-animation-iteration-count: infinite;
-	-moz-animation-timing-function: linear;
-	-ms-animation-name: spinnerRotate;
-	-ms-animation-duration: 1s;
-	-ms-animation-iteration-count: infinite;
-	-ms-animation-timing-function: linear;
-}
+.error
+	color:#822121
 
-#link-new-job
-	position: absolute
-	top: 20px
-	left: 0
-	z-index:20
-
-.mute
-	color:#555
-
+.success
+	color:#188C4D

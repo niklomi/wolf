@@ -1,0 +1,28 @@
+<template name="header">
+<div class="header relative">
+	<div class="mobile-header show-780 container-l">
+		<div id="wolfy_pic_mobile"></div>
+		<a href="/"><h1 class="south">Remote Wolfy</h1></a>
+	</div>
+	<div class="container-l relative hide-780">
+		<div id="wolfy_pic"></div>
+		<a href="/"><h1 class="south">Remote Wolfy</h1></a>
+		<ul>
+			<li>
+				<a class="effect-for-text" href="https://twitter.com/intent/follow?screen_name=remote_wolfy"><i class="fa fa-twitter"></i> Twitter </a>
+			</li>
+			<li>
+				<a class="effect-for-text" href="/info#contact">Contact</a>
+			</li>
+			<li>
+				<a class="effect-for-text" href="/info#about">About</a>
+			</li>
+			{{#if isInRole 'admin'}}
+			<li>
+				<a href="/post-job" class="effect-for-text" id="link-new-job">Create </a>
+			</li>
+			{{/if}}
+		</ul>
+	</div>
+</div>
+</template>

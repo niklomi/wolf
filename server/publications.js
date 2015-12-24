@@ -1,46 +1,43 @@
-Meteor.publish('allPosts', function(count){
-	if (!count) count = 75;
+Meteor.publish('all_posts', function(count){
 	check(count, Number);
-    return Posts.find({remote:true, status:true},{fields: { status: 0, remote: 0, fullContent: 0}, sort: { createdAt: -1 }, limit : count});
+	var transform = function(doc) {
+		doc.description = doc.description.substring(0,140);
+		return doc;
+	}
+
+	var self = this;
+
+	var observer = Posts.find({},{sort: { createdAt: -1 },limit:count}).observe({
+		added: function (document) {
+			self.added('posts', document._id, transform(document));
+		},
+		changed: function (newDocument, oldDocument) {
+			self.changed('posts', document._id, transform(newDocument));
+		},
+		removed: function (oldDocument) {
+			self.removed('posts', oldDocument._id);
+		}
+	});
+
+	self.onStop(function () {
+		observer.stop();
+	});
+
+	self.ready();
 });
 
-Meteor.publish('singlePost', function(id) {
-  check(id, String);
-  if (id) return Posts.find({ _id : id , remote:true, status:true},{fields: { status: 0, remote: 0}});
-  return this.ready();
+Meteor.publish('single_post', function(id) {
+	check(id, String);
+	return Posts.find({ _id : id , status:true}, {fields: { status: 0}});
 });
 
-Meteor.publish('fPost', function(id) {
-  check(id, String);
-  if (id) return Posts.find({ _id : id , remote:true, status:false},{fields: { status: 0, remote: 0}});
-  return this.ready();
-});
-
-Meteor.publish('list_of_jobs', function() {
-	return Posts.find({test:true},{sort: { createdAt: -1 }});
-});
-
-Meteor.publish('navigation', function(category, count) {
-	if (count === 1) count = Posts.find().fetch().length;
-	check(count, Number);
-	return Posts.find({remote:true, status:true,category: { $in: [category]}},{fields: { status: 0, remote: 0, fullContent: 0}, sort: { createdAt: -1 }, limit : count});
-});
-
-Meteor.publish('tags', function(tag, count) {
-	if (count === 1) count = Posts.find().fetch().length;
-	check(count, Number);
-	return Posts.find({remote:true, status:true,tag: tag},{fields: { status: 0, remote: 0, fullContent: 0}, sort: { createdAt: -1 }, limit : count});
-});
-
-Meteor.publish('source', function(source, count) {
-	if (count === 1) count = Posts.find().fetch().length;
-	check(count, Number);
-	return Posts.find({remote:true, status:true,source: source},{fields: { status: 0, remote: 0, fullContent: 0}, sort: { createdAt: -1 }, limit : count});
-});
-
-
-Meteor.publish(null, function (){
-  return Meteor.roles.find({});
+Meteor.publish('single_post_apply_url', function(id) {
+	check(id, String);
+	return Posts.find({ _id : id , status:true}, {fields: { apply_url: 1}});
 });
 
 Posts.permit(['update', 'remove','insert']).ifHasRole('admin').apply();
+
+Posts.before.insert(function (userId, doc) {
+	doc.createdAt = new Date();
+});

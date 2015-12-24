@@ -1,115 +1,72 @@
 @import 'colors.import';
 
-.ej-head
-	min-height: 6rem;
-	min-width: 100%;
-	background: #000 none repeat scroll 0% 0%;
-	background-image: url('/image/main.jpg');
-	background-size: cover;
+.apply-for-job
+	padding: 1.5rem 2rem 2rem;
+	position: relative;
 
-.south-job
-	font-family: 'Oleo Script'
-	color: #FFF
-	text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2)
-	margin: 0
-	text-align:center
-	font-size:6rem
-	padding:1.5rem
+.single-job-info
+	border-bottom: 1px solid #e2e2e2;
+	padding: 2rem 2rem 2rem 2.5rem;
+	position: relative;
+	.company-image
+		width:8rem
+		height:8rem
+		background-size:cover
+		position:absolute
+		top: 2rem
+		background-color: #FFF;
+		border: 1px solid #E2E2E2;
+		@media (max-width:450px)
+			display: none;
+	.no-image
+		line-height: 8rem;
+		text-transform: uppercase;
+		font-weight: 600;
+		color: color-747;
+		font-size: 40px;
+		text-align:center
+	.ograde
+		padding:0 9rem
+		@media (max-width:450px)
+			padding: 0 9rem 0 0
+		.ograde-position
+			font-size: 18px;
+	.date
+		position: absolute;
+		top: 2.2rem;
+		right: 2rem;
+		font-size: 16px;
+		color: #9e9ea6;
+	.title
+		padding-right:9rem
+		font-weight: 600
+	.exist-job-tags
+		margin-top:1rem
 
-.foot-wrap
-	padding-top:3rem
-	@media (max-width:780px)
-		padding-top:0px
-
-.full-job
-	text-align: center
-	padding: 0.5rem 3rem 3rem
-	background: #f4f5f4 none repeat scroll 0% 0%
-	border-radius: 3px
-	h2
-		display:inline-block
-		@media (max-width:500px)
-			font-size: 24px
-			display:block
-
-.desc-date
-	@media (max-width:500px)
-		font-size: 20px;
-
-.exist-job-position
-	padding-right:1rem
-	margin-bottom: 0
-
-.big-company
-	color: #515151
-
-
-.boldd
-	color: main-color
-	transition: all 0.1s ease-in-out 0s
-
-.boldd a:hover
-	border-bottom:1px solid main-color
-
-
-.centerInline{
-	text-align: center;
-}
+.single-job-description
+	word-wrap: break-word
+	padding: 2rem 2rem 2rem 2.5rem;
+	position: relative;
 
 #fullDescr
-	color: #232323
-	font-family: "PT Sans","Open Sans","Helvetica Neue", Helvetica,sans-serif
+	color: body-color
+	font-family: "Proxima Nova","Helvetica Neue", Helvetica,sans-serif
 	font-size: 16px
-	a
-		&:hover
-			text-decoration:underline
+	overflow:hidden
+	line-height: 26px
+	&:first-child
+		padding:0
 	p
 		font-size: 16px
 		text-align: left
-
-.btnapply{
-	display: inline-block;
-	margin:2rem 0 4rem;
-}
-
-.back-job{
-	background: #F4F5F4 none repeat scroll 0% 0%;
-	padding-bottom: 15px;
-}
-.back-jobb{
-	background: #F4F5F4 none repeat scroll 0% 0%;
-	padding-bottom: 15px;
-	padding-top: 10px;
-
-}
-
-.tags-job-ex
-	@media (max-width: 500px)
-		padding: 4px 8px !important;
-
-strong{
-  font-family: "Open Sans","Helvetica Neue",Arial,Helvetica,sans-serif !important;
-}
-.exist-date{
-	float: right;
-	color: #515151;
-	margin-right: 20px;
-	font-weight: bold;
-}
-
-.fb_iframe_widget
-	top: -5px
-
-.exist-job-company
-	margin-top:5px
-	margin-bottom:5px
-
-.exist-job-tags
-	margin-top:5px
-
-.margin-bot
-	margin-bottom:5rem
-
-.exist-job-group
-	div
-		display:inline-block
+	h1
+		font-size:24px
+		font-weight: 600;
+		padding: 2rem 0 1rem;
+	h2
+		font-size:20px
+		padding: 1rem 0 0.5rem;
+		font-weight: 600;
+	h3
+		font-size:18px
+		font-weight: 600

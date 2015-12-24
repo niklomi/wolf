@@ -1,0 +1,31 @@
+<template name="time_table">
+	<div class="table-start card">
+		<div class="main-table table">
+		{{#if search}}
+
+			{{> table posts=search}}
+
+			{{#if no_tags_found}}
+				<div class="no-results text-center">No results found</div>
+			{{/if}}
+
+		{{else}}
+			{{#EasySearch.IfInputEmpty index=postsIndex}}
+
+				{{> table posts=posts}}
+
+			{{else}}
+
+				{{#EasySearch.Each index=postsIndex }}
+					{{> jobs}}
+				{{/EasySearch.Each}}
+
+				{{#EasySearch.IfNoResults index=postsIndex}}
+					<div class="no-results text-center">No results found</div>
+				{{/EasySearch.IfNoResults}}
+
+			{{/EasySearch.IfInputEmpty}}
+		{{/if}}
+		</div>
+	</div>
+</template>

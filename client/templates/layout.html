@@ -1,35 +1,20 @@
-<template name="layout">
-  <div class="tweet_follow hidden-xs-l"><a href="https://twitter.com/remote_wolfy" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @remote_wolfy</a></div>
-  {{> yield}}
-</template>
+<template name="main_page">
+	{{> Template.dynamic template=header}}
+	<section class="container-l">
+	{{> Template.dynamic template=fullwidth}}
+	<div class="house">
+		<div class="house-left">
+			{{> Template.dynamic template=brodyga}}
+			{{> Template.dynamic template=content}}
+		</div>
+		<div class="house-right">
+			<div id="future-fix">
+				{{> Template.dynamic template=action}}
+			</div>
+		</div>
+	</div>
+	</section>
 
-<template name="mainPage">
-
-  <div class="tweet_follow hidden-xs-l"><a href="https://twitter.com/remote_wolfy" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @remote_wolfy</a></div>
-
-  <div class="video_wrapper">
-    <div class="video"></div>
-  </div>
-
-  <div class="main">
-    {{#if log}}{{> userLogin}}{{/if}}
-    <div class="main_intro">
-      <div class="container">
-        <div class="row">
-          <h1 class="col-md-12 text-center south">Remote Wolfy</h1>
-          <h2 class="hero-title hidden-threight">The best job board and daily aggregator that<br> <strong>helps you</strong> to find <strong>digital</strong> and <strong>tech remote jobs</strong></h2>
-          <h2 class="hero-title visible-threight">Job board and aggregator with remote jobs</h2>
-        </div>
-      </div>
-    </div>
-    {{> navTable}}
-    {{> postJob}}
-    {{> yield region="table"}}
-    <div class="footer text-center">
-      <p>We hope you find what you were looking for <i class="fa fa-child"></i></p>
-      <span>Contact: <a href="https://twitter.com/Zero___Hero">@fromzerotohero</a></span>
-    </div>
-    <div style="padding-bottom:400px;"></div>
-  </div>
+	{{> Template.dynamic template=footer}}
 </template>
 

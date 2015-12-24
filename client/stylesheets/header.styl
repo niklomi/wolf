@@ -1,55 +1,68 @@
 @import 'colors.import';
 
-.video_wrapper{
-  width: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  z-index: 0;
-  overflow: hidden;
-  background: #000 none repeat scroll 0% 0%;
-}
-.video
-	min-height: 20rem;
-	min-width: 100%;
-	opacity: 0.9;
-	z-index: 1;
-	background: #000 none repeat scroll 0% 0%;
-	background-image: url('image/main.jpg');
+.header
+	position: relative
+	border-bottom:1px solid border-color
+	padding: 3rem 0;
+	background:#FFF
+	overflow:hidden
+	@media (max-width:780px)
+		padding:2rem 0
+	a
+		&:hover,&:focus
+			border:none
+	ul
+		list-style: none
+		display:inline-block
+		margin:0
+		padding:0 0 0 2rem
+		li
+			display:inline-block
+			padding:0 2rem
+			a
+				color:color-747
+				font-size:18px
+
+.hero-title
+	position:relative
+	letter-spacing: -0.5px
+	margin: 0
+	display:inline-block
+
+#wolfy_pic
+	background-image: url('image/picWOLFY.png');
+	width: 5rem;
+	height: 5rem;
 	background-size: cover;
-	@media (max-width: 350px)
-		min-height: 12rem !important
+	position: absolute;
+	left: -6rem;
+	top:-4px
+	@media (max-width:1060px)
+		display:none
 
-.main_intro
-  box-shadow: 0px 0px 2rem rgba(0, 0, 0, 0.2) inset
-  position: relative
-  min-height: 20rem
-  text-align: center
-  padding:0.5rem 0
+#wolfy_pic_mobile
+	background-image: url('image/picWOLFY.png');
+	width: 5rem;
+	height: 5rem;
+	background-size: cover;
+	position: absolute;
+	top:10px
 
 
-.hidden-threight
-  @media (max-width:380px)
-    display: none
+.south
+	font-family:'Montserrat', 'Proxima Nova', "Helvetica Neue", Arial, Helvetica, sans-serif
+	font-weight:600
+	margin: 0
+	display:inline-block
+	padding: 0 0 0.5rem
+	letter-spacing: -0.8px
+	position:relative
+	color:body-color
+	@media (max-width:780px)
+		font-size:28px
+		padding: 0 0 0 5rem
+	#header-wolf-span
+		font-weight: 400
+		color: color-999
 
-.visible-threight
-  display : none
-  @media (max-width:380px)
-    display: block
 
-@media only screen and (max-width: fourfiv) {
-  .video{
-    min-height: 17rem;
-  }
-  .main_intro {
-    min-height: 17rem;
-  }
-
-}
-
-@media only screen and (max-width: 380px) {
-  .main_intro {
-    min-height: 10rem;
-  }
-
-}
