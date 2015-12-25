@@ -1,5 +1,5 @@
 Template.time_table.onRendered(function(){
-	Session.setDefault('countofshow',75)
+	Session.setDefault('countofshow',150)
 
 	var self = this;
 	self.autorun(function() {
