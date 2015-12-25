@@ -8,20 +8,13 @@
 			{{/if}}
 		</div>
 		<div class="job-companents">
-			<p class="position"><a href="job/{{_id}}"> <span class="b-600">{{checklength position}}</span></a> <span class="company "> in {{company}}</span></p>
+			<p class="position"><a href="job/{{_id}}"> <span>{{checklength position}}</span></a> <span class="company "> in {{company}}</span></p>
 		</div>
 		<a href="job/{{_id}}"><p class="description">{{{description}}}</p></a>
 		<div  class="hidden-xs-l td-tags" >
 			{{#each tags}}
 				{{> tag}}
 			{{/each}}
-		</div>
-		<div>
-			<div class="param-group">
-				{{#if new_job}}
-				<div class="new-job inline hidden-xs-ml">new</div>
-				{{/if}}
-			</div>
 		</div>
 		<div class="job-date">
 			{{date_from_now createdAt}}

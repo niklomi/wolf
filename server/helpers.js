@@ -13,29 +13,8 @@ sitemap = function(){
 			});
 		});
 		out.push({page: '/',  changefreq: 'daily',priority: 1});
-		out.push({page: '/fullstack',  changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/web-development',  changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/design',  changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/enterprise', changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/mobile', changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/trends',  changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/wolfy', changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/authentic',  changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/stackoverflow',  changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/behance', changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/dribbble',  changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/wwm',  changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/wfh', changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/wwr', changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/github', changefreq: 'daily',priority: 0.8 });
-		out.push({page: '/wwr',  changefreq: 'daily',priority: 0.8 });
-		_.each(tags, function(page) {
-			out.push({
-				page: 'tags/' + page,
-				lastmod: new Date(),
-				changefreq: 'daily'
-			});
-		});
+		out.push({page: '/info',  changefreq: 'monthly',priority: 0.8});
+		out.push({page: '/post',  changefreq: 'monthly',priority: 0.8});
 		return out;
 	});
 }

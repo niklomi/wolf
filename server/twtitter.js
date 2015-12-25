@@ -55,13 +55,16 @@ var t_ios = new Twit({
 });
 
 let twit_body = function(data,tw_company,tw_position,tags,id){
+	let company_body = "";
 	if (data.length > 0){
 		tw_company = '.@' + data[0].screen_name.toLowerCase();
+		company_body = '@' + data[0].screen_name.toLowerCase();
 	}
 
 	var tw_tags = "", tw_url = ' remotewolfy.com/job/' + id;
 	if (tags){
 		tags.forEach(function(tag){
+			if (tag === 'c#') tag = 'csharp';
 			tw_tags += ' #' + tag;
 		});
 	}
@@ -70,14 +73,14 @@ let twit_body = function(data,tw_company,tw_position,tags,id){
 	var tweet_array = [
 		tw_company + ' need some cool remote ' + tw_position   + tw_tags +  ' 📢 ' + tw_url ,
 		tw_company + ' is looking for remote '  + tw_position   + tw_tags + ' 📣 ' + tw_url ,
-		'Want to work like ' + tw_position + ' in ' + tw_company + ' ? ' + tw_tags + ' ➡ ' + tw_url,
+		'Want to work like ' + tw_position + ' in ' + company_body + ' ? ' + tw_tags + ' ➡ ' + tw_url,
 		tw_company + ' wants to hire remote '  + tw_position   + tw_tags + ' 📣 ' + tw_url ,
 		tw_company + ' seeking remote '  + tw_position   + tw_tags + ' 🌍 ' + tw_url ,
-		'Want to be remote ' + tw_position + ' in ' + tw_company + ' ? ' + tw_tags + ' ➡ ' + tw_url,
+		'Want to be remote ' + tw_position + ' in ' + company_body + ' ? ' + tw_tags + ' ➡ ' + tw_url,
 		tw_position + ' in ' + tw_company + ' Interesting ? ' + tw_tags + ' 📢 ' + tw_url,
-		'BOOM! Remote ' + tw_position + ' in ' + tw_company + ' Are you in ? ' + ' 📣 ' + tw_url ,
-		'Do you know some 🌟 ' + tw_position + ' who can work in ' + tw_company + ' ? ' +  tw_url ,
-		' 🔥🔥🔥 remote ' + tw_position + ' in ' + tw_company + tw_tags + ' / ' + tw_url,
+		'BOOM! Remote ' + tw_position + ' in ' + company_body  + ' Are you in ? ' + ' 📣 ' + tw_url ,
+		'Do you know some 🌟 ' + tw_position + ' who can work in ' + company_body + ' ? ' +  tw_url ,
+		' 🔥🔥🔥 remote ' + tw_position + ' in ' + company_body  + tw_tags + ' / ' + tw_url,
 	];
 
 	var tweet_body = tweet_array[Math.floor(Math.random() * tweet_array.length)]
@@ -89,17 +92,17 @@ let twit_body = function(data,tw_company,tw_position,tags,id){
 	}
 
 	if (tweet_body.length > 140) {
-		tweet_body = '.' + tw_company + ' is hiring ' + tw_position + ' 📢 ' + tw_url;
+		tweet_body = tw_company + ' is hiring ' + tw_position + ' 📢 ' + tw_url;
 		tweet_body = tweet_body.replace(/^\s+|\s+$/g, "");
 	}
 
 	if (tweet_body.length > 140) {
-		tweet_body = tw_position  + ' in ' + tw_company + ' ' + tw_url;
+		tweet_body = tw_position  + ' in ' + company_body + ' ' + tw_url;
 		tweet_body = tweet_body.replace(/^\s+|\s+$/g, "");
 	}
 
 	if (tweet_body.length > 140) {
-		tweet_body = 'We have interesting job in ' + tw_company + ' ' + tw_url;
+		tweet_body = 'We have interesting job in ' + company_body + ' ' + tw_url;
 		tweet_body = tweet_body.replace(/^\s+|\s+$/g, "");
 	}
 
@@ -114,41 +117,41 @@ tweeet_create = function(company,position,id,tags){
 		let tweet_body = twit_body(data,tw_company,tw_position,tags,id);
 		if (inProduction()){
 			T.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
-				if (err) console.log('! TWITTER | ' + err + tweet_body);
+				if (err) console.log('! TWITTER | ' + err + moment().format());
 			});
 			if (tags.indexOf('nodejs') >= 0){
 				t_nodejs.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
-					if (err) console.log('! TWITTER | ' + err + tweet_body);
+					if (err) console.log('! nodejs | ' + err + moment().format());
 				});
 			}
 			if (tags.indexOf('java') >= 0 || tags.indexOf('android') >= 0 || tags.indexOf('groovy') >= 0){
 				t_java.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
-					if (err) console.log('! TWITTER | ' + err + tweet_body);
+					if (err) console.log('! java | ' + err + moment().format());
 				});
 			}
 			if (tags.indexOf('meteorjs') >= 0){
 				t_meteorjs.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
-					if (err) console.log('! TWITTER | ' + err + tweet_body);
+					if (err) console.log('! meteorjs | ' + err + moment().format());
 				});
 			}
 			if (tags.indexOf('php') >= 0 || tags.indexOf('cakephp') >= 0 || tags.indexOf('symfony') >= 0){
 				t_php.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
-					if (err) console.log('! TWITTER | ' + err + tweet_body);
+					if (err) console.log('! php | ' + err + moment().format());
 				});
 			}
 			if (tags.indexOf('android') >= 0){
 				t_android.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
-					if (err) console.log('! TWITTER | ' + err + tweet_body);
+					if (err) console.log('! android | ' + err + moment().format());
 				});
 			}
 			if (tags.indexOf('net') >= 0 || tags.indexOf('c#') >= 0 || tags.indexOf('asp') >= 0){
 				t_dotnet.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
-					if (err) console.log('! TWITTER | ' + err + tweet_body);
+					if (err) console.log('! net | ' + err + moment().format());
 				});
 			}
 			if (tags.indexOf('ios') >= 0 || tags.indexOf('swift') >= 0){
 				t_ios.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
-					if (err) console.log('! TWITTER | ' + err + tweet_body);
+					if (err) console.log('! IOS | ' + err + moment().format());
 				});
 			}
 		}
