@@ -1,5 +1,5 @@
 Template.time_table.onCreated(function(){
-	Session.setDefault('countofshow',150)
+	Session.setDefault('countofshow',100)
 
 	var self = this;
 	self.ready = new ReactiveVar(false);
