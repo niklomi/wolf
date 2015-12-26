@@ -8,7 +8,8 @@ Meteor.methods({
 				description: String,
 				company: String,
 				company_url: String,
-				highlight: String
+				highlight: String,
+				apply_url: String
 			});
 			post.description = UniHTML.purify(post.description,{ noFormatting: true });
 
@@ -16,6 +17,7 @@ Meteor.methods({
 			var tags = makeTAG(post.position,[],post.description);
 			var category = makeCATEGORY(post.position, post.description);
 			job = ({
+				image: "WOLFY",
 				tags:  tags,
 				status: true,
 				source: 'WOLFY',
@@ -35,7 +37,8 @@ Meteor.methods({
 		if (data.title.length > 100 || data.desc.length > 200 )
 			throw new Meteor.Error( "Error: ", 'There was an error processing your request' );
 		var job = {
-			test:true
+			test:true,
+			status: false
 		}
 		var newpost = _.extend(data, job );
 		Posts.insert(newpost);

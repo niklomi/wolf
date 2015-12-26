@@ -11,6 +11,10 @@
 			<input class="form-control" maxlength="100" id="f_company" placeholder="Your company name">
 		</div>
 		<div class="form-group">
+			<label class="job-value">How to Apply </label>
+			<input class="form-control" maxlength="100" type="url" id="f_apply_url" placeholder="apply.com">
+		</div>
+		<div class="form-group">
 			<label class="job-value"  >Company URL </label>
 			<input class="form-control" maxlength="100" type="url" id="f_company_url" placeholder="companyurl.com">
 		</div>
@@ -19,6 +23,7 @@
 			<div id="summernote">Description and how to apply ..</div>
 			{{#if error.description}}<p class="error">{{ error.description }}</p>{{/if}}
 		</div>
+
 		<div class="form-group">
 			<label class="job-value">Highlight?</label><br>
 			<input id="f_highlight" type="checkbox"> <strong>Yes! </strong>
@@ -27,6 +32,7 @@
 			<button type="submit" class="btnM effect-for-buttons">PUBLISH NOW</button>
 			{{#if error.global}}<p class="error">{{ error.global }} </p>{{/if}}
 		</div>
+		{{#if success}}<p class="success">{{ success}} </p>{{/if}}
 	</form>
 </div>
 </template>
