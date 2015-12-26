@@ -30,5 +30,5 @@ xml2js = Meteor.npmRequire('xml2js');
 urlapi = Meteor.npmRequire('url');
 Twit = Meteor.npmRequire('twit');
 request = Meteor.npmRequire('request');
-var SlackAPI = Meteor.npmRequire( 'node-slack' ),
+SlackAPI = Meteor.npmRequire( 'node-slack' ),
 Slack = new SlackAPI( Meteor.settings.private.slack.hook );

@@ -4,7 +4,7 @@ inProduction = function () {
 
 sitemap = function(){
 	sitemaps.add('/sitemap.xml', function() {
-		var out = [], pages = Posts.find({status:true}).fetch(), tags = _.uniq(_.flatten(Posts.find({}, {tag:1}).map(function(item){ return item.tag; })));
+		var out = [], pages = Posts.find({status:true}).fetch();
 		_.each(pages, function(page) {
 			out.push({
 				page: 'job/' + page._id,

@@ -1,14 +1,15 @@
-Template.exist_job.onRendered(function(){
+Template.exist_job.onCreated(function(){
+
 	var self = this;
 	self.current_path = new ReactiveVar(FlowRouter.current().path);
-	$("html, body").scrollTop(0);
+	self.ready = new ReactiveVar(false);
 	self.autorun(function() {
 		FlowRouter.watchPathChange();
 		self.current_path.set(FlowRouter.current().path);
 		var handle = self.subscribe('single_post', FlowRouter.getParam("_id"),function(){
 			var post = Posts.findOne(), title, description, company = post.company.replace(/^\s+|\s+$/g, "");
 
-			title = post.position + ' at ' + company + ' ' + moment(post.createdAt).format('YYYY-MM-DD');
+			title = post.position.capitalize() + ' at ' + company + ' ' + moment(post.createdAt).format('YYYY-MM-DD');
 			description = company.capitalize() + ' is looking for remote '  + post.position + ' ' + moment(post.createdAt).format('YYYY-MM-DD');
 
 			var metaInfo = [{name: "description", content: description},
@@ -26,11 +27,16 @@ Template.exist_job.onRendered(function(){
 				DocHead.addMeta(title);
 			});
 		});
+		self.ready.set(handle.ready());
 	});
-
 });
 
-Template.exist_job_apply_url.onRendered(function(){
+Template.exist_job.onRendered(function(){
+	PostSubs.clear();
+	$("html, body").scrollTop(0);
+});
+
+Template.exist_job_apply_url.onCreated(function(){
 	var self = this;
 	self.current_path = new ReactiveVar(FlowRouter.current().path);
 

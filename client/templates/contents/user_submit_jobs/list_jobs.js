@@ -1,5 +1,5 @@
 Template.list_jobs.onCreated(function() {
-	var self = this , image;
+	var self = this;
 	self.autorun(function() {
 		self.subscribe('list_of_jobs');
 	});

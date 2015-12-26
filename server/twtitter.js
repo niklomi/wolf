@@ -157,3 +157,399 @@ tweeet_create = function(company,position,id,tags){
 		}
 	});
 }
+
+if (inProduction()){
+	var twitter_bot = "#remotework OR #remotelife OR #nomads OR #digitalnomad OR #remotejob OR remote work OR remote jobs OR remote job design OR remote job";
+	SyncedCron.add({
+		name: 'BOT_FAVORITE',
+		schedule: function(parser) {
+			return parser.text('every 10 minutes');
+		},
+		job: function() {
+			T.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
+				if (!err && data.statuses.length > 0) {
+					var tweets = data.statuses;
+					var randomTweet = randIndex(tweets);
+						if(!randomTweet.favorited){
+							T.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
+								if (err) console.log('Like Error: ', err);
+							});
+						}
+				}
+				else { console.log('Like Search Error: ', err);}
+			});
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FRIEND_ADD',
+		schedule: function(parser) {
+			return parser.text('every 30 minutes');
+		},
+		job: function() {
+			T.get('followers/ids', function(err, reply) {
+				if(err) {  console.log('FOLLOW Search Error: ', err);}
+				else{
+					var followers = reply.ids
+					, randFollower  = randIndex(followers);
+
+					T.get('friends/ids', { user_id: randFollower }, function(err, reply) {
+						if(err) { console.log('FOLLOW Search 2 Error: ', err); }
+						else{
+							var friends = reply.ids
+							, target  = randIndex(friends);
+
+							T.post('friendships/create', { id: target },  function(err, reply){
+								if(err) { console.log('FOLLOW Create Error: ', err); }
+							});
+						}
+					})
+				}
+			})
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FAVORITE',
+		schedule: function(parser) {
+			return parser.text('every 10 minutes');
+		},
+		job: function() {
+			t_nodejs.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
+				if (!err && data.statuses.length > 0) {
+					var tweets = data.statuses;
+					var randomTweet = randIndex(tweets);
+						if(!randomTweet.favorited){
+							t_nodejs.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
+								if (err) console.log('Like Error: ', err);
+							});
+						}
+				}
+				else { console.log('Like Search Error: ', err);}
+			});
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FRIEND_ADD',
+		schedule: function(parser) {
+			return parser.text('every 30 minutes');
+		},
+		job: function() {
+			t_nodejs.get('followers/ids', function(err, reply) {
+				if(err) {  console.log('FOLLOW Search Error: ', err);}
+				else{
+					var followers = reply.ids
+					, randFollower  = randIndex(followers);
+
+					t_nodejs.get('friends/ids', { user_id: randFollower }, function(err, reply) {
+						if(err) { console.log('FOLLOW Search 2 Error: ', err); }
+						else{
+							var friends = reply.ids
+							, target  = randIndex(friends);
+
+							t_nodejs.post('friendships/create', { id: target },  function(err, reply){
+								if(err) { console.log('FOLLOW Create Error: ', err); }
+							});
+						}
+					})
+				}
+			})
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FAVORITE',
+		schedule: function(parser) {
+			return parser.text('every 10 minutes');
+		},
+		job: function() {
+			t_java.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
+				if (!err && data.statuses.length > 0) {
+					var tweets = data.statuses;
+					var randomTweet = randIndex(tweets);
+						if(!randomTweet.favorited){
+							t_java.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
+								if (err) console.log('Like Error: ', err);
+							});
+						}
+				}
+				else { console.log('Like Search Error: ', err);}
+			});
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FRIEND_ADD',
+		schedule: function(parser) {
+			return parser.text('every 30 minutes');
+		},
+		job: function() {
+			t_java.get('followers/ids', function(err, reply) {
+				if(err) {  console.log('FOLLOW Search Error: ', err);}
+				else{
+					var followers = reply.ids
+					, randFollower  = randIndex(followers);
+
+					t_java.get('friends/ids', { user_id: randFollower }, function(err, reply) {
+						if(err) { console.log('FOLLOW Search 2 Error: ', err); }
+						else{
+							var friends = reply.ids
+							, target  = randIndex(friends);
+
+							t_java.post('friendships/create', { id: target },  function(err, reply){
+								if(err) { console.log('FOLLOW Create Error: ', err); }
+							});
+						}
+					})
+				}
+			})
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FAVORITE',
+		schedule: function(parser) {
+			return parser.text('every 10 minutes');
+		},
+		job: function() {
+			t_meteorjs.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
+				if (!err && data.statuses.length > 0) {
+					var tweets = data.statuses;
+					var randomTweet = randIndex(tweets);
+						if(!randomTweet.favorited){
+							t_meteorjs.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
+								if (err) console.log('Like Error: ', err);
+							});
+						}
+				}
+				else { console.log('Like Search Error: ', err);}
+			});
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FRIEND_ADD',
+		schedule: function(parser) {
+			return parser.text('every 30 minutes');
+		},
+		job: function() {
+			t_meteorjs.get('followers/ids', function(err, reply) {
+				if(err) {  console.log('FOLLOW Search Error: ', err);}
+				else{
+					var followers = reply.ids
+					, randFollower  = randIndex(followers);
+
+					t_meteorjs.get('friends/ids', { user_id: randFollower }, function(err, reply) {
+						if(err) { console.log('FOLLOW Search 2 Error: ', err); }
+						else{
+							var friends = reply.ids
+							, target  = randIndex(friends);
+
+							t_meteorjs.post('friendships/create', { id: target },  function(err, reply){
+								if(err) { console.log('FOLLOW Create Error: ', err); }
+							});
+						}
+					})
+				}
+			})
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FAVORITE',
+		schedule: function(parser) {
+			return parser.text('every 10 minutes');
+		},
+		job: function() {
+			t_php.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
+				if (!err && data.statuses.length > 0) {
+					var tweets = data.statuses;
+					var randomTweet = randIndex(tweets);
+						if(!randomTweet.favorited){
+							t_php.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
+								if (err) console.log('Like Error: ', err);
+							});
+						}
+				}
+				else { console.log('Like Search Error: ', err);}
+			});
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FRIEND_ADD',
+		schedule: function(parser) {
+			return parser.text('every 30 minutes');
+		},
+		job: function() {
+			t_php.get('followers/ids', function(err, reply) {
+				if(err) {  console.log('FOLLOW Search Error: ', err);}
+				else{
+					var followers = reply.ids
+					, randFollower  = randIndex(followers);
+
+					t_php.get('friends/ids', { user_id: randFollower }, function(err, reply) {
+						if(err) { console.log('FOLLOW Search 2 Error: ', err); }
+						else{
+							var friends = reply.ids
+							, target  = randIndex(friends);
+
+							t_php.post('friendships/create', { id: target },  function(err, reply){
+								if(err) { console.log('FOLLOW Create Error: ', err); }
+							});
+						}
+					})
+				}
+			})
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FAVORITE',
+		schedule: function(parser) {
+			return parser.text('every 10 minutes');
+		},
+		job: function() {
+			t_android.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
+				if (!err && data.statuses.length > 0) {
+					var tweets = data.statuses;
+					var randomTweet = randIndex(tweets);
+						if(!randomTweet.favorited){
+							t_android.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
+								if (err) console.log('Like Error: ', err);
+							});
+						}
+				}
+				else { console.log('Like Search Error: ', err);}
+			});
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FRIEND_ADD',
+		schedule: function(parser) {
+			return parser.text('every 30 minutes');
+		},
+		job: function() {
+			t_android.get('followers/ids', function(err, reply) {
+				if(err) {  console.log('FOLLOW Search Error: ', err);}
+				else{
+					var followers = reply.ids
+					, randFollower  = randIndex(followers);
+
+					t_android.get('friends/ids', { user_id: randFollower }, function(err, reply) {
+						if(err) { console.log('FOLLOW Search 2 Error: ', err); }
+						else{
+							var friends = reply.ids
+							, target  = randIndex(friends);
+
+							t_android.post('friendships/create', { id: target },  function(err, reply){
+								if(err) { console.log('FOLLOW Create Error: ', err); }
+							});
+						}
+					})
+				}
+			})
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FAVORITE',
+		schedule: function(parser) {
+			return parser.text('every 10 minutes');
+		},
+		job: function() {
+			t_dotnet.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
+				if (!err && data.statuses.length > 0) {
+					var tweets = data.statuses;
+					var randomTweet = randIndex(tweets);
+						if(!randomTweet.favorited){
+							t_dotnet.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
+								if (err) console.log('Like Error: ', err);
+							});
+						}
+				}
+				else { console.log('Like Search Error: ', err);}
+			});
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FRIEND_ADD',
+		schedule: function(parser) {
+			return parser.text('every 30 minutes');
+		},
+		job: function() {
+			t_dotnet.get('followers/ids', function(err, reply) {
+				if(err) {  console.log('FOLLOW Search Error: ', err);}
+				else{
+					var followers = reply.ids
+					, randFollower  = randIndex(followers);
+
+					t_dotnet.get('friends/ids', { user_id: randFollower }, function(err, reply) {
+						if(err) { console.log('FOLLOW Search 2 Error: ', err); }
+						else{
+							var friends = reply.ids
+							, target  = randIndex(friends);
+
+							t_dotnet.post('friendships/create', { id: target },  function(err, reply){
+								if(err) { console.log('FOLLOW Create Error: ', err); }
+							});
+						}
+					})
+				}
+			})
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FAVORITE',
+		schedule: function(parser) {
+			return parser.text('every 10 minutes');
+		},
+		job: function() {
+			t_ios.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
+				if (!err && data.statuses.length > 0) {
+					var tweets = data.statuses;
+					var randomTweet = randIndex(tweets);
+						if(!randomTweet.favorited){
+							t_ios.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
+								if (err) console.log('Like Error: ', err);
+							});
+						}
+				}
+				else { console.log('Like Search Error: ', err);}
+			});
+		}
+	});
+
+	SyncedCron.add({
+		name: 'BOT_FRIEND_ADD',
+		schedule: function(parser) {
+			return parser.text('every 30 minutes');
+		},
+		job: function() {
+			t_ios.get('followers/ids', function(err, reply) {
+				if(err) {  console.log('FOLLOW Search Error: ', err);}
+				else{
+					var followers = reply.ids
+					, randFollower  = randIndex(followers);
+
+					t_ios.get('friends/ids', { user_id: randFollower }, function(err, reply) {
+						if(err) { console.log('FOLLOW Search 2 Error: ', err); }
+						else{
+							var friends = reply.ids
+							, target  = randIndex(friends);
+
+							t_ios.post('friendships/create', { id: target },  function(err, reply){
+								if(err) { console.log('FOLLOW Create Error: ', err); }
+							});
+						}
+					})
+				}
+			})
+		}
+	});
+
+}

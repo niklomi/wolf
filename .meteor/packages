@@ -18,6 +18,7 @@ kadira:blaze-layout
 kadira:flow-router
 meteorhacks:fast-render
 
+meteorhacks:subs-manager
 meteorhacks:npm
 amr:parsley.js
 msavin:mongol

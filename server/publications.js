@@ -7,7 +7,7 @@ Meteor.publish('all_posts', function(count){
 
 	var self = this;
 
-	var observer = Posts.find({},{sort: { createdAt: -1 },limit:count}).observe({
+	var observer = Posts.find({status:true},{sort: { createdAt: -1 },limit:count}).observe({
 		added: function (document) {
 			self.added('posts', document._id, transform(document));
 		},
@@ -34,6 +34,10 @@ Meteor.publish('single_post', function(id) {
 Meteor.publish('single_post_apply_url', function(id) {
 	check(id, String);
 	return Posts.find({ _id : id , status:true}, {fields: { apply_url: 1}});
+});
+
+Meteor.publish('list_of_jobs', function() {
+	return Posts.find({test:true});
 });
 
 Posts.permit(['update', 'remove','insert']).ifHasRole('admin').apply();

@@ -1,12 +1,15 @@
-Template.time_table.onRendered(function(){
+Template.time_table.onCreated(function(){
 	Session.setDefault('countofshow',150)
 
 	var self = this;
+	self.ready = new ReactiveVar(false);
 	self.autorun(function() {
-		self.subscribe('all_posts', Session.get('countofshow'));
+		let handle = PostSubs.subscribe('all_posts', Session.get('countofshow'));
+		self.ready.set(handle.ready());
 	});
+});
 
-
+Template.time_table.onRendered(function(){
 	$(window).scroll(function(){
 		if ($(window).scrollTop() + $(window).height() >  $(document).height() - 250) {
 			if(Posts.find().count() % Session.get('countofshow') === 0 && Posts.find().count() > 0)
@@ -17,6 +20,7 @@ Template.time_table.onRendered(function(){
 
 Template.time_table.helpers({
 	postsIndex: () => PostsIndex,
+	ready:() => Template.instance().ready.get(),
 	no_tags_found:function(){
 		let tags = Session.get('selector-tags')
 

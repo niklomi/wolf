@@ -15,7 +15,7 @@ get_tags_array = function(){
 
 find_add_tag = function(tag){
 	$('#live-search').val("");
-	PostsIndex.getComponentMethods().search("")
+	PostsIndex.getComponentMethods().search("");
 	if (Session.get('find-tags').length > 0){
 		if (Session.get('find-tags').indexOf(tag) > -1) {
 			let array = Session.get('find-tags');

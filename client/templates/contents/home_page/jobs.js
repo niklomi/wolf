@@ -23,6 +23,7 @@ Template.jobs.helpers({
 
 Template.tag.events({
 	'click .tagsJobs':function(event,template){
+		$("html, body").animate({ scrollTop: 0 }, 100);
 		let tag = $(event.currentTarget).text().trim().toLowerCase();
 		find_add_tag(tag);
 	},
