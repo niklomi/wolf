@@ -1,6 +1,6 @@
 Template.jobs.helpers({
 	description:function(){
-		let tmp_full = this.description.replace(/<\/?[^>]+>/gi, '');
+		let tmp_full = this.description;
 		tmp_full = tmp_full.replace(/^\s*job\s*description\s*/i,"");
 		tmp_full = tmp_full.replace(/^\s*description\s*/i,"").trim();
 		return `${tmp_full}...`;
