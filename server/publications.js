@@ -1,7 +1,7 @@
 Meteor.publish('all_posts', function(count){
 	check(count, Number);
 	var transform = function(doc) {
-		doc.description = doc.description.substring(0,140);
+		doc.description = doc.description.replace(/<\/?[^>]+>/gi, '').substring(0,140);
 		return doc;
 	}
 
