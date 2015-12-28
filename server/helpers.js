@@ -2,6 +2,11 @@ inProduction = function () {
 	return process.env.NODE_ENV === "production";
 };
 
+Date.prototype.addDays = function( d ) {
+	this.setDate( this.getDate() + d ) ;
+	return this;
+};
+
 sitemap = function(){
 	sitemaps.add('/sitemap.xml', function() {
 		var out = [], pages = Posts.find({status:true}).fetch();

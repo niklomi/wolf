@@ -20,7 +20,7 @@ parseWWR2 = function(){
 				let apply_url = ('https://weworkremotely.com/jobs/' + main_body.id[0]._),
 				post_exist = Posts.findOne({apply_url: apply_url});
 				if (post_exist) return false;
-				let same_post = Posts.findOne({position: main_body.title[0], company: main_body.company[0]});
+				let same_post = Posts.findOne({position: main_body.title[0], company: main_body.company[0], createdAt : {$gte : (new Date()).addDays(-3)}});
 				// конец проверок
 
 				let description = UniHTML.purify(main_body.description[0]);
@@ -79,7 +79,7 @@ parseWFH = function(){
 						if (company.length === 2) company = company[0].capitalize();
 						else company = company[1].capitalize();
 
-						let same_post = Posts.findOne({position:main_body.title[0], company:company});
+						let same_post = Posts.findOne({position:main_body.title[0], company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
 						if (same_post) return false;
 
 						let description =  UniHTML.purify(main_body.content[0]._);
@@ -281,7 +281,7 @@ parseGitHub = function(){
 
 				var postExist = Posts.findOne({apply_url: parseGIT.url});
 				if (postExist) return false;
-				let same_post = Posts.findOne({position:parseGIT.title, company:parseGIT.company});
+				let same_post = Posts.findOne({position:parseGIT.title, company:parseGIT.company, createdAt : {$gte : (new Date()).addDays(-3)}});
 				if (same_post) return false;
 				let company_url = parseGIT.company_url !== null ? addhttp(parseGIT.company_url) : null;
 				let description = UniHTML.purify(parseGIT.description),
@@ -333,7 +333,7 @@ parseStackO = function(){
 					}
 					var company = $$('#hed').children('.employer').text(),
 					position =  $$('.h3').children('.job-link').text().replace(reg_r_brackets, ""),
-					same_post = Posts.findOne({position:position, company:company});
+					same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
 					if (same_post) return false;
 
 					description = UniHTML.purify(description);
@@ -384,7 +384,7 @@ parseAuthentic = function(){
 						var position = $$('.role').children('h1').text(),
 						company =  $$('.title').children().children().children().children('h2').text();
 						if (company === "") company = "Private Project";
-						let same_post = Posts.findOne({position:position, company:company});
+						let same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
 						if (same_post) return false;
 
 						let description = UniHTML.purify($$('#description').html()),

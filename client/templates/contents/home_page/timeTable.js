@@ -42,6 +42,7 @@ Template.time_table.helpers({
 		return true;
 	},
 	posts:function(){
-		return Posts.find({},{sort: { createdAt: -1 }});
+		let posts = Posts.find({},{sort: { createdAt: -1 }});
+		return posts;
 	}
 });
