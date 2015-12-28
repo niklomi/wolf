@@ -159,6 +159,12 @@ tweeet_create = function(company,position,id,tags){
 }
 
 if (inProduction()){
+
+	function randIndex (arr) {
+		var index = Math.floor(arr.length*Math.random());
+		return arr[index];
+	};
+
 	var twitter_bot = "#remotework OR #remotelife OR #nomads OR #digitalnomad OR #remotejob OR remote work OR remote jobs OR remote job design OR remote job";
 	SyncedCron.add({
 		name: 'BOT_FAVORITE',
