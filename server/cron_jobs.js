@@ -10,7 +10,7 @@ SyncedCron.add({
 
 
 SyncedCron.add({
-	name: 'Pare sites',
+	name: 'parseWWR2',
 	schedule: function(parser) {
 		return parser.text('every 30 minutes');
 	},
@@ -18,8 +18,8 @@ SyncedCron.add({
 		parseWWR2();
 		parseWFH();
 		parseWWM();
-		parseDribbble();
 		parseBehance();
+		parseDribbble();
 		parseGitHub();
 		parseStackO();
 		parseAuthentic();
