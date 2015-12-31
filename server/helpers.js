@@ -7,6 +7,11 @@ Date.prototype.addDays = function( d ) {
 	return this;
 };
 
+isURL = function (s) {
+	var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+    return regexp.test(s);
+}
+
 sitemap = function(){
 	sitemaps.add('/sitemap.xml', function() {
 		var out = [], pages = Posts.find({status:true}).fetch();
@@ -38,8 +43,10 @@ String.prototype.capitalize = function() {
 }
 
 addhttp = function (url) {
-	if (!/^(f|ht)tps?:\/\//i.test(url)) {
-		url = "http://" + url;
+	if (isURL(url)){
+		if (!/^(f|ht)tps?:\/\//i.test(url)) {
+			url = "http://" + url;
+		}
 	}
 	return url;
 }

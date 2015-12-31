@@ -2,7 +2,6 @@ Meteor.startup(function(){
 	SyncedCron.start();
 	clean_new();
 	sitemap();
-
 	if ( Meteor.users.find().count() === 0 ) {
 		var abc = Accounts.createUser({
 			username: Meteor.settings.private.admin.username,
@@ -14,9 +13,12 @@ Meteor.startup(function(){
 		forbidClientAccountCreation: true
 	});
 
-	_.each(Posts.find().fetch(),function(post){
-		Posts.update(post._id,{$rename:{"companyUrl":"company_url","fullContent":"description","applyUrl":"apply_url","tag":"tags","maskUrl":"mask_url"}});
-	});
+	// _.each(Posts.find().fetch(),function(post){
+	// 	Posts.update(post._id,{
+	// 		$rename:{
+	// 			"companyUrl":"company_url","fullContent":"description","applyUrl":"apply_url","tag":"tags","maskUrl":"mask_url"}
+	// 	});
+	// });
 
 	// _.each(Posts.find({source:'wwr'}).fetch(),function(post){
 	// 	console.log(post.image);
