@@ -55,15 +55,16 @@ Template.exist_job.helpers({
 		return Posts.findOne(Session.get('post_id'));
 	},
 	company_have_url:function(){
-		if(this.company_url) return true;
+		console.log(isURL(this.company_url));
+		if(this.company_url && isURL(this.company_url)) return true;
 	},
 	curpath:function(){
 		let instance = Template.instance();
 		let path = instance.current_path.get();
 		return `http://remotewolfy.com${path}`
 	},
-	company_twi:function(){
-		// return '@' + this.company.replace(/\s/g,"").toLowerCase();
+	position:function(){
+		return this.position.capitalize();
 	}
 });
 

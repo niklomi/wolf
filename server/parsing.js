@@ -1,9 +1,11 @@
 var countZERO;
-if (Posts.find().count() === 0) {
-	// countZERO = false;
-}
-else countZERO = true;
 
+if (Posts.find().count() === 0) {
+	countZERO = false;
+}
+else {
+	countZERO = true;
+}
 
 parseWWR2 = function(){
 	request("https://weworkremotely.com/categories/2-programming/jobs.xml", Meteor.bindEnvironment(function(error, response, body) {
@@ -414,5 +416,3 @@ parseAuthentic = function(){
 		}
 	}));
 }
-
-
