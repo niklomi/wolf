@@ -5,7 +5,7 @@
 		<p>It's 100% free and all you need to specify the job title and a link to the description on any other job board. We will publish your job as soon as we approve it (24 hours).</p>
 		<div class="form-group">
 			<label for="post_title">Title</label>
-			<input type="text" class="form-control" maxlength="100" id="post_title" placeholder="Senior PHP Developer" autofocus  autocomplete="off">
+			<input type="text" class="form-control" maxlength="100" id="post_title" placeholder="Senior PHP Developer"  autocomplete="off">
 			{{#if error_title}}<p class="error">{{error_title}}</p>{{/if}}
 		</div>
 		<div class="form-group">
@@ -14,7 +14,9 @@
 			{{#if error_desc}}<p class="error">{{error_desc}}</p>{{/if}}
 		</div>
 		{{#if error_global}}<p class="error">{{error_global}}</p>{{/if}}
-		<button class="btnM effect-for-buttons" id="pop-submit-job" type="submit">Submit Job</button>
+		<div class="text-center">
+			<button class="btnM btnM-red" id="pop-submit-job" type="submit">Post Job: FREE for 30 days</button>
+		</div>
 		{{#if good_global}}<p class="success">{{good_global}}</p>{{/if}}
 	</form>
 </div>

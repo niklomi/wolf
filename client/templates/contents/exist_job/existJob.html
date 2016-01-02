@@ -35,6 +35,10 @@
 		<div class="single-job-description smurf">
 			<div id="fullDescr" itemprop="description">{{{description}}}</div>
 		</div>
+
+		<div class="show-apply text-center apply-padding">
+			<a href="{{apply_url}}"><button class="btnM effect-for-buttons btnM-apply">Apply</button></a>
+		</div>
 	</div>
 	{{/with}}
 {{else}}
@@ -44,7 +48,7 @@
 
 <template name="exist_job_apply_url">
 	<div class="card apply-for-job">
-		<p class="post-job-text">Interested in the job and would like to be a part of company?</p>
+		<p class="post-job-text">Are you interested in the job?</p>
 		<div class="text-center"><a href="{{#with job}}{{apply_url}}{{/with}}"><button class="btnM effect-for-buttons btnM-apply">Apply</button></a></div>
 	</div>
 </template>
