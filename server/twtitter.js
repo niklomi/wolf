@@ -57,7 +57,7 @@ var t_ios = new Twit({
 let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id){
 	var company_body = tw_company_full;
 
-	if (data.length > 0){
+	if (data.length > 0 && data[0].screen_name){
 		tw_company = '.@' + data[0].screen_name.toLowerCase();
 		company_body = '@' + data[0].screen_name.toLowerCase();
 	}
