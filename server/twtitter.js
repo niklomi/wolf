@@ -55,10 +55,9 @@ var t_ios = new Twit({
 });
 
 let twit_body = function(data,tw_company,tw_position,tags,id){
-	let company_body = "";
+	let company_body = tw_company;
 	if (data.length > 0){
 		tw_company = '.@' + data[0].screen_name.toLowerCase();
-		company_body = '@' + data[0].screen_name.toLowerCase();
 	}
 
 	var tw_tags = "", tw_url = ' remotewolfy.com/job/' + id;
