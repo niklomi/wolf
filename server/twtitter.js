@@ -54,10 +54,12 @@ var t_ios = new Twit({
 	access_token_secret: Meteor.settings.private.t_ios.access_token_secret
 });
 
-let twit_body = function(data,tw_company,tw_position,tags,id){
-	let company_body = tw_company;
+let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id){
+	var company_body = tw_company_full;
+
 	if (data.length > 0){
 		tw_company = '.@' + data[0].screen_name.toLowerCase();
+		company_body = '@' + data[0].screen_name.toLowerCase();
 	}
 
 	var tw_tags = "", tw_url = ' remotewolfy.com/job/' + id;
@@ -76,7 +78,7 @@ let twit_body = function(data,tw_company,tw_position,tags,id){
 		tw_company + ' wants to hire remote '  + tw_position   + tw_tags + ' 📣 ' + tw_url ,
 		tw_company + ' seeking remote '  + tw_position   + tw_tags + ' 🌍 ' + tw_url ,
 		'Want to be remote ' + tw_position + ' in ' + company_body + ' ? ' + tw_tags + ' ➡ ' + tw_url,
-		tw_position + ' in ' + tw_company + ' Interesting ? ' + tw_tags + ' 📢 ' + tw_url,
+		tw_position + ' in ' + company_body + ' Interesting ? ' + tw_tags + ' 📢 ' + tw_url,
 		'BOOM! Remote ' + tw_position + ' in ' + company_body  + ' Are you in ? ' + ' 📣 ' + tw_url ,
 		'Do you know some 🌟 ' + tw_position + ' who can work in ' + company_body + ' ? ' +  tw_url ,
 		' 🔥🔥🔥 remote ' + tw_position + ' in ' + company_body  + tw_tags + ' / ' + tw_url,
@@ -109,11 +111,12 @@ let twit_body = function(data,tw_company,tw_position,tags,id){
 }
 
 tweeet_create = function(company,position,id,tags){
-	var tw_company = company.replace(/\s/g,"");
-	var tw_position = position.trim();
+	var tw_company = company.replace(/\s/g,"").replace(/[^A-Za-z\s!?]/g,'');
+	var tw_position = position.trim(),
+	tw_company_full = company.trim();
 
 	T.get('users/search', { q : tw_company , page :1 , count : 1}, function (err, data, response) {
-		let tweet_body = twit_body(data,tw_company,tw_position,tags,id);
+		let tweet_body = twit_body(data,tw_company_full,tw_company,tw_position,tags,id);
 		if (inProduction()){
 			T.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
 				if (err) console.log('! TWITTER | ' + err + moment().format());
