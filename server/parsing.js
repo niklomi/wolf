@@ -81,7 +81,10 @@ parseWFH = function(){
 						if (company.length === 2) company = company[0].capitalize();
 						else company = company[1].capitalize();
 
-						let same_post = Posts.findOne({position:main_body.title[0], company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
+						var position = main_body.title[0].replace(reg_r_brackets, "").replace(reg_r_tire,''),
+						company = company.trim();
+
+						let same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
 						if (same_post) return false;
 
 						let description =  UniHTML.purify(main_body.content[0]._);
@@ -89,8 +92,8 @@ parseWFH = function(){
 							status: true,
 							image:null,
 							source: "wfh",
-							position: main_body.title[0].replace(reg_r_brackets, "").replace(reg_r_tire,''),
-							company: company.trim(),
+							position: position,
+							company: company,
 							company_url: addhttp(company_url),
 							description:description,
 							apply_url: main_body.link[0].$.href,
@@ -283,7 +286,11 @@ parseGitHub = function(){
 
 				var postExist = Posts.findOne({apply_url: parseGIT.url});
 				if (postExist) return false;
-				let same_post = Posts.findOne({position:parseGIT.title, company:parseGIT.company, createdAt : {$gte : (new Date()).addDays(-3)}});
+
+				var position = parseGIT.title.replace(reg_r_brackets, "").replace(reg_r_tire,''),
+				company = parseGIT.company.trim();
+
+				let same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
 				if (same_post) return false;
 				let company_url = parseGIT.company_url !== null ? addhttp(parseGIT.company_url) : null;
 				let description = UniHTML.purify(parseGIT.description),
@@ -292,8 +299,8 @@ parseGitHub = function(){
 					source: "github",
 					image: parseGIT.company_logo,
 					type: parseGIT.type,
-					position: parseGIT.title.replace(reg_r_brackets, "").replace(reg_r_tire,''),
-					company: parseGIT.company.trim(),
+					position: position,
+					company: company,
 					company_url: addhttp(parseGIT.company_url),
 					description: description,
 					apply_url: parseGIT.url,
@@ -319,8 +326,13 @@ parseStackO = function(){
 				var stackBody = $(this).children().children('.job-link'),
 				stackoLoc = "http://careers.stackoverflow.com"+ stackBody.attr('href'),
 				postExist = Posts.findOne({apply_url: stackoLoc}),
-				future = new Future();
-				if (postExist ) return false;
+				future = new Future(),
+				mask_url = urlapi.parse(stackoLoc);
+
+				mask_url = mask_url.pathname;
+				if (postExist) return false;
+				postExist = Posts.findOne({mask_url: mask_url});
+				if (postExist) return false;
 
 				request(stackoLoc, Meteor.bindEnvironment(function(error, response, body) {
 					if (!body) return false;
@@ -333,12 +345,14 @@ parseStackO = function(){
 						}
 						description +=$$('.jobdetail').children().eq(i).html() ;
 					}
-					var company = $$('#hed').children('.employer').text(),
-					position =  $$('.h3').children('.job-link').text().replace(reg_r_brackets, ""),
+					var company = $$('#hed').children('.employer').text().trim(),
+					position =  $$('.h3').children('.job-link').text().replace(reg_r_brackets, "").replace(reg_r_tire,''),
 					same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
 					if (same_post) return false;
 
-					description = UniHTML.purify(description);
+					var description = UniHTML.purify(description),
+
+
 					let image = $$('div.-logo').children().attr('src');
 					image = image !== undefined ? image : null;
 
@@ -346,11 +360,12 @@ parseStackO = function(){
 						status:true,
 						source: "stack",
 						image: image,
-						position: position.replace(reg_r_tire,''),
-						company: company.trim(),
+						position: position,
+						company: company,
 						company_url: addhttp($$('.jobdetail').children('#hed').children('.employer').attr('href')),
 						description: description,
 						apply_url: stackoLoc,
+						mask_url: mask_url,
 						tags: makeTAG($$('.h3').children('.job-link').text(),[],description),
 						category: makeCATEGORY($$('.h3').children('.job-link').text(), description)
 					}
@@ -383,8 +398,8 @@ parseAuthentic = function(){
 						if (!body) return false;
 						$$ = Cheerio.load(body);
 
-						var position = $$('.role').children('h1').text(),
-						company =  $$('.title').children().children().children().children('h2').text();
+						var position = $$('.role').children('h1').text().replace(reg_r_brackets, "").replace(reg_r_tire,''),
+						company =  $$('.title').children().children().children().children('h2').text().trim();
 						if (company === "") company = "Private Project";
 						let same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
 						if (same_post) return false;
@@ -396,8 +411,8 @@ parseAuthentic = function(){
 							status:true,
 							source: "auth",
 							image:image,
-							position: position.replace(reg_r_brackets, "").replace(reg_r_tire,''),
-							company: company.trim(),
+							position: position,
+							company: company,
 							company_url: addhttp(company_url),
 							description:description,
 							apply_url: authUrl,
