@@ -11,7 +11,7 @@ Meteor.publish('all_posts', function(count){
 		added: function (document) {
 			self.added('posts', document._id, transform(document));
 		},
-		changed: function (newDocument, oldDocument) {
+		changed: function (newDocument, document) {
 			self.changed('posts', document._id, transform(newDocument));
 		},
 		removed: function (oldDocument) {

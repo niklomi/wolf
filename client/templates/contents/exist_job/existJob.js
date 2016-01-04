@@ -8,7 +8,6 @@ Template.exist_job.onCreated(function(){
 		FlowRouter.watchPathChange();
 		self.current_path.set(FlowRouter.current().path);
 		Session.set('post_id',FlowRouter.getParam("_id"));
-		console.log(FlowRouter.getParam("_id"));
 		var handle = self.subscribe('single_post', FlowRouter.getParam("_id"),function(){
 			var post = Posts.findOne(FlowRouter.getParam("_id")), title, description, company = post.company.replace(/^\s+|\s+$/g, "");
 
@@ -55,7 +54,6 @@ Template.exist_job.helpers({
 		return Posts.findOne(Session.get('post_id'));
 	},
 	company_have_url:function(){
-		console.log(isURL(this.company_url));
 		if(this.company_url && isURL(this.company_url)) return true;
 	},
 	curpath:function(){

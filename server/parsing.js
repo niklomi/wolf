@@ -81,7 +81,7 @@ parseWFH = function(){
 						if (company.length === 2) company = company[0].capitalize();
 						else company = company[1].capitalize();
 
-						var position = main_body.title[0].replace(reg_r_brackets, "").replace(reg_r_tire,''),
+						var position = main_body.title[0].replace(reg_r_brackets, "").replace(reg_r_tire,'');
 						company = company.trim();
 
 						let same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
@@ -350,7 +350,7 @@ parseStackO = function(){
 					same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
 					if (same_post) return false;
 
-					var description = UniHTML.purify(description),
+					var description = UniHTML.purify(description);
 
 
 					let image = $$('div.-logo').children().attr('src');
