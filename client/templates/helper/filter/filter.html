@@ -6,7 +6,7 @@
 				<label><i class="fa fa-search"></i></label>
 				{{> EasySearch.Input index=postsIndex attributes=getInputAttributes}}
 			</section>
-			{{else}}<section class="filter-head pointer filter-head-block filter-head-input do-it-like-input">{{name}} <i class="fa fa-sort-desc"></i></section>
+			{{else}}<section class="filter-head pointer filter-head-block filter-head-input do-it-like-input">{{name}} <i class="fa {{#if search_tag_click}}fa-sort-asc {{else}}fa-sort-desc{{/if}}"></i></section>
 			{{/if}}
 
 			<div class="filter-body" style="{{#if show}} display:block !important; {{/if}}" >
