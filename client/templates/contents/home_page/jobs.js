@@ -3,10 +3,10 @@ Template.jobs.helpers({
 		let tmp_full = this.description;
 		tmp_full = tmp_full.replace(/^\s*job\s*description\s*/i,"");
 		tmp_full = tmp_full.replace(/^\s*description\s*/i,"").trim();
-		return `${tmp_full}...`;
+		return `${tmp_full}..`;
 	},
 	checklength: function(tmp){
-		if (tmp.length > 65) return tmp.substring(0,57) + '..';
+		if (tmp.length > 65) return tmp.substring(0,50) + '..';
 		return tmp;
 	},
 	premium: function(){
@@ -28,5 +28,3 @@ Template.tag.events({
 		find_add_tag(tag);
 	},
 })
-
-

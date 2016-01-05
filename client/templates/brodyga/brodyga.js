@@ -1,7 +1,6 @@
 Template.brodyga.helpers({
 	tags:function(){
 		let tags = Session.get('find-tags');
-		Session.set('selector-tags',tags);
 		if (tags && tags.length > 0) {
 			return tags;
 		}
@@ -14,4 +13,3 @@ Template.brodyga.events({
 		find_add_tag(tag);
 	}
 });
-

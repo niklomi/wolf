@@ -1,7 +1,6 @@
 <template name="time_table">
 	<div class="table-start card">
 		<div class="main-table table">
-
 		{{#if search}}
 
 			{{> table posts=search}}
@@ -29,8 +28,13 @@
 		{{/if}}
 		{{#if ready}}
 		{{else}}
-			{{> loading}}
-			{{> fake_loading}}
+
+			<div class="show-780">
+				{{> loading}}
+			</div>
+			<div class="hide-780">
+				{{> fake_loading}}
+			</div>
 		{{/if}}
 		</div>
 	</div>

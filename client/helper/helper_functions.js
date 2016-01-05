@@ -21,7 +21,7 @@ find_add_tag = function(tag){
 			let array = Session.get('find-tags');
 			array = _.without(array,tag);
 			if (array.length === 0) {
-				Session.set('countofshow', 150);
+				Session.set('countofshow', 50);
 			}
 			Session.set('find-tags',array);
 		}

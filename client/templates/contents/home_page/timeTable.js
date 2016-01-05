@@ -1,5 +1,5 @@
 Template.time_table.onCreated(function(){
-	Session.setDefault('countofshow', 150)
+	Session.setDefault('countofshow', 50)
 
 	var self = this;
 	self.ready = new ReactiveVar(false);
@@ -14,11 +14,11 @@ Template.time_table.onRendered(function(){
 	self = this;
 
 	self.autorun(function() {
-		if (instance.ready.get()){
+		if (instance.ready.get() && Posts.find().count() > 0){
 			$(window).scroll(function(){
 				if ($(window).scrollTop() + $(window).height() >  $(document).height() - 250) {
 					if(Posts.find().count() % Session.get('countofshow') === 0 && Posts.find().count() > 0)
-						Session.set('countofshow', Session.get('countofshow') + 50);
+						Session.set('countofshow', Session.get('countofshow') + 25);
 				}
 			});
 		}
@@ -29,7 +29,7 @@ Template.time_table.helpers({
 	postsIndex: () => PostsIndex,
 	ready:() => Template.instance().ready.get(),
 	no_tags_found:function(){
-		let tags = Session.get('selector-tags')
+		let tags = Session.get('find-tags')
 
 		if (tags && tags.length > 0) {
 			tags = _.clone(tags) || [];
@@ -37,9 +37,10 @@ Template.time_table.helpers({
 		}
 	},
 	search:function(){
-		let tags = Session.get('selector-tags')
+		let tags = Session.get('find-tags')
 
 		if (tags && tags.length > 0) {
+			Session.set('countofshow', 2000);
 			tags = _.clone(tags) || [];
 			return Posts.find({tags: {$all:tags}});
 		}
