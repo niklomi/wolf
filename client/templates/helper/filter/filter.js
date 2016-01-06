@@ -31,7 +31,6 @@ Template.filter.events({
 		template.select.get() === true ? template.select.set(false) : template.select.set(true);
 	},
 	'click .filter-head-input':function(e,template){
-		console.log(!template.search_tag_click.get());
 		template.search_tag_click.set(!template.search_tag_click.get());
 		if (Session.get('all_tags')) return false;
 		get_tags_array();

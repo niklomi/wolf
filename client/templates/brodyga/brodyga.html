@@ -1,7 +1,8 @@
 <template name="brodyga">
 	<div class="card brodyga">
-		<div class="filters-header">{{> filter name="Job Title, Company or Keywords " input=true }}{{> filter name="Search by skills" this_is_tags=true}}
-		</div>
+		<div class="filters-header">{{> filter name="Job Title, Company or Keywords " input=true width="50"}}{{> filter name="Skills" this_is_tags=true}}
+		{{> less_more}}
 		{{#if tags}}<div class="search-section no-select ">Skills: {{#each tags}}<div class="search-item effect-for-buttons search-tag active-item pointer">{{this}} <span><i class="fa fa-times"></i></span></div> {{/each}}</div>{{/if}}
+		</div>
 	</div>
 </template>

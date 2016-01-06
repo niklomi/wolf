@@ -21,6 +21,10 @@ Template.registerHelper('formatTimeshema', function(context, options) {
 		return moment(context).format('YYYY-MM-DD');
 });
 
+Template.registerHelper('show_less_info', function(){
+	return Session.get('show_less_info');
+});
+
 Template.registerHelper('set_image_name',function(word){
 	var matches = word.match(/\b(\w)/g).join('').substring(0,2);
 	return matches.toLowerCase();

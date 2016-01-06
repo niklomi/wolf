@@ -10,12 +10,15 @@
 		<div class="job-companents">
 			<p class="position"><a href="job/{{_id}}"><span>{{checklength position}}</span></a><span class="company">{{company}}</span></p>
 		</div>
-		<a href="job/{{_id}}"><p class="description">{{{description}}}</p></a>
-		<div  class="hidden-xs-l td-tags" >
-			{{#each tags}}
-				{{> tag}}
-			{{/each}}
-		</div>
+		{{#if show_less_info}}
+		{{else}}
+			<a href="job/{{_id}}"><p class="description">{{{description}}}</p></a>
+			<div  class="hidden-xs-l td-tags" >
+				{{#each tags}}
+					{{> tag}}
+				{{/each}}
+			</div>
+		{{/if}}
 		<div class="job-date">
 			{{date_from_now createdAt}}
 		</div>

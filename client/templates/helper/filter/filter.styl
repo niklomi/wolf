@@ -4,9 +4,18 @@
 	padding: 2rem;
 	font-size:0
 
+for n in 0..100
+	.width-{n}
+		width (n)%
+
+.filter-body-hover
+	width: calc(50% - 40px)
+
+.no-padding-right
+	padding-right: 0px !important
+
 .filter-wrap
 	font-size:14px
-	width: 50%;
 	padding:0 0.5rem
 	display:inline-block
 	background: #FFF;
@@ -32,6 +41,7 @@
 		input
 			border-radius: 4px;
 	section
+		height: 34px
 		position:relative
 		border:1px solid border-color
 		text-align:left

@@ -2,6 +2,7 @@ Meteor.startup(function(){
 	SyncedCron.start();
 	clean_new();
 	sitemap();
+	generate_active_tags();
 	if ( Meteor.users.find().count() === 0 ) {
 		var abc = Accounts.createUser({
 			username: Meteor.settings.private.admin.username,

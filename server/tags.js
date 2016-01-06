@@ -242,17 +242,35 @@ makeCATEGORY = function(posi, desc){
 	return retArr;
 }
 
+// ---------------TAGS to client ------------------------------
+generate_active_tags = function(){
+	let array = [];
+	_.each(Posts.find({status:true}).fetch(),function(post){
+		array.push(post.tags);
+	});
+	array = _.uniq(_.flatten(array));
+	active_tags_array = array;
+}
+
+active_tags_array = [];
+
+SyncedCron.add({
+	name: 'Generate Tags',
+	schedule: function(parser) {
+		return parser.text('every 15 minutes');
+	},
+	job: function() {
+		generate_active_tags();
+	}
+});
+
 Meteor.methods({
 	tags_to_client:function(){
-		let array = [];
-		_.each(Posts.find({status:true}).fetch(),function(post){
-			array.push(post.tags);
-		});
-		array = _.uniq(_.flatten(array));
-		return array;
+		return active_tags_array;
 	}
 })
 
+// ---------------TAGS to client ------------------------------
 
 var retmas = function(desc){
 	var descc = desc.split(/(\s+)/);
