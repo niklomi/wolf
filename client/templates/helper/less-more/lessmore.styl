@@ -2,6 +2,8 @@
 
 .less-more
     width:4rem
+    @media (max-width: 500px)
+    	width:100%
     .less-more-active
         color:#FFF
         border-color:main-color
@@ -10,3 +12,8 @@
         padding: 0.5rem !important
         i
             position: initial !important
+
+.show-500
+	display:none
+	@media(max-width:500px)
+		display:inline-block

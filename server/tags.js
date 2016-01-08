@@ -1,3 +1,5 @@
+active_tags_array = [];
+
 var tagsObject = {
 	"swift":"swift",
 	"designer":"design",
@@ -252,7 +254,7 @@ generate_active_tags = function(){
 	active_tags_array = array;
 }
 
-active_tags_array = [];
+
 
 SyncedCron.add({
 	name: 'Generate Tags',

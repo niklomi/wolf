@@ -21,9 +21,9 @@
 				{{#if company_have_url}}
 					<h4> <a href="{{company_url}}" target="_blank" ><span itemprop="hiringOrganization">{{company}}</span></a></h4>
 				{{else}}
-					<h4>in <span itemprop="hiringOrganization">{{company}}</span></h4>
+					<h4><span itemprop="hiringOrganization">{{company}}</span></h4>
 				{{/if}}
-
+				<p class="date-450">{{date_from_now createdAt}}</p>
 				<p class="date">{{date_from_now createdAt}}</p>
 
 				<h3 class="exist-job-tags">

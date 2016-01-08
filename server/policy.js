@@ -25,15 +25,12 @@ BrowserPolicy.content.allowImageOrigin('http://i.stack.imgur.com');
 BrowserPolicy.content.allowImageOrigin('http://github-jobs.s3.amazonaws.com');
 BrowserPolicy.content.allowImageOrigin('https://authenticjobs.com');
 BrowserPolicy.content.allowImageOrigin('https://authenticjobs.comundefined');
+BrowserPolicy.content.allowImageOrigin('https://*.behance.net');
 
 
-BrowserPolicy.content.allowOriginForAll('*.facebook.net');
 BrowserPolicy.content.allowOriginForAll('*.twitter.com');
 BrowserPolicy.content.allowInlineScripts('*.twitter.com');
-BrowserPolicy.content.allowInlineScripts('*.facebook.net');
-BrowserPolicy.content.allowEval('*.facebook.com');
 BrowserPolicy.content.allowEval('*.twitter.com');
-BrowserPolicy.content.allowOriginForAll('*.facebook.com');
 
 var rootUrl = __meteor_runtime_config__.ROOT_URL;
 BrowserPolicy.content.allowConnectOrigin(rootUrl);

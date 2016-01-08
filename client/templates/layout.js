@@ -10,4 +10,8 @@ Template.main_page.onRendered(function(){
 			$('#future-fix').removeClass('add-fix');
 		}
 	});
+
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	});
 });

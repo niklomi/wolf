@@ -1,12 +1,18 @@
 <template name="time_table">
 	<div class="table-start card">
 		<div class="main-table table">
+		<div class="smurf-head">
+			<div class="width-50 smurf-head-child">All Jobs</div>
+			<div class="width-50 smurf-head-child">Wolfy Jobs</div>
+		</div>
 		{{#if search}}
 
 			{{> table posts=search}}
 
-			{{#if no_tags_found}}
-				<div class="no-results text-center">No results found</div>
+			{{#if ready}}
+				{{#if no_tags_found}}
+					<div class="no-results text-center">No results found</div>
+				{{/if}}
 			{{/if}}
 
 		{{else}}

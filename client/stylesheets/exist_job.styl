@@ -11,6 +11,7 @@
 	border-bottom: 1px solid #e2e2e2;
 	padding: 2rem 2rem 2rem 2.5rem;
 	position: relative;
+	min-height: 12rem;
 	.company-image
 		width:8rem
 		height:8rem
@@ -19,8 +20,6 @@
 		top: 2rem
 		background-color: #FFF;
 		border: 1px solid #E2E2E2;
-		@media (max-width:450px)
-			display: none;
 	.no-image
 		line-height: 8rem;
 		text-transform: uppercase;
@@ -31,7 +30,7 @@
 	.ograde
 		padding:0 9rem
 		@media (max-width:450px)
-			padding: 0 9rem 0 0
+			padding: 0 0 0 9rem
 		.ograde-position
 			@media (max-width:600px)
 				font-size: 18px;
@@ -41,11 +40,21 @@
 		right: 2rem;
 		font-size: 16px;
 		color: #9e9ea6;
+		@media (max-width:450px)
+			display: none
+	.date-450
+		display: none;
+		font-size: 16px;
+		color: #9e9ea6;
+		@media (max-width:450px)
+			display: block;
 	.title
 		padding-right:9rem
 		font-weight: 600
 	.exist-job-tags
 		margin-top:1rem
+		@media (max-width:450px)
+			display: none
 
 .single-job-description
 	word-wrap: break-word

@@ -1,7 +1,7 @@
 <template name="less_more">
     <div class="filter-wrap select-no less-more no-padding-right">
-        <section class="filter-head pointer {{#if show_less_info}}less-more-active btnM-red{{/if}}">
-            {{#if show_less_info}}<i class="fa fa-expand"></i>{{else}} <i class="fa fa-compress"></i>{{/if}}
+        <section class="filter-head pointer {{#if show_less_info}}less-more-active btnM-red{{/if}}" data-toggle="tooltip" data-placement="top" title="Show more information about remote jobs">
+        	<span class="show-500">Show more </span> {{#if show_less_info}} <i class="fa fa-expand"></i>{{else}} <i class="fa fa-compress"></i>{{/if}}
         </section>
     </div>
 </template>
