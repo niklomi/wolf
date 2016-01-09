@@ -2,20 +2,20 @@
 <div class="info-wrap card">
 	<h1>Post Job</h1>
 	<form id="job-send">
-		<p>It's 100% free and all you need to specify the job title and a link to the description on any other job board. We will publish your job as soon as we approve it (24 hours).</p>
+		<p>It's 100% free. We will publish your job as soon as we approve it (24 hours).</p>
 		<div class="form-group">
 			<label for="post_title">Title</label>
 			<input type="text" class="form-control" maxlength="100" id="post_title" placeholder="Senior PHP Developer"  autocomplete="off">
 			{{#if error_title}}<p class="error">{{error_title}}</p>{{/if}}
 		</div>
 		<div class="form-group">
-			<label for="post_desc">Link to description</label>
+			<label for="post_desc">Link to the description</label>
 			<input type="text" class="form-control" id="post_desc" maxlength="200" placeholder="http://careers.stackoverflow.com/jobs..."  autocomplete="off">
 			{{#if error_desc}}<p class="error">{{error_desc}}</p>{{/if}}
 		</div>
 		{{#if error_global}}<p class="error">{{error_global}}</p>{{/if}}
 		<div class="text-center">
-			<button class="btnM btnM-red btnM-shadow" id="pop-submit-job" type="submit">Post Job + Find Workers<br><span class="weight-400">FREE for 30 days</span></button>
+			<button class="btnM btnM-red btnM-shadow" id="pop-submit-job" type="submit">SUBMIT NOW</button>
 		</div>
 		{{#if good_global}}<p class="success">{{good_global}}</p>{{/if}}
 	</form>
