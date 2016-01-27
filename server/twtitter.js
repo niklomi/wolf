@@ -182,6 +182,12 @@ if (inProduction()){
 						if(!randomTweet.favorited){
 							T.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
 								if (err) console.log('Like Error: ', err);
+								if (err.code === 261) {
+									Slack.send({
+										text: "twiter err 261 - 1",
+										channel: "remotewolfy"
+									});
+								}
 							});
 						}
 				}
@@ -231,6 +237,12 @@ if (inProduction()){
 						if(!randomTweet.favorited){
 							t_nodejs.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
 								if (err) console.log('Like Error: ', err);
+								if (err.code === 261) {
+									Slack.send({
+										text: "twiter err 261 - 2",
+										channel: "remotewolfy"
+									});
+								}
 							});
 						}
 				}
@@ -280,6 +292,12 @@ if (inProduction()){
 						if(!randomTweet.favorited){
 							t_java.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
 								if (err) console.log('Like Error: ', err);
+								if (err.code === 261) {
+									Slack.send({
+										text: "twiter err 261 - 3",
+										channel: "remotewolfy"
+									});
+								}
 							});
 						}
 				}
@@ -329,6 +347,12 @@ if (inProduction()){
 						if(!randomTweet.favorited){
 							t_meteorjs.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
 								if (err) console.log('Like Error: ', err);
+								if (err.code === 261) {
+									Slack.send({
+										text: "twiter err 261 - 4",
+										channel: "remotewolfy"
+									});
+								}
 							});
 						}
 				}
@@ -378,6 +402,12 @@ if (inProduction()){
 						if(!randomTweet.favorited){
 							t_php.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
 								if (err) console.log('Like Error: ', err);
+								if (err.code === 261) {
+									Slack.send({
+										text: "twiter err 261 - 5",
+										channel: "remotewolfy"
+									});
+								}
 							});
 						}
 				}
@@ -427,6 +457,12 @@ if (inProduction()){
 						if(!randomTweet.favorited){
 							t_android.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
 								if (err) console.log('Like Error: ', err);
+								if (err.code === 261) {
+									Slack.send({
+										text: "twiter err 261 - 6",
+										channel: "remotewolfy"
+									});
+								}
 							});
 						}
 				}
@@ -476,6 +512,12 @@ if (inProduction()){
 						if(!randomTweet.favorited){
 							t_dotnet.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
 								if (err) console.log('Like Error: ', err);
+								if (err.code === 261) {
+									Slack.send({
+										text: "twiter err 261 - 7",
+										channel: "remotewolfy"
+									});
+								}
 							});
 						}
 				}
@@ -525,6 +567,12 @@ if (inProduction()){
 						if(!randomTweet.favorited){
 							t_ios.post('favorites/create', {id : randomTweet.id_str},function (err, response) {
 								if (err) console.log('Like Error: ', err);
+								if (err.code === 261) {
+									Slack.send({
+										text: "twiter err 261 - 8",
+										channel: "remotewolfy"
+									});
+								}
 							});
 						}
 				}
