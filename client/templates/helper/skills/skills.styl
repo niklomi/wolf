@@ -1,0 +1,23 @@
+@import '{}/client/stylesheets/colors.import';
+
+
+.skills
+    cursor: pointer
+    .skills-body
+        display: none
+        ul
+            margin-left: 3rem
+            li
+                border: 0
+                padding: 3px 0
+                font-size: 14px
+                position: relative
+                .fa-times
+                    position: absolute
+                    z-index: 5
+                    left: -2rem;
+                    top: 6px;
+            .active
+                color: lighten(main-color, 30%)
+                &:hover
+                    color: main-color

@@ -1,0 +1,17 @@
+<template name="skills">
+<div class="skills">
+    <section class="skills-head">Find Skills {{#if show}}<i class="fa fa-minus"></i>{{else}}<i class="fa fa-plus"></i>{{/if}}</section>
+
+    <div class="skills-body" style="{{#if show}} display:block !important; {{/if}}" >
+        <ul>
+            {{#if tags}}
+                {{#each tags}}
+                    <li class="chose-tag {{#if active_tag this}}active{{/if}}">{{#if active_tag this}}<i class="fa fa-times"></i>{{/if}}{{tag}}</li>
+                {{/each}}
+            {{else}}
+                {{> loading}}
+            {{/if}}
+        </ul>
+    </div>
+</div>
+</template>

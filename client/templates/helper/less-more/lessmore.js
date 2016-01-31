@@ -1,5 +1,9 @@
 Template.less_more.onRendered(function(){
 	Session.setDefault('show_less_info',false);
+});
+
+Template.less_more.helpers({
+	active: () => Session.get('show_less_info')
 })
 
 Template.less_more.events({

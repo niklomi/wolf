@@ -4,7 +4,7 @@ Template.time_table.onCreated(function(){
 	var self = this;
 	self.ready = new ReactiveVar(false);
 	self.autorun(function() {
-		let handle = PostSubs.subscribe('all_posts', Session.get('countofshow'));
+		let handle = _allpostSub.subscribe('posts', Session.get('countofshow'));
 		self.ready.set(handle.ready());
 	});
 });
@@ -52,5 +52,18 @@ Template.time_table.helpers({
 	posts:function(){
 		let posts = Posts.find({},{sort: { createdAt: -1 }});
 		return posts;
+	},
+	tags:function(){
+		let tags = Session.get('find-tags');
+		if (tags && tags.length > 0) {
+			return tags;
+		}
+	}
+});
+
+Template.time_table.events({
+	'click .search-tag':function(event,template){
+		let tag = $(event.currentTarget).text().trim().toLowerCase();
+		find_add_tag(tag);
 	}
 });

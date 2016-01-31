@@ -39,7 +39,7 @@ parseWWR2 = function(){
 							company_url: addhttp(main_body.url[0]),
 							description: description,
 							image:image,
-							apply_url: 'https://weworkremotely.com/jobs/'+main_body.id[0]._,
+							apply_url: 'https://weworkremotely.com/jobs/' + main_body.id[0]._,
 							tags: makeTAG(main_body.title[0], [], description),
 							category: makeCATEGORY(main_body.title[0], description)
 						};
@@ -130,6 +130,7 @@ parseWWM = function(){
 
 			let company_url = main_body.company_url,company = main_body.company,description = UniHTML.purify(main_body.htmlDescription);
 			if (company_url === undefined) company_url = null;
+			else company_url = addhttp(company_url);
 			if (!company) company = "Private Project";
 
 			var metadata = {
@@ -138,7 +139,7 @@ parseWWM = function(){
 				image:"METEOR",
 				position: main_body.title.replace(reg_r_brackets, "").replace(reg_r_tire,''),
 				company: company.trim(),
-				company_url: addhttp(company_url),
+				company_url: company_url,
 				description: description,
 				apply_url: main_body.siteUrl,
 				tags: makeTAG(main_body.title,['meteorjs'], description),
@@ -406,14 +407,16 @@ parseAuthentic = function(){
 
 						let description = UniHTML.purify($$('#description').html()),
 						company_url = $$('li.website').children('a').attr('href'),
-						image = `https://authenticjobs.com${$$('li.website').children('img').attr('src')}`,
-						metadata = {
+						image = `https://authenticjobs.com${$$('li.website').children('img').attr('src')}`;
+						if (company !== "Private Project") company_url = addhttp(company_url);
+						
+						let metadata = {
 							status:true,
 							source: "auth",
 							image:image,
 							position: position,
 							company: company,
-							company_url: addhttp(company_url),
+							company_url: company_url,
 							description:description,
 							apply_url: authUrl,
 							tags: makeTAG($$('.role').children('h1').text(),[],description),

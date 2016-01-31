@@ -31,17 +31,20 @@ Meteor.methods({
 	},
 	send_job:function(data){
 		check (data,{
-			title:String,
-			desc:String,
+			title: String,
+			desc: String,
+			apply: String
 		});
-		if (data.title.length > 100 || data.desc.length > 200 )
+		if (data.title.length > 100 || data.desc.length > 200 || data.apply.length > 200)
 			throw new Meteor.Error( "Error: ", 'There was an error processing your request' );
 		var job = {
 			test:true,
-			status: false
+			status: false,
+			position : data.title,
+			description: data.desc,
+			apply_url: data.apply
 		}
-		var newpost = _.extend(data, job );
-		Posts.insert(newpost);
+		Posts.insert(job);
 		Slack.send({
 			text: "New job!",
 			username: "Andy Warhol",
@@ -52,6 +55,7 @@ Meteor.methods({
 				fields: [
 				{ title: "Title", value: data.title },
 				{ title: "Description url", value: data.desc },
+				{ title: "Apply ", value: data.apply }
 				]
 			}]
 		});

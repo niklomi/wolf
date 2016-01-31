@@ -1,21 +1,6 @@
-<template name="main_page">
-	{{> Template.dynamic template=header}}
-	<section class="container-l">
-	{{> Template.dynamic template=fullwidth}}
-	<div class="house">
-		<div class="house-left">
-			{{> Template.dynamic template=brodyga}}
-			{{> Template.dynamic template=content}}
-		</div>
-		<div class="house-right">
-			<div id="future-fix">
-				{{> Template.dynamic template=action}}
-			</div>
-		</div>
-	</div>
-	</section>
+<template name="layout">
+	{{> Template.dynamic template=userLogin}}
 
-	<div id="zero_hero">
-		{{> zero_hero}}
-	</div>
+	{{> Template.dynamic template=header}}
+	{{> Template.dynamic template=body}}
 </template>

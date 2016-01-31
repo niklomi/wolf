@@ -168,11 +168,11 @@ if (inProduction()){
 		return arr[index];
 	};
 
-	var twitter_bot = "#remotework OR #remotelife OR #nomads OR #digitalnomad OR #remotejob OR remote work OR remote jobs OR remote job design OR remote job";
+	var twitter_bot = "#nomads OR #digitalnomads OR #remotejob OR remote work OR remote jobs OR digital nomad";
 	SyncedCron.add({
 		name: 'BOT_FAVORITE',
 		schedule: function(parser) {
-			return parser.text('every 10 minutes');
+			return parser.text('every 1 minutes');
 		},
 		job: function() {
 			T.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
@@ -227,7 +227,7 @@ if (inProduction()){
 	SyncedCron.add({
 		name: 'BOT_FAVORITE',
 		schedule: function(parser) {
-			return parser.text('every 10 minutes');
+			return parser.text('every 1 minutes');
 		},
 		job: function() {
 			t_nodejs.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
@@ -282,7 +282,7 @@ if (inProduction()){
 	SyncedCron.add({
 		name: 'BOT_FAVORITE',
 		schedule: function(parser) {
-			return parser.text('every 10 minutes');
+			return parser.text('every 1 minutes');
 		},
 		job: function() {
 			t_java.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
@@ -337,7 +337,7 @@ if (inProduction()){
 	SyncedCron.add({
 		name: 'BOT_FAVORITE',
 		schedule: function(parser) {
-			return parser.text('every 10 minutes');
+			return parser.text('every 1 minutes');
 		},
 		job: function() {
 			t_meteorjs.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
@@ -392,7 +392,7 @@ if (inProduction()){
 	SyncedCron.add({
 		name: 'BOT_FAVORITE',
 		schedule: function(parser) {
-			return parser.text('every 10 minutes');
+			return parser.text('every 1 minutes');
 		},
 		job: function() {
 			t_php.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
@@ -447,7 +447,7 @@ if (inProduction()){
 	SyncedCron.add({
 		name: 'BOT_FAVORITE',
 		schedule: function(parser) {
-			return parser.text('every 10 minutes');
+			return parser.text('every 1 minutes');
 		},
 		job: function() {
 			t_android.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
@@ -502,7 +502,7 @@ if (inProduction()){
 	SyncedCron.add({
 		name: 'BOT_FAVORITE',
 		schedule: function(parser) {
-			return parser.text('every 10 minutes');
+			return parser.text('every 1 minutes');
 		},
 		job: function() {
 			t_dotnet.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {
@@ -557,7 +557,7 @@ if (inProduction()){
 	SyncedCron.add({
 		name: 'BOT_FAVORITE',
 		schedule: function(parser) {
-			return parser.text('every 10 minutes');
+			return parser.text('every 1 minutes');
 		},
 		job: function() {
 			t_ios.get('search/tweets', {q: twitter_bot, resulttype: "recent"}, function (err, data,response) {

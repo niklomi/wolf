@@ -274,6 +274,18 @@ Meteor.methods({
 
 // ---------------TAGS to client ------------------------------
 
+// -------------- SUGGEST JOBS----------------
+
+Meteor.methods({
+	suggest_jobs: function(_id){
+		check(_id, String);
+		let tags = Posts.findOne(_id).tags;
+		return Posts.find({ '_id': { $ne: _id } , 'tags' : { $in : tags}}, {fields : {image: 1, position: 1, company: 1} , skip : 1, limit : 5}).fetch();
+	}
+});
+
+// --------------SUGGEST JOBS--------------------
+
 var retmas = function(desc){
 	var descc = desc.split(/(\s+)/);
 	descc = _.map(descc, function(word){return (word.toLowerCase());});

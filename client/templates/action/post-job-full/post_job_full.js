@@ -29,9 +29,11 @@ Template.post_job_full.helpers({
 Template.post_job_full.events({
 	'submit #job-send':function(e,template){
 		e.preventDefault();
-		let title = e.target.post_title.value,
-		desc = e.target.post_desc.value;
-		if (title.length < 1 || desc.length < 1) return false;
+		let title = e.target.post_title.value.trim(),
+		desc = e.target.post_desc.value.trim(),
+		apply = e.target.apply.value.trim();
+
+		if (title.length < 1 || desc.length < 1 || apply.length < 1) return false;
 		if (title.length < 5) template.error_title.set("*Title is too short");
 		else if (desc.length < 5) {
 			template.error_title.set("");
@@ -40,21 +42,19 @@ Template.post_job_full.events({
 		else{
 			template.error_desc.set("");
 			$( '#pop-submit-job' ).attr("disabled", "disabled").button('refresh');
-			var data = {
-				title: title,
-				desc: desc
-			}
-			Meteor.call('send_job',data,function(err,res){
+			var data = {title, desc, apply};
+			Meteor.call('send_job', data, function(err,res){
 				if (err) {
-					template.error_global.set(`*${err.reason}`)
+					template.error_global.set(`${err.reason}`)
 					$( '#pop-submit-job' ).removeAttr("disabled").button('refresh');
 					$( '#pop-submit-job' ).prop("disabled", false);
 				}
 				else {
-					template.good_global.set(`Work has been sent successfully`);
+					template.good_global.set(`Job has been sent successfully`);
 					$( '#pop-submit-job' ).removeAttr("disabled").button('refresh');
 					$("#post_title").val('');
 					$("#post_desc").val('');
+					$("#apply").val('');
 				}
 			});
 		}

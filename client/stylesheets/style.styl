@@ -4,11 +4,11 @@ html
 	min-height: 101%;
 
 body
-	color:body-color
+	color: body-color
 	font-family: 'Proxima Nova',"Helvetica Neue",Arial,Helvetica,sans-serif;
-	position:relative
-	background:#f4f4f4
-	min-height:101%
+	position: relative
+	background: #FFF
+	min-height: 101%
 
 h1, h2, h3, h4, h5, h6, p
 	margin:0
@@ -16,6 +16,9 @@ h1, h2, h3, h4, h5, h6, p
 
 .cursor-default
 	cursor: default !important;
+
+.main-color
+	color: main-color
 
 .effect-for-text
 	&:hover,&:active,&:focus
@@ -38,15 +41,6 @@ h1, h2, h3, h4, h5, h6, p
 	-ms-user-select: none
 	user-select: none
 
-.card
-	background:#FFF
-	border:1px solid border-color-card
-	border-radius:4px
-	-webkit-box-shadow: 0px 0px 1px 0 rgba(0,0,0,.1)
-	-moz-box-shadow: 0px 0px 1px 0 rgba(0,0,0,.1)
-	box-shadow: 0px 0px 1px 0 rgba(0,0,0,.1)
-	border-radius: 2px
-
 button
 	outline-style: none;
 
@@ -57,7 +51,7 @@ a
 	color:main-color
 	outline-style: none
 
-a:hover, a:focus
+a:hover, a:focus, a:active
 	text-decoration: none;
 	color: main-color;
 	border-bottom:2px solid main-color
@@ -100,29 +94,38 @@ a:hover, a:focus
 	font-weight: 700;
 	font-size: 16px;
 }
-.tagsJobs{
+
+.tags-wrap
 	display: inline-block;
 	margin-right: 3px;
 	margin-bottom: 3px;
 	margin-top: 3px;
-}
+
+.tags-form
+	padding: 3px 8px
+	border-radius: 4px
+	cursor: pointer
+
+.tags-style
+	background: border-color
+	&:hover
+		background: lighten(main-color, 30%)
+		.tags
+			color: #fff
+
+.search-tags-style
+	background: lighten(main-color, 30%)
+	color: #fff
+	&:hover
+		background: main-color
 
 .weight-400
 	font-weight:400
 
 .tags{
-	font-size: 10px;
+	font-size: 12px;
 	text-transform: uppercase;
-	color:body-color
-}
-
-
-#tag-hover:hover {
-	background: rgba(0, 0, 0, 0.2) none repeat scroll 0% 0%;
-	transition:all 0.1s;
-}
-#tag-hover:hover .tags{
-	transition:all 0.1s;
+	color: #FFF
 }
 
 .body-color
@@ -148,19 +151,14 @@ a:hover, a:focus
 	text-align: center;
 }
 
-#del-pad{
-	padding-top: 0px;
-}
-
 .container-l
 	max-width: 90rem
 	margin: 0 auto
-	padding: 0 5px
 	@media (max-width: xs-l)
 		padding: 0
 
 .table-start
-	div
+	.smurf
 		&:last-child
 			margin-bottom:0px
 
@@ -185,85 +183,11 @@ a:hover, a:focus
 input:focus
 	outline: none
 
-.typeahead,
-.tt-query,
-.tt-hint
-	width: 396px;
-	padding: 8px 12px;
-	line-height: 30px;
-	border: 2px solid #ccc;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
-	outline: none;
-
-.typeahead {
-  background-color: #fff;
-}
-
-.typeahead:focus {
-  border: 2px solid #0097cf;
-}
-
-.tt-query
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-
-
-.tt-hint {
-	color: #999
-}
-
-.tt-menu {
-	width: 422px;
-	margin: 4px 0;
-	padding: 8px 0;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
-	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-	-moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-	box-shadow: 0 5px 10px rgba(0,0,0,.2);
-}
-
-.tt-suggestion {
-	padding: 3px 20px;
-	font-size: 18px;
-	line-height: 24px;
-}
-
-.tt-suggestion:hover {
-	cursor: pointer;
-	color: #fff;
-	background-color: #0097cf;
-}
-
-.tt-suggestion.tt-cursor {
-	color: #fff;
-	background-color: #0097cf;
-}
-
-
 .search-more:hover
 	color: main-color;
 
 .hidden
 	display: none;
-
-.bert-alert.visible
-	border-radius:4px;
-	border-color: #912D2B;
-
-.bert-alert.growl-top-right span
-	padding: 4px 0px 4px;
-
-.bert-alert.danger
-	background-color: #FFF6F6;
-	color: #912D2B;
 
 #error404
 	height: 100vh
@@ -325,14 +249,6 @@ div.viewInfo
 	span
 		color: #777
 
-.steps > h3
-	@media (max-width: xs-sl)
-		font-size: 1.2em
-
-.steps > h1
-	@media (max-width: xs-sl)
-		font-size: 2em
-
 .loader
 	text-align: center
 	display: inline-block
@@ -342,32 +258,9 @@ div.viewInfo
 	width:100%
 	padding:5rem 0
 
-.hide-sev
-	@media(max-width:700px)
-		display: none !important
-
-.hide-fit
-	@media(max-width:540px)
-		display: none !important
-
-.hide-fot
-	@media(max-width:500px)
-		display : none !important
-
-.show-fit
-	@media(max-width:340px)
-		display : none !important;
-
 #contactwolf
 	&:hover,&:active,&:focus,&:visited
 		color:#FFF
-
-.new-job
-	padding:1px 3px
-	font-weight:bold
-	text-align:center
-	border-radius:4px
-	background-color:#FFF12D
 
 td
 	position:relative
@@ -416,10 +309,41 @@ td
 	left: 0
 	z-index:20
 
-.do-it-like-input
-	transition: box-shadow .15s ease-in-out,background-color .15s ease-in-out;
+.hide-1024
+	@media(max-width: 1024px)
+		display: none !important
 
-.give-me-shadow
-	-webkit-box-shadow:0 2px 10px rgba(34,36,38,.15);
-	-moz-box-shadow:0 2px 10px rgba(34,36,38,.15);
-	box-shadow: 0 2px 10px rgba(34,36,38,.15);
+.hide-900
+	@media(max-width: 900px)
+		display: none !important
+
+.hide-500
+	@media(max-width: 500px)
+		display: none !important
+
+.show-1024-table
+	display: none
+	@media(max-width: 1024px)
+		display: table
+
+.show-1024
+	display: none 
+	@media(max-width: 1024px)
+		display: block
+
+.show-900
+	display: none !important
+	@media(max-width: 900px)
+		display: block
+
+.beta
+	position: absolute
+	font-size: 8px
+	padding: 0.4rem
+	width: 4rem
+	top: 3px
+	font-weight: 200
+	border-radius: 4px
+	background: main-color
+	color:#fff
+	font-family: 'Proxima Nova',"Helvetica Neue",Arial,Helvetica,sans-serif;

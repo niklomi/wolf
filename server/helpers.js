@@ -43,10 +43,8 @@ String.prototype.capitalize = function() {
 }
 
 addhttp = function (url) {
-	if (isURL(url)){
-		if (!/^(f|ht)tps?:\/\//i.test(url)) {
-			url = "http://" + url;
-		}
+	if (!isURL(url)){
+		url = "http://" + url;
 	}
 	return url;
 }

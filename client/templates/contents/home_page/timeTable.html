@@ -1,43 +1,64 @@
 <template name="time_table">
-	<div class="table-start card">
-		<div class="main-table table">
-		{{#if search}}
+<!-- {{> submit_job}} -->
 
-			{{> table posts=search}}
+<div class="body">
+	<div class="body-right">
+		{{#if tags}}
+			<div class="search-tag-wrap no-select">
+				{{#each tags}}
+					<div class="search-tag  inline-block">
+						<div class="tags-wrap tags-form search-tags-style">
+							<div class="tags"><i class="fa fa-times"></i> {{this}}</div>
+						</div>
+					</div>
+				{{/each}}
+			</div>
+		{{/if}}
+		<div class="table-start">
+			<div class="main-table table">
+			{{#if search}}
 
-			{{#if ready}}
-				{{#if no_tags_found}}
-					<div class="no-results text-center">No results found</div>
+				{{> table posts=search}}
+
+				{{#if ready}}
+					{{#if no_tags_found}}
+						<div class="no-results text-center">No results found</div>
+					{{/if}}
 				{{/if}}
-			{{/if}}
-
-		{{else}}
-			{{#EasySearch.IfInputEmpty index=postsIndex}}
-
-				{{> table posts=posts}}
 
 			{{else}}
+				{{#EasySearch.IfInputEmpty index=postsIndex}}
 
-				{{#EasySearch.Each index=postsIndex }}
-					{{> jobs}}
-				{{/EasySearch.Each}}
+					{{> table posts=posts}}
 
-				{{#EasySearch.IfNoResults index=postsIndex}}
-					<div class="no-results text-center">No results found</div>
-				{{/EasySearch.IfNoResults}}
+				{{else}}
 
-			{{/EasySearch.IfInputEmpty}}
-		{{/if}}
-		{{#if ready}}
-		{{else}}
+					{{#EasySearch.Each index=postsIndex }}
+						{{> jobs}}
+					{{/EasySearch.Each}}
 
-			<div class="show-780">
-				{{> loading}}
+					{{#EasySearch.IfNoResults index=postsIndex}}
+						<div class="no-results text-center">No results found</div>
+					{{/EasySearch.IfNoResults}}
+
+				{{/EasySearch.IfInputEmpty}}
+			{{/if}}
+			{{#if ready}}
+			{{else}}
+
+				<div class="show-780">
+					{{> loading}}
+				</div>
+				<div class="hide-780">
+					{{> fake_loading}}
+				</div>
+			{{/if}}
 			</div>
-			<div class="hide-780">
-				{{> fake_loading}}
-			</div>
-		{{/if}}
 		</div>
 	</div>
+	<div class="body-left" id="make-fix">
+		{{> left_side}}
+	</div>
+</div>
+
 </template>

@@ -1,5 +1,31 @@
 @import '{}/client/stylesheets/colors.import';
 
+.body
+	position: relative
+
+.body-left
+	width: 25rem
+	position: absolute
+	z-index: 2
+	height: 100vh;
+	left: 0;
+	top: 0
+	background: color-ebebeb
+	overflow-y: auto;
+	@media(max-width: 900px)
+		width: 0rem
+
+.fixed
+	position: fixed !important
+
+.body-right
+	padding-left: 25rem
+	.search-tag-wrap
+		padding: 2rem
+		background: lighten(main-color, 90%)
+	@media(max-width: 900px)
+		padding-left: 0rem
+
 .main-table
 	border-collapse: separate;
 	.no-results
@@ -7,17 +33,21 @@
 		font-weight:600
 		padding:2rem 0
 	.smurf
-		border-bottom:1px solid border-color-card
-		padding: 2rem 2rem 2rem 2.5rem;
+		border-bottom:1px solid border-color
+		padding: 2rem 2rem 2rem 7rem;
 		position:relative
 		animation-duration: 1s;
-		@media (max-width:960px)
-			padding: 2rem 2rem 2rem 7rem;
+		a
+			&:hover
+				.description
+					color:body-color
+					transition:all 0.1s
 		.job-date
 			position:absolute
 			top:2.2rem
 			right:2rem
 			font-size:16px
+			color: body-color
 			@media (max-width:500px)
 				display:none
 		.job-companents
@@ -27,46 +57,37 @@
 			.position
 				font-size:18px
 				display:inline-block
-				a
-					&:hover
-						border-color:dark-body-color
-					span
-						color: dark-body-color
+				font-weight: 600
+				color: body-color
 			.company
 				font-size:18px
 				display:block
 				color: body-color
-				font-weight:200
+				font-weight:400
 		.description
 			color:color-999
 			font-size: 16px;
-			font-weight:200
+			font-weight:400
 			line-height: 22px;
 			margin-top: 0.5rem;
-			&:hover
-				color:body-color
-				transition:all 0.1s
 		.company-image
 			background-size: cover;
 			width: 4rem;
 			height: 4rem;
-			left: -2.5rem;
-			top: 3rem;
 			background-color: #FFF;
 			position: absolute;
-			border: 1px solid #E2E2E2;
-			border-radius: 50%;
-			@media (max-width:960px)
-				border-radius: 0;
-				left: 2rem;
-				top: 2.3rem;
+			border-radius: 0;
+			left: 2rem;
+			top: 2.3rem;
 		.no-image
 			font-size: 20px;
+			font-family: 'Playfair Display', serif;
 			text-align: center;
-			line-height: 40px;
+			line-height: 38px;
 			font-weight: 600;
 			text-transform: uppercase;
-			color: color-999;
+			color: #FFF;
+			background: body-color
 		.trend-job
 			background: #F7E92E;
 			position: absolute;

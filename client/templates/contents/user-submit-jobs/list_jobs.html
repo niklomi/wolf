@@ -1,7 +1,7 @@
 <template name="list_jobs">
 {{#if isInRole 'admin'}}
 <div class="container-l">
-<div class="12 card">
+<div class="12">
 <table class="list-jobs-wrap table">
 	<thead>
 	<tr>
@@ -13,8 +13,9 @@
 	<tbody>
 	{{#each posts}}
 		<tr>
-			<td> {{title}}</td>
+			<td>{{title}}</td>
 			<td>{{desc}}</td>
+			<td>{{apply}}</td>
 			<td><span class="glyphicon glyphicon-remove list-jobs-remove-post"></span></td>
 		</tr>
 	{{/each}}

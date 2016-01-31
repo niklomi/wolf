@@ -1,7 +1,8 @@
 <template name="less_more">
-    <div class="filter-wrap select-no less-more no-padding-right">
-        <section class="filter-head pointer {{#if show_less_info}}less-more-active btnM-red{{/if}}" data-toggle="tooltip" data-placement="top" title="Show more information about remote jobs">
-        	{{#if show_less_info}}<span class="show-500">Show more </span> <i class="fa fa-expand"></i>{{else}}<span class="show-500">Show less </span> <i class="fa fa-compress"></i>{{/if}}
-        </section>
-    </div>
+<div class="less-more-wrap">
+    <label class="less-more {{#if active}}main-color{{/if}}" for="showcompact">
+        <!-- Show Compact <input type="checkbox" name="showcompact" id="showcompact"> -->
+        Make Compact {{#if active}}<i class="fa main-color fa-dot-circle-o"></i>{{else}}<i class="fa fa-circle-o"></i>{{/if}}
+    </label>
+</div>
 </template>

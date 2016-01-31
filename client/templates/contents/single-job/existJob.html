@@ -1,0 +1,118 @@
+<template name="exist_job">
+{{#if ready}}
+	{{#with job}}
+	<div class="job-wrap" itemscope itemtype="http://schema.org/JobPosting">
+		<div class="schemaorg">
+			<span itemprop="skills"> {{#each tag}} {{this}} {{/each}} </span>
+			<span itemprop="datePosted">{{formatTimeshema createdAt}}</span>
+			<span itemprop="workHours">Flexible</span>
+			<span itemprop="jobLocation">Remote</span>
+		</div>
+		<div class="job">
+			<div class="single-job-info">
+				<h3 itemprop="title" class="title">{{position}}</h3>
+				<ul>
+					<li class="exist-job-tags">
+						{{#each tags}}
+							<div class="tags-wrap search-tags-style tags-form inline-block"><div class="tags">{{this}}</div></div>
+						{{/each}}
+					</li>
+					<li class="hide-500">
+						<i class="fa fa-circle"></i>
+					</li>
+					<li class="remotework">
+						<i class="fa fa-wifi"></i> Remote Work
+					</li>
+					<li class="hide-500">
+						<i class="fa fa-circle"></i>
+					</li>
+					<li class="date">{{date_from_now createdAt}}</li>
+				</ul>
+			</div>
+		</div>
+		<div class="company-mob show-1024-table">
+			{{#if image}}
+				<div class="company-image" style="background-image: url('{{check_img image}}');"></div>
+			{{else}}
+				<div class="company-image no-image">{{set_image_name company}}</div>
+			{{/if}}
+			{{#if company_have_url}}
+				<h4><a href="{{company_url}}" target="_blank" ><span itemprop="hiringOrganization">{{company}}</span></a></h4>
+			{{else}}
+				<h4><span itemprop="hiringOrganization">{{company}}</span></h4>
+			{{/if}}
+		</div>
+		<div class="job-leftright">
+			<div class="job-left">
+				<div id="fullDescr" itemprop="description">{{{description}}}</div>
+				<div class="text-center apply-button"><a href="{{apply_url}}" rel="nofollow"><button class="btnM btnM-red btnM-apply">Apply To Job</button></a></div>
+			</div>
+
+			<div class="job-right hide-1024">
+				<div class="company-wrap">
+					{{#if image}}
+						<div class="company-image" style="background-image: url('{{check_img image}}');"></div>
+					{{else}}
+						<div class="company-image no-image">{{set_image_name company}}</div>
+					{{/if}}
+					{{#if company_have_url}}
+						<h4><a href="{{company_url}}" target="_blank" ><span itemprop="hiringOrganization">{{company}}</span></a></h4>
+					{{else}}
+						<h4><span itemprop="hiringOrganization">{{company}}</span></h4>
+					{{/if}}
+					<a href="{{apply_url}}" rel="nofollow"><button class="btnM btnM-red btnM-apply">Apply To Job</button></a>
+				</div>
+
+				<div class="suggest-spisok">
+					<p>
+						You might also like
+					</p>
+					<ul>
+							{{#each suggest}}
+							<li>
+								<a href="/job/{{_id}}">
+									{{#if image}}
+										<div class="suggest-image" style="background-image: url('{{check_img image}}')"></div>
+									{{else}}
+										<div class="suggest-image no-image">{{set_image_name company}}</div>
+									{{/if}}
+									<span>{{position}}</span>
+								</a>
+							</li>
+							{{else}}
+							<li class="fake">
+								<div>
+
+								</div>
+							</li>
+							<li class="fake">
+								<div>
+
+								</div>
+							</li>
+							<li class="fake">
+								<div>
+
+								</div>
+							</li>
+							<li class="fake">
+								<div>
+
+								</div>
+							</li>
+							<li class="fake">
+								<div>
+
+								</div>
+							</li>
+							{{/each}}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{/with}}
+{{else}}
+	{{> loading}}
+{{/if}}
+</template>

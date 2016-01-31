@@ -1,3 +1,12 @@
+Cheerio = Meteor.npmRequire('cheerio');
+Future = Meteor.npmRequire('fibers/future');
+xml2js = Meteor.npmRequire('xml2js');
+urlapi = Meteor.npmRequire('url');
+Twit = Meteor.npmRequire('twit');
+request = Meteor.npmRequire('request');
+SlackAPI = Meteor.npmRequire( 'node-slack' ),
+Slack = new SlackAPI( Meteor.settings.private.slack.hook );
+
 Meteor.startup(function(){
 	SyncedCron.start();
 	clean_new();
@@ -26,12 +35,3 @@ Meteor.startup(function(){
 	// });
 	// Posts.remove({source:'stack'});
 });
-
-Cheerio = Meteor.npmRequire('cheerio');
-Future = Meteor.npmRequire('fibers/future');
-xml2js = Meteor.npmRequire('xml2js');
-urlapi = Meteor.npmRequire('url');
-Twit = Meteor.npmRequire('twit');
-request = Meteor.npmRequire('request');
-SlackAPI = Meteor.npmRequire( 'node-slack' ),
-Slack = new SlackAPI( Meteor.settings.private.slack.hook );
