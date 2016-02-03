@@ -39,7 +39,6 @@ Template.time_table.helpers({
 	search:function(){
 		let tags = FlowRouter.getQueryParam('tags');
 		if (tags && tags.split(' ').length > 0){
-			Session.set('countofshow', 2000);
 			tags = _.clone(tags.split(' ')) || [];
 			return Posts.find({tags: {$all:tags}});
 		}
