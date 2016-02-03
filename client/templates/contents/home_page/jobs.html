@@ -32,7 +32,7 @@
 					{{#if image}}
 						<div class="company-image" style="background-image: url('{{check_img image}}');"></div>
 					{{else}}
-						<div class="company-image no-image no-select">{{set_image_name position}}</div>
+						<div class="company-image no-image no-select">{{set_image_name company}}</div>
 					{{/if}}
 				</div>
 				<div class="job-companents">
@@ -54,7 +54,7 @@
 </template>
 
 <template name="tag">
-	<div class="tags-wrap tags-form tags-style no-select" data-toggle="tooltip" data-placement="top" title="View all {{this}} remote jobs">
-		<div class="tags">{{this}}</div>
-	</div>
+		<div class="tags-wrap tags-form tags-style no-select {{#if active_tag this}}search-tags-style{{/if}}" data-toggle="tooltip" data-placement="top" title="View all {{this}} remote jobs">
+			<div class="tags">{{#if active_tag this}}<i class="fa fa-times"></i> {{/if}}{{this}}</div>
+		</div>
 </template>

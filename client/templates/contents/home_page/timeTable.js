@@ -29,19 +29,18 @@ Template.time_table.helpers({
 	postsIndex: () => PostsIndex,
 	ready:() => Template.instance().ready.get(),
 	no_tags_found:function(){
-		let tags = Session.get('find-tags')
+		let tags = FlowRouter.getQueryParam('tags');
 
-		if (tags && tags.length > 0) {
-			tags = _.clone(tags) || [];
+		if (tags && tags.split(' ').length > 0) {
+			tags = _.clone(tags.split(' ')) || [];
 			return Posts.find({tags: {$all:tags}}).count() === 0;
 		}
 	},
 	search:function(){
-		let tags = Session.get('find-tags')
-
-		if (tags && tags.length > 0) {
+		let tags = FlowRouter.getQueryParam('tags');
+		if (tags && tags.split(' ').length > 0){
 			Session.set('countofshow', 2000);
-			tags = _.clone(tags) || [];
+			tags = _.clone(tags.split(' ')) || [];
 			return Posts.find({tags: {$all:tags}});
 		}
 	},
@@ -54,10 +53,9 @@ Template.time_table.helpers({
 		return posts;
 	},
 	tags:function(){
-		let tags = Session.get('find-tags');
-		if (tags && tags.length > 0) {
-			return tags;
-		}
+		let tags = FlowRouter.getQueryParam('tags');
+		if (tags && tags.split(' ').length > 0) return tags.split(' ');
+		return false;
 	}
 });
 

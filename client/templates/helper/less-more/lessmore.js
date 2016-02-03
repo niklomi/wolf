@@ -1,13 +1,12 @@
-Template.less_more.onRendered(function(){
-	Session.setDefault('show_less_info',false);
-});
-
 Template.less_more.helpers({
-	active: () => Session.get('show_less_info')
+	active: function(){
+        return FlowRouter.getQueryParam('compact') == true ? true : false;
+    }
 })
 
 Template.less_more.events({
-    'click .less-more': _.throttle(function(){
-        Session.set('show_less_info', ! Session.get('show_less_info'));
+    'click .less-more': _.throttle(function(e,t){
+        let param = FlowRouter.getQueryParam('compact') == true ? 0 : 1;
+		FlowRouter.setQueryParams({compact: param});
     }, 300)
 })

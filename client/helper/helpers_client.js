@@ -22,7 +22,7 @@ Template.registerHelper('formatTimeshema', function(context, options) {
 });
 
 Template.registerHelper('show_less_info', function(){
-	return Session.get('show_less_info');
+	return FlowRouter.getQueryParam('compact') == true ? true : false;
 });
 
 Template.registerHelper('set_image_name',function(word){
@@ -41,17 +41,8 @@ Template.registerHelper('check_img',function(image){
 	return image;
 });
 
-Template.registerHelper('array_category',function(){
-	let array = categories_filter;
-	return array;
-});
-
 Template.registerHelper('active_tag',function(item){
 	item = item.trim().toLowerCase();
-	if (Session.get('find-tags').length > 0 && Session.get('find-tags').indexOf(item) > -1) return true;
-});
-
-Template.registerHelper('active_category',function(item){
-	item = item.trim().toLowerCase();
-	if (Session.get('find-category').length > 0 && Session.get('find-category').indexOf(item) > -1) return true;
+	let tags = FlowRouter.getQueryParam('tags');
+	if (tags && tags.length > 0 && tags.split(' ').indexOf(item) > -1) return true;
 });
