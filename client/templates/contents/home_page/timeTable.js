@@ -4,7 +4,13 @@ Template.time_table.onCreated(function(){
 	var self = this;
 	self.ready = new ReactiveVar(false);
 	self.autorun(function() {
-		let handle = _allpostSub.subscribe('posts', Session.get('countofshow'));
+		FlowRouter.watchPathChange();
+		let tags = FlowRouter.getQueryParam('tags');
+		if (tags && tags.split(' ').length > 0) {
+			tags = _.clone(tags.split(' ')) || [];
+		}
+
+		let handle = self.subscribe('posts', Session.get('countofshow'), tags);
 		self.ready.set(handle.ready());
 	});
 });
@@ -34,14 +40,6 @@ Template.time_table.helpers({
 		if (tags && tags.split(' ').length > 0) {
 			tags = _.clone(tags.split(' ')) || [];
 			return Posts.find({tags: {$all:tags}}).count() === 0;
-		}
-	},
-	search:function(){
-		let tags = FlowRouter.getQueryParam('tags');
-		if (tags && tags.split(' ').length > 0){
-			Session.set('countofshow', 2000);
-			tags = _.clone(tags.split(' ')) || [];
-			return Posts.find({tags: {$all:tags}});
 		}
 	},
 	morepostexist: function(){

@@ -1,5 +1,4 @@
 Template.exist_job.onCreated(function(){
-	_allpostSub.clear();
 	var self = this;
 	self.current_path = new ReactiveVar(FlowRouter.current().path);
 	self.ready = new ReactiveVar(false);
@@ -11,7 +10,7 @@ Template.exist_job.onCreated(function(){
 		self.current_path.set(FlowRouter.current().path);
 		Session.set('post_id', FlowRouter.getParam("_id"));
 
-		var handle = self.subscribe('posts', null, FlowRouter.getParam("_id"),function(){
+		var handle = self.subscribe('posts', null, null, FlowRouter.getParam("_id"),function(){
 			var post = Posts.findOne(FlowRouter.getParam("_id")), title, description, company = post.company.replace(/^\s+|\s+$/g, "");
 
 			title = post.position.capitalize() + ' at ' + company + ' ' + moment(post.createdAt).format('YYYY-MM-DD');
