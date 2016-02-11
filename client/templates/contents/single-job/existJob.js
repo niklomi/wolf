@@ -14,22 +14,9 @@ Template.exist_job.onCreated(function(){
 			var post = Posts.findOne(FlowRouter.getParam("_id")), title, description, company = post.company.replace(/^\s+|\s+$/g, "");
 
 			title = post.position.capitalize() + ' at ' + company + ' ' + moment(post.createdAt).format('YYYY-MM-DD');
-			description = company.capitalize() + ' is looking for remote '  + post.position + ' ' + moment(post.createdAt).format('YYYY-MM-DD');
+			description = company.capitalize() + ' is looking for remote freelance '  + post.position + ' ' + moment(post.createdAt).format('YYYY-MM-DD');
 
-			var metaInfo = [{name: "description", content: description},
-				{name: "twitter:url", content: `http://remotewolfy.com${FlowRouter.current().path}`},
-				{name: "og:url", content: `http://remotewolfy.com${FlowRouter.current().path}`},
-				{name: "twitter:description", content:description},
-				{name: "og:description", content:description},
-				{name: "og:title", content:title},
-				{name: "twitter:title", content:title},
-				{name: "og:type", content:"website"},
-				{name: "og:local", content:"en_US"}]
-
-			DocHead.setTitle(title);
-			_.each(metaInfo,function(title){
-				DocHead.addMeta(title);
-			});
+			setSEO(title, description, `http://remotewolfy.com${FlowRouter.current().path}`);
 		});
 		self.ready.set(handle.ready());
 	});

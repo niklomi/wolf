@@ -34,20 +34,14 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	color: #FFF;
-	transition: all 0.15s;
+	transition: all 0.1s;
 
 .btnM-apply
 	text-transform: uppercase;
 	display: block;
 	width: 100%;
 
-.btnM-shadow
-	-webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.2)
-	-moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.2)
-	box-shadow: 1px 1px 1px rgba(0,0,0,0.2)
-
 .btnM-red
-	transition:all 0.1s
 	background-color: main-color
 	&:hover
 		background: lighten(main-color, 20%) !important;
@@ -56,6 +50,23 @@
 	&:disabled
 		background: lighten(main-color, 30%)!important;
 
+.btnM-reverse
+	font-size: 18px;
+	background: #fff;
+	color: main-color;
+	border: 2px solid;
+	&:hover
+		background: main-color
+		color:#fff
+		border-color: main-color
+	&:active
+		background: main-color
+		color:#fff
+		border-color: main-color
+	&:disabled
+		background: lighten(main-color, 30%)!important;
+		color:#fff
+		border-color: main-color
 
 .effect-for-buttons
 	transition:all 0.1s

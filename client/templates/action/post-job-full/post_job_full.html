@@ -4,23 +4,23 @@
 	<form id="job-send">
 		<p>It's 100% free. We will publish your job as soon as we approve it (24 hours).</p>
 		<div class="form-group">
-			<label for="post_title">Title</label>
-			<input type="text" class="form-control" maxlength="100" id="post_title" placeholder="Senior PHP Developer"  autocomplete="off">
+			<label for="post_title">Job Title</label>
+			<input type="text" class="form-control" maxlength="100" id="post_title" placeholder="Senior PHP Developer *"  autocomplete="off">
 			{{#if error_title}}<p class="error">{{error_title}}</p>{{/if}}
 		</div>
 		<div class="form-group">
 			<label for="post_desc">Link to the description</label>
-			<input type="text" class="form-control" id="post_desc" maxlength="200" placeholder="Link to job board with description"  autocomplete="off">
+			<input type="text" class="form-control" id="post_desc" maxlength="200" placeholder="Link to job board with description *"  autocomplete="off">
 			{{#if error_desc}}<p class="error">{{error_desc}}</p>{{/if}}
 		</div>
 		<div class="form-group">
 			<label for="post_desc">How to apply</label>
-			<input type="text" class="form-control" id="apply" maxlength="200" placeholder="Email or link to apply"  autocomplete="off">
+			<input type="text" class="form-control" id="apply" maxlength="200" placeholder="Email or link to apply *"  autocomplete="off">
 			{{#if error_desc}}<p class="error">{{error_desc}}</p>{{/if}}
 		</div>
 		{{#if error_global}}<p class="error">{{error_global}}</p>{{/if}}
 		<div class="text-center">
-			<button class="btnM btnM-red btnM-shadow" id="pop-submit-job" type="submit">SUBMIT NOW</button>
+			<button class="btnM btnM-reverse" id="pop-submit-job" type="submit">SUBMIT NOW</button>
 		</div>
 		{{#if good_global}}<p class="success">{{good_global}}</p>{{/if}}
 	</form>

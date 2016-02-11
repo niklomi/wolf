@@ -5,9 +5,15 @@ Template.time_table.onCreated(function(){
 	self.ready = new ReactiveVar(false);
 	self.autorun(function() {
 		FlowRouter.watchPathChange();
-		let tags = FlowRouter.getQueryParam('tags');
+		let tags = FlowRouter.getQueryParam('tags'), title, desc;
 		if (tags && tags.split(' ').length > 0) {
+			title = tags.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' and ') + ' Remote Jobs',
+			desc = `Show all new ${title} for Digital Nomads to work from anywhere`;
+			setSEO(title, desc);
+			
 			tags = _.clone(tags.split(' ')) || [];
+		} else {
+			setSEO();
 		}
 
 		let handle = self.subscribe('posts', Session.get('countofshow'), tags);

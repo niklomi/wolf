@@ -2,10 +2,10 @@
 
 .header-img
 	position: relative
-	background: rgba(0,0,0,0.4)
 	&:before
 		background-image: url('/image/power.jpg')
-		background-size: cover
+		background-size: cover;
+		background-position: 100% 50%
 		content: '';
 		position: absolute;
 		top: 0;
@@ -20,7 +20,7 @@
 .header
 	position: relative
 	padding: 3rem 2rem;
-	height: 30rem
+	height: 40rem
 	@media(max-width:500px)
 		height: auto
 	a
@@ -47,7 +47,7 @@
 	color: #FFF
 	font-weight: 600
 	font-size: 32px;
-	margin: 3rem 0;
+	margin: 6rem 0 3rem;
 	@media(max-width:500px)
 		display: none
 	@media(max-width:650px)
