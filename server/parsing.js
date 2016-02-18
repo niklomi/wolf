@@ -347,7 +347,7 @@ parseStackO = function(){
 						description +=$$('.jobdetail').children().eq(i).html() ;
 					}
 					var company = $$('#hed').children('.employer').text().trim(),
-					position =  $$('.h3').children('.job-link').text().replace(reg_r_brackets, "").replace(reg_r_tire,''),
+					position =  $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, "").replace(reg_r_tire,''),
 					same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
 					if (same_post) return false;
 
@@ -371,9 +371,16 @@ parseStackO = function(){
 						category: makeCATEGORY($$('.h3').children('.job-link').text(), description)
 					}
 
-					var post_id = Posts.insert(metadata);
-					if (post_id) tweeet_create(metadata.company, metadata.position, post_id, metadata.tags);
-					console.log("STACK ADDED");
+					if (position === ''){
+						Slack.send({
+							text: "Position is emty STACKOVERFLOW",
+							channel: "remotewolfy"
+						});
+					} else {
+						var post_id = Posts.insert(metadata);
+						if (post_id) tweeet_create(metadata.company, metadata.position, post_id, metadata.tags);
+						console.log("STACK ADDED");
+					}
 					if (!countZERO) return countZERO;
 					future.return(true);
 				}));
@@ -409,7 +416,7 @@ parseAuthentic = function(){
 						company_url = $$('li.website').children('a').attr('href'),
 						image = `https://authenticjobs.com${$$('li.website').children('img').attr('src')}`;
 						if (company !== "Private Project") company_url = addhttp(company_url);
-						
+
 						let metadata = {
 							status:true,
 							source: "auth",
