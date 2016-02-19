@@ -1,93 +1,93 @@
 @import '{}/client/stylesheets/colors.import';
 
 .body
-	position: relative
+  position: relative
 
 .body-left
-	width: 25rem
-	position: absolute
-	z-index: 2
-	height: 100vh;
-	left: 0;
-	top: 0
-	background: color-ebebeb
-	overflow-y: auto;
-	@media(max-width: 900px)
-		width: 0rem
+  width: 25rem
+  position: absolute
+  z-index: 2
+  height: 100vh;
+  left: 0;
+  top: 0
+  background: $color-f5f5f5
+  overflow-y: auto;
+  @media(max-width: 900px)
+    width: 0rem
 
 .fixed
-	position: fixed !important
+  position: fixed !important
 
 .body-right
-	padding-left: 25rem
-	.search-tag-wrap
-		padding: 2rem
-		background: lighten(main-color, 90%)
-	@media(max-width: 900px)
-		padding-left: 0rem
+  padding-left: 25rem
+  .search-tag-wrap
+    padding: 2rem
+    background: lighten(main-color, 90%)
+  @media(max-width: 900px)
+    padding-left: 0rem
 
 .main-table
-	border-collapse: separate;
-	.no-results
-		font-size:16px
-		font-weight:600
-		padding:2rem 0
-	.smurf
-		border-bottom:1px solid color-ebebeb
-		padding: 2rem 2rem 2rem 7rem;
-		position:relative
-		animation-duration: 1s;
-		a
-			&:hover
-				.description
-					color:body-color
-					transition:all 0.1s
-		.job-date
-			position:absolute
-			top:2.2rem
-			right:2rem
-			font-size:16px
-			color: body-color
-			@media (max-width:500px)
-				display:none
-		.job-companents
-			padding-right: 9rem
-			@media (max-width:500px)
-				padding-right: 0px
-			.position
-				font-size:18px
-				display:inline-block
-				font-weight: 600
-				color: body-color
-			.company
-				font-size:18px
-				display:block
-				color: body-color
-				font-weight:400
-		.description
-			color:color-999
-			font-size: 16px;
-			font-weight:400
-			line-height: 22px;
-			margin-top: 0.5rem;
-		.company-image
-			background-size: cover;
-			width: 4rem;
-			height: 4rem;
-			background-color: #FFF;
-			position: absolute;
-			border-radius: 0;
-			left: 2rem;
-			top: 2.3rem;
-		.no-image
-			font-size: 20px;
-			font-family: 'Playfair Display', serif;
-			text-align: center;
-			line-height: 38px;
-			font-weight: 600;
-			text-transform: uppercase;
-			color: #FFF;
-			background: body-color
+  border-collapse: separate;
+  .no-results
+    font-size:16px
+    font-weight:600
+    padding:2rem 0
+  .smurf
+    border-bottom:1px solid color-ebebeb
+    padding: 2rem 2rem 2rem 7rem;
+    position:relative
+    animation-duration: 1s;
+    a
+      &:hover
+        .description
+          color:body-color
+          transition:all 0.1s
+    .job-date
+      position:absolute
+      top:2.2rem
+      right:2rem
+      font-size:16px
+      color: body-color
+      @media (max-width:500px)
+        display:none
+    .job-companents
+      padding-right: 9rem
+      @media (max-width:500px)
+        padding-right: 0px
+      .position
+        font-size:18px
+        display:inline-block
+        font-weight: 600
+        color: body-color
+      .company
+        font-size:18px
+        display:block
+        color: body-color
+        font-weight:400
+    .description
+      color:color-999
+      font-size: 16px;
+      font-weight:400
+      line-height: 22px;
+      margin-top: 0.5rem;
+    .company-image
+      background-size: cover;
+      width: 4rem;
+      height: 4rem;
+      background-color: #FFF;
+      position: absolute;
+      border-radius: 0;
+      left: 2rem;
+      top: 2.3rem;
+    .no-image
+      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      line-height: 38px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #FFF;
+      background: body-color
 
 .hidden-xs-l.td-tags
-	margin-top: 0.5rem
+  margin-top: 0.5rem

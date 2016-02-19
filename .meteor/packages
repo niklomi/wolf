@@ -40,7 +40,7 @@ reactive-var
 easy:search
 browser-policy
 summernote:standalone
-
+raix:rssfeed
 
 npm-container
 okgrow:analytics

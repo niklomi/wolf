@@ -4,9 +4,9 @@ BrowserPolicy.content.disallowEval();
 BrowserPolicy.content.allowInlineStyles();
 BrowserPolicy.content.allowFontDataUrl();
 
-var trusted = [
-	'*.google-analytics.com',
-	'*.cloudfront.net'
+let trusted = [
+  '*.google-analytics.com',
+  '*.cloudfront.net'
 ];
 
 BrowserPolicy.content.allowConnectOrigin('*.stackoverflow.com');
@@ -32,11 +32,11 @@ BrowserPolicy.content.allowOriginForAll('*.twitter.com');
 BrowserPolicy.content.allowInlineScripts('*.twitter.com');
 BrowserPolicy.content.allowEval('*.twitter.com');
 
-var rootUrl = __meteor_runtime_config__.ROOT_URL;
+let rootUrl = __meteor_runtime_config__.ROOT_URL;
 BrowserPolicy.content.allowConnectOrigin(rootUrl);
 BrowserPolicy.content.allowConnectOrigin(rootUrl.replace('http', 'ws'));
 
 _.each(trusted, function(origin) {
-	origin = "https://" + origin;
-	BrowserPolicy.content.allowOriginForAll(origin);
+  origin = 'https://' + origin;
+  BrowserPolicy.content.allowOriginForAll(origin);
 });

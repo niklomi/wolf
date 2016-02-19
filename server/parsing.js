@@ -1,443 +1,437 @@
-var countZERO;
+let countZERO;
 
 if (Posts.find().count() === 0) {
-	countZERO = false;
-}
-else {
-	countZERO = true;
-}
-
-parseWWR2 = function(){
-	request("https://weworkremotely.com/categories/2-programming/jobs.xml", Meteor.bindEnvironment(function(error, response, body) {
-	if (!error && response.statusCode == 200) {
-		let $ = Cheerio.load(body);
-		var parser = new xml2js.Parser(), tmp;
-		parser.parseString($.xml(), function (err, result) {
-			tmp = result.jobs.job.length-1;
-			while (true) {
-
-				//проверки
-				let main_body = result.jobs.job[tmp];
-				if (!main_body) return false;
-				let apply_url = ('https://weworkremotely.com/jobs/' + main_body.id[0]._),
-				post_exist = Posts.findOne({apply_url: apply_url});
-				if (post_exist) return false;
-				let same_post = Posts.findOne({position: main_body.title[0], company: main_body.company[0], createdAt : {$gte : (new Date()).addDays(-3)}});
-				// конец проверок
-
-				let description = UniHTML.purify(main_body.description[0]);
-				if (!same_post){
-					request(apply_url, Meteor.bindEnvironment(function(error, response, body) {
-						let $ = Cheerio.load(body),
-						image = $("div.listing-logo").children().attr('src');
-
-						let metadata = {
-							status: true,
-							source: "wwr",
-							position: main_body.title[0].replace(reg_r_brackets, "").replace(reg_r_tire,""),
-							company: main_body.company[0].trim(),
-							company_url: addhttp(main_body.url[0]),
-							description: description,
-							image:image,
-							apply_url: 'https://weworkremotely.com/jobs/' + main_body.id[0]._,
-							tags: makeTAG(main_body.title[0], [], description),
-							category: makeCATEGORY(main_body.title[0], description)
-						};
-
-						let post_id = Posts.insert(metadata);
-						if (post_id) tweeet_create(metadata.company, metadata.position, post_id, metadata.tags);
-						console.log("WWR2 ADDED");
-						if(!countZERO) return countZERO;
-					}));
-				}
-				tmp--;
-			}
-		});
-	}
-	}));
+  countZERO = false;
+} else {
+  countZERO = true;
 }
 
-parseWFH = function(){
-	request("https://www.wfh.io/jobs.atom", Meteor.bindEnvironment(function(error, response, body) {
-		if (!error && response.statusCode == 200) {
-			$ = Cheerio.load(body);
-			var parser = new xml2js.Parser(), tmp;
-			parser.parseString($.xml(), function (err, result) {
-				tmp = 0;
-				while (true) {
+parseWWR2 = function() {
+  request('https://weworkremotely.com/categories/2-programming/jobs.xml', Meteor.bindEnvironment(function(error, response, body) {
+  if (!error && response.statusCode === 200) {
+    let $ = Cheerio.load(body);
+    let parser = new xml2js.Parser(), tmp;
+    parser.parseString($.xml(), function(err, result) {
+      tmp = result.jobs.job.length - 1;
+      while(true) {
+        //проверки
+        let mainBodyData = result.jobs.job[tmp];
+        if (!mainBodyData) return false;
+        let apply_url = ('https://weworkremotely.com/jobs/' + mainBodyData.id[0]._),
+        postExist = Posts.findOne({apply_url: apply_url});
+        if (postExist) return false;
+        let position = mainBodyData.title[0].replace(reg_r_brackets, '').replace(reg_r_tire, ''),
+        description = UniHTML.purify(mainBodyData.description[0]),
+        samePost = Posts.findOne({position: mainBodyData.title[0], company: mainBodyData.company[0], createdAt: {$gte: (new Date()).addDays(-3)}});
+        // конец проверок
 
-					let main_body = result.feed.entry[tmp];
-					if (!main_body) return false;
-					let apply_url = main_body.link[0].$.href,
-					post_exist = Posts.findOne({apply_url: apply_url});
-					if (post_exist) return false;
+        if (!samePost) {
+          request(apply_url, Meteor.bindEnvironment( (error, response, body) => {
+            let $ = Cheerio.load(body),
+            image = $('div.listing-logo').children().attr('src');
 
-					var future = new Future();
-					request(main_body.link[0].$.href, Meteor.bindEnvironment(function(error, response, body) {
-						$ = Cheerio.load(body);
-						let company = $("div.col-md-3").children('.panel').children('.panel-body').children().children().next().children().children().html(), company_url = urlapi.parse(company);
-						company = company_url.hostname.split('.');
-						company_url = company_url.href;
-						if (company.length === 2) company = company[0].capitalize();
-						else company = company[1].capitalize();
+            let metadata = {
+              status: true,
+              source: 'wwr',
+              position: position,
+              company: mainBodyData.company[0].trim(),
+              company_url: addhttp(mainBodyData.url[0]),
+              description: description,
+              image: image,
+              apply_url: 'https://weworkremotely.com/jobs/' + mainBodyData.id[0]._,
+              tags: __makeTAG(mainBodyData.title[0], [], description),
+              category: __makeCATEGORY(mainBodyData.title[0], description)
+            };
 
-						var position = main_body.title[0].replace(reg_r_brackets, "").replace(reg_r_tire,'');
-						company = company.trim();
+            let postId = Posts.insert(metadata);
+            if (postId) tweeet_create(metadata.company, metadata.position, postId, metadata.tags);
+            console.log('WWR2 ADDED');
+            if(!countZERO) return countZERO;
+          }));
+        }
+        tmp--;
+      }
+    });
+  }
+  }));
+};
 
-						let same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
-						if (same_post) return false;
+parseWFH = function() {
+  request('https://www.wfh.io/jobs.atom', Meteor.bindEnvironment(function(error, response, body) {
+    if (!error && response.statusCode === 200) {
+      $ = Cheerio.load(body);
+      let parser = new xml2js.Parser(), tmp;
+      parser.parseString($.xml(), function(err, result) {
+        tmp = 0;
+        while(true) {
+          let mainBodyData = result.feed.entry[tmp];
+          if (!mainBodyData) return false;
+          let apply_url = mainBodyData.link[0].$.href,
+          postExist = Posts.findOne({apply_url: apply_url});
+          if (postExist) return false;
 
-						let description =  UniHTML.purify(main_body.content[0]._);
-						var metadata = {
-							status: true,
-							image:null,
-							source: "wfh",
-							position: position,
-							company: company,
-							company_url: addhttp(company_url),
-							description:description,
-							apply_url: main_body.link[0].$.href,
-							tags: makeTAG(main_body.title[0], [],description),
-							category: makeCATEGORY(main_body.title[0], description)
-						};
+          let future = new Future();
+          request(mainBodyData.link[0].$.href, Meteor.bindEnvironment(function(error, response, body) {
+            $ = Cheerio.load(body);
+            let company = $('div.col-md-3').children('.panel').children('.panel-body').children().children().next().children().children().html(),
+            company_url = urlapi.parse(company);
+            company = company_url.hostname.split('.');
+            company_url = company_url.href;
+            if (company.length === 2) company = company[0].capitalize();
+            else company = company[1].capitalize();
 
-						var post_id = Posts.insert(metadata);
-						if (post_id) tweeet_create(metadata.company, metadata.position, post_id, metadata.tags);
-						console.log("WFH ADDED");
+            let  position = mainBodyData.title[0].replace(reg_r_brackets, '').replace(reg_r_tire, '');
+            company = company.trim();
 
-						tmp++;
-						if (!countZERO) return countZERO;
-						future.return(true);
-					}));
-					var status = future.wait();
-				}
-			});
-		}
-	}));
-}
+            let samePost = Posts.findOne({position: position, company: company, createdAt: {$gte: (new Date()).addDays(-3)}});
+            if (samePost) return false;
 
-parseWWM = function(){
-	var tmp = 0,
-	body = HTTP.call("GET","http://www.weworkmeteor.com/api/jobs");
-	while (true){
-		main_body = body.data.data[tmp];
-		tmp++;
-		if (tmp > body.data.data.length) return false;
+            let description =  UniHTML.purify(mainBodyData.content[0]._);
+            let metadata = {
+              status: true,
+              image: null,
+              source: 'wfh',
+              position: position,
+              company: company,
+              company_url: addhttp(company_url),
+              description: description,
+              apply_url: mainBodyData.link[0].$.href,
+              tags: __makeTAG(mainBodyData.title[0], [], description),
+              category: __makeCATEGORY(mainBodyData.title[0], description)
+            };
 
-		if(main_body.remote) {
-			var postExist = Posts.findOne({apply_url: main_body.siteUrl});
-			if (postExist) return false;
+            let postId = Posts.insert(metadata);
+            if (postId) tweeet_create(metadata.company, metadata.position, postId, metadata.tags);
+            console.log('WFH ADDED');
 
-			let company_url = main_body.company_url,company = main_body.company,description = UniHTML.purify(main_body.htmlDescription);
-			if (company_url === undefined) company_url = null;
-			else company_url = addhttp(company_url);
-			if (!company) company = "Private Project";
+            tmp++;
+            if (!countZERO) return countZERO;
+            future.return(true);
+          }));
+          future.wait();
+        }
+      });
+    }
+  }));
+};
 
-			var metadata = {
-				status: true,
-				source: "wwm",
-				image:"METEOR",
-				position: main_body.title.replace(reg_r_brackets, "").replace(reg_r_tire,''),
-				company: company.trim(),
-				company_url: company_url,
-				description: description,
-				apply_url: main_body.siteUrl,
-				tags: makeTAG(main_body.title,['meteorjs'], description),
-				category: makeCATEGORY(main_body.title, description)
-			}
+parseWWM = function() {
+  let tmp = 0,
+  body = HTTP.call('GET', 'http://www.weworkmeteor.com/api/jobs');
+  while(true) {
+    mainBodyData = body.data.data[tmp];
+    tmp++;
+    if (tmp > body.data.data.length) return false;
 
-			var post_id = Posts.insert(metadata);
-			if (post_id) tweeet_create(metadata.company, metadata.position, post_id, metadata.tags);
-			console.log('WWM added')
-			if(!countZERO) return countZERO;
-		}
-	}
-}
+    if(mainBodyData.remote) {
+      let postExist = Posts.findOne({apply_url: mainBodyData.siteUrl});
+      if (postExist) return false;
 
-parseDribbble = function(){
-	request("https://dribbble.com/jobs.rss", Meteor.bindEnvironment(function(error, response, body) {
-		if (!error && response.statusCode == 200) {
-			$ = Cheerio.load(body);
-			var parser = new xml2js.Parser(), tmp;
-			parser.parseString($.xml(), function (err, result) {
-				let RSS = result.rss.channel[0]["atom:link"][0];
-				tmp = 0;
-				while (true) {
-					var main_body = RSS.item[tmp];
-					if (!main_body) return false;
+      let company_url = mainBodyData.company_url,
+      company = mainBodyData.company,
+      description = UniHTML.purify(mainBodyData.htmlDescription);
 
-					if((main_body.title[0].toLowerCase().indexOf("anywhere") >= 0) || (main_body.title[0].toLowerCase().indexOf("remote") >=0)){
+      if (company_url === undefined) company_url = null;
+      else company_url = addhttp(company_url);
+      if (!company) company = 'Private Project';
 
-						let apply_url = main_body.guid[0],
-						post_exist = Posts.findOne({apply_url: apply_url});
-						if (post_exist) return false;
+      let metadata = {
+        status: true,
+        source: 'wwm',
+        image: 'METEOR',
+        position: mainBodyData.title.replace(reg_r_brackets, '').replace(reg_r_tire, ''),
+        company: company.trim(),
+        company_url: company_url,
+        description: description,
+        apply_url: mainBodyData.siteUrl,
+        tags: __makeTAG(mainBodyData.title, ['meteorjs'], description),
+        category: __makeCATEGORY(mainBodyData.title, description)
+      };
 
-						//грязь
-						var xxx = main_body.title[0];
-						var bbbSecretWords = ["product","lead","senior","graphic","web","app","ui","ux","design"];
-						var dribbbleSplited = main_body.title[0].split(/\b/);
-						dribbbleSplited = _.map(dribbbleSplited, function(word){return (word.toLowerCase());});
-						dribbbleSplited = _.intersection(dribbbleSplited,bbbSecretWords);
-						dribbbleSplited = _.map(dribbbleSplited, function(word){return (word.toLowerCase());});
-						var tagsBBB = [];
-						if (dribbbleSplited.length > 2) tagsBBB = _.last(dribbbleSplited, [3]);
-						else if (dribbbleSplited.length > 1) tagsBBB = _.last(dribbbleSplited, [2]);
-						else tagsBBB = ["design"];
-						var positionBBB ="";
-						if (xxx.indexOf('esigner ') != -1){
-							positionBBB = (xxx.substring((xxx.indexOf('hiring a')+9 ), (xxx.indexOf('esigner '))+8));
-						}
-						else if ((xxx.indexOf('esigner ')) != -1){
-							positionBBB = (xxx.substring((xxx.indexOf('hiring an')+9 ), (xxx.indexOf('anywhere ')-1)));
-						}
-						else if ((xxx.indexOf('anywhere ')) != -1){
-							positionBBB = (xxx.substring((xxx.indexOf('hiring a')+9 ), (xxx.indexOf('anywhere ')-1)));
-						}
-						else if ((xxx.indexOf(' in ')) != -1){
-							positionBBB = (xxx.substring((xxx.indexOf('hiring a')+9 ), (xxx.indexOf(' in '))));
-						}
-						else {
-							positionBBB = "Designer";
-						}
-						// конец грязи
+      let postId = Posts.insert(metadata);
+      if (postId) tweeet_create(metadata.company, metadata.position, postId, metadata.tags);
+      console.log('WWM added');
+      if(!countZERO) return countZERO;
+    }
+  }
+};
 
-						let company = main_body["dc:creator"][0].capitalize(), description = UniHTML.purify(main_body.title[0]),
-						metadata = {
-							status: true,
-							image:"DRIBBBLE",
-							source: "dribbble",
-							position: positionBBB.replace(reg_r_brackets, "").replace(reg_r_tire,''),
-							company: company.trim(),
-							description: description,
-							apply_url: apply_url,
-							tags: makeTAG(positionBBB,tagsBBB,description),
-							category: makeCATEGORY(positionBBB,description)
-						}
+parseDribbble = function() {
+  request('https://dribbble.com/jobs.rss', Meteor.bindEnvironment(function(error, response, body) {
+    if (!error && response.statusCode === 200) {
+      $ = Cheerio.load(body);
+      let parser = new xml2js.Parser(), tmp;
+      parser.parseString($.xml(), function(err, result) {
+        let RSS = result.rss.channel[0]['atom:link'][0];
+        tmp = 0;
+        while (true) {
+          let mainBodyData = RSS.item[tmp];
+          if (!mainBodyData) return false;
 
-						let post_id = Posts.insert(metadata);
-						if (post_id) tweeet_create(metadata.company, metadata.position, post_id, metadata.tags);
-						console.log ("BBB ADDED");
-						if(!countZERO) return countZERO;
-					}
-					tmp++;
-				}
-			});
-		}
-	}));
-}
+          if((mainBodyData.title[0].toLowerCase().indexOf('anywhere') >= 0) || (mainBodyData.title[0].toLowerCase().indexOf('remote') >= 0)) {
+            let apply_url = mainBodyData.guid[0],
+            postExist = Posts.findOne({apply_url: apply_url});
+            if (postExist) return false;
 
-parseBehance = function(){
-	request("https://www.behance.net/joblist", Meteor.bindEnvironment(function(error, response, body) {
-		if (!error && response.statusCode == 200) {
-			$ = Cheerio.load(body);
-			$("div.job-location").each(function() {
-				var divLocation = $(this);
-				if (divLocation.text().toLowerCase().indexOf("anywhere") >= 0 || divLocation.text().toLowerCase().indexOf("remote") >= 0 || divLocation.text().toLowerCase().indexOf("любом") >= 0 ) {
+            //грязь
+            let xxx = mainBodyData.title[0];
+            let bbbSecretWords = ['product', 'lead', 'senior', 'graphic', 'web', 'app', 'ui', 'ux', 'design'];
+            let dribbbleSplited = mainBodyData.title[0].split(/\b/);
+            dribbbleSplited = _.map(dribbbleSplited, word => word.toLowerCase());
+            dribbbleSplited = _.intersection(dribbbleSplited, bbbSecretWords);
+            dribbbleSplited = _.map(dribbbleSplited, word => word.toLowerCase());
+            let tagsBBB = [];
+            if (dribbbleSplited.length > 2) tagsBBB = _.last(dribbbleSplited, [3]);
+            else if (dribbbleSplited.length > 1) tagsBBB = _.last(dribbbleSplited, [2]);
+            else tagsBBB = ['design'];
+            let positionBBB = '';
+            if (xxx.indexOf('esigner ') !== -1 ) {
+              positionBBB = (xxx.substring((xxx.indexOf('hiring a') + 9 ), (xxx.indexOf('esigner ')) + 8));
+            } else if (xxx.indexOf('esigner ') !== -1) {
+              positionBBB = (xxx.substring((xxx.indexOf('hiring an') + 9 ), (xxx.indexOf('anywhere ') - 1)));
+            } else if (xxx.indexOf('anywhere ') !== -1 ) {
+              positionBBB = (xxx.substring((xxx.indexOf('hiring a') + 9 ), (xxx.indexOf('anywhere ') - 1)));
+            } else if (xxx.indexOf(' in ') !== -1 ) {
+              positionBBB = (xxx.substring((xxx.indexOf('hiring a') + 9 ), (xxx.indexOf(' in '))));
+            } else {
+              positionBBB = 'Designer';
+            }
+            // конец грязи
 
-					var behanceJobUrl = divLocation.parent().next().children('.job-title').children().attr('href'),
-					post_exist, url1 = urlapi.parse(behanceJobUrl);
+            let company = mainBodyData['dc:creator'][0].capitalize(), description = UniHTML.purify(mainBodyData.title[0]),
+            metadata = {
+              status: true,
+              image: 'DRIBBBLE',
+              source: 'dribbble',
+              position: positionBBB.replace(reg_r_brackets, '').replace(reg_r_tire, ''),
+              company: company.trim(),
+              description: description,
+              apply_url: apply_url,
+              tags: __makeTAG(positionBBB, tagsBBB, description),
+              category: __makeCATEGORY(positionBBB, description)
+            };
 
-					if (Posts.findOne({source: "behance"})){
-						if (Posts.findOne({mask_url: url1.pathname})) post_exist = true;
-						else post_exist = false;
-					}
-					else post_exist = false;
-					if (post_exist) return false;
+            let postId = Posts.insert(metadata);
+            if (postId) tweeet_create(metadata.company, metadata.position, postId, metadata.tags);
+            console.log('BBB ADDED');
+            if(!countZERO) return countZERO;
+          }
+          tmp++;
+        }
+      });
+    }
+  }));
+};
 
-					var future = new Future();
-					request(behanceJobUrl, Meteor.bindEnvironment(function(error, response, body) {
-						let $$ = Cheerio.load(body), image = $$('img.team-image').attr('src');
-						if (image === "https://a3.behance.net/img/rendition/team/230.jpg") image = null;
+parseBehance = function() {
+  request('https://www.behance.net/joblist', Meteor.bindEnvironment(function(error, response, body) {
+    if (!error && response.statusCode === 200) {
+      $ = Cheerio.load(body);
+      $('div.job-location').each(function() {
+        let divLocation = $(this),
+        wordRemote = divLocation.text().toLowerCase();
+        if (wordRemote.indexOf('anywhere') >= 0 || wordRemote.indexOf('remote') >= 0 || wordRemote.indexOf('любом') >= 0 ) {
+          let behanceJobUrl = divLocation.parent().next().children('.job-title').children().attr('href'),
+          postExist, url1 = urlapi.parse(behanceJobUrl);
 
-						description = UniHTML.purify($$('.job-description').html()),
-						metadata = {
-							status: true,
-							source: "behance",
-							image:image,
-							position: $$('.job-header-details ').children().eq(0).text().replace(reg_r_brackets, "").replace(reg_r_tire,''),
-							company: $$('.company-name ').children().eq(0).text().trim(),
-							description: description,
-							apply_url: behanceJobUrl,
-							mask_url: url1.pathname,
-							tags: makeTAG($$('.job-header-details ').children().text(), [],description),
-							category: makeCATEGORY($$('.job-header-details ').children().text(),description)
-						}
-						var post_id = Posts.insert(metadata);
-						if (post_id) tweeet_create(metadata.company, metadata.position, post_id, metadata.tags);
-						console.log("BEHANCE ADDED");
-						if (!countZERO) return countZERO;
-						future.return(true);
-					}));
-					var status = future.wait();
-				}
-			});
-		}
-	}));
-}
+          if (Posts.findOne({source: 'behance'})) {
+            if (Posts.findOne({maskLink: url1.pathname})) postExist = true;
+            else postExist = false;
+          } else postExist = false;
+          if (postExist) return false;
 
-parseGitHub = function(){
-	var tmp = 0,
-	bodyGIT = HTTP.call("GET","https://jobs.github.com/positions.json");
-	while (true){
-		parseGIT = bodyGIT.data[tmp];
-		if (!parseGIT) return false;
-		if (parseGIT.company.toLowerCase().indexOf("github")>=0) tmp++;
-		else{
-			if (parseGIT.location.toLowerCase().indexOf("remote")>=0 || parseGIT.location.toLowerCase().indexOf("anywhere")>=0){
+          let future = new Future();
+          request(behanceJobUrl, Meteor.bindEnvironment(function(error, response, body) {
+            let $$ = Cheerio.load(body), image = $$('img.team-image').attr('src');
+            if (image === 'https://a3.behance.net/img/rendition/team/230.jpg') image = null;
 
-				var postExist = Posts.findOne({apply_url: parseGIT.url});
-				if (postExist) return false;
+            let description = UniHTML.purify($$('.job-description').html()),
+            metadata = {
+              status: true,
+              source: 'behance',
+              image: image,
+              position: $$('.job-header-details ').children().eq(0).text().replace(reg_r_brackets, '').replace(reg_r_tire, ''),
+              company: $$('.company-name ').children().eq(0).text().trim(),
+              description: description,
+              apply_url: behanceJobUrl,
+              maskLink: url1.pathname,
+              tags: __makeTAG($$('.job-header-details ').children().text(), [], description),
+              category: __makeCATEGORY($$('.job-header-details ').children().text(), description)
+            };
 
-				var position = parseGIT.title.replace(reg_r_brackets, "").replace(reg_r_tire,''),
-				company = parseGIT.company.trim();
+            let postId = Posts.insert(metadata);
+            if (postId) tweeet_create(metadata.company, metadata.position, postId, metadata.tags);
+            console.log('BEHANCE ADDED');
+            if (!countZERO) return countZERO;
+            future.return(true);
+          }));
+          future.wait();
+        }
+      });
+    }
+  }));
+};
 
-				let same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
-				if (same_post) return false;
-				let company_url = parseGIT.company_url !== null ? addhttp(parseGIT.company_url) : null;
-				let description = UniHTML.purify(parseGIT.description),
-				metadata = {
-					status: true,
-					source: "github",
-					image: parseGIT.company_logo,
-					type: parseGIT.type,
-					position: position,
-					company: company,
-					company_url: addhttp(parseGIT.company_url),
-					description: description,
-					apply_url: parseGIT.url,
-					tags: makeTAG(parseGIT.title, [], description),
-					category: makeCATEGORY(parseGIT.title, description)
-				}
+parseGitHub = function() {
+  let tmp = 0,
+  bodyGIT = HTTP.call('GET', 'https://jobs.github.com/positions.json');
+  while(true) {
+    parseGIT = bodyGIT.data[tmp];
+    if (!parseGIT) return false;
+    if (parseGIT.company.toLowerCase().indexOf('github') >= 0) tmp++;
+    else{
+      if (parseGIT.location.toLowerCase().indexOf('remote') >= 0 || parseGIT.location.toLowerCase().indexOf('anywhere') >= 0) {
+        let postExist = Posts.findOne({apply_url: parseGIT.url});
+        if (postExist) return false;
 
-				var post_id = Posts.insert(metadata);
-				if (post_id) tweeet_create(metadata.company, metadata.position, post_id, metadata.tags);
-				console.log ("GITHUB ADDED");
-				if (!countZERO) return countZERO;
-			}
-			tmp++;
-		}
-	}
-}
+        let position = parseGIT.title.replace(reg_r_brackets, '').replace(reg_r_tire, ''),
+        company = parseGIT.company.trim();
 
-parseStackO = function(){
-	request("http://careers.stackoverflow.com/jobs?allowsremote=true&sort=i", Meteor.bindEnvironment(function(error, response, body) {
-		if (!error && response.statusCode == 200) {
-			$ = Cheerio.load(body);
-			$("div.-title").each(function() {
-				var stackBody = $(this).children().children('.job-link'),
-				stackoLoc = "http://careers.stackoverflow.com"+ stackBody.attr('href'),
-				postExist = Posts.findOne({apply_url: stackoLoc}),
-				future = new Future(),
-				mask_url = urlapi.parse(stackoLoc);
+        let samePost = Posts.findOne({position: position, company: company, createdAt: {$gte: (new Date()).addDays(-3)}});
+        if (samePost) return false;
+        let company_url = parseGIT.company_url !== null ? addhttp(parseGIT.company_url) : null,
+        description = UniHTML.purify(parseGIT.description),
+        metadata = {
+          status: true,
+          source: 'github',
+          image: parseGIT.company_logo,
+          type: parseGIT.type,
+          position: position,
+          company: company,
+          company_url: company_url,
+          description: description,
+          apply_url: parseGIT.url,
+          tags: __makeTAG(parseGIT.title, [], description),
+          category: __makeCATEGORY(parseGIT.title, description)
+        };
 
-				mask_url = mask_url.pathname;
-				if (postExist) return false;
-				postExist = Posts.findOne({mask_url: mask_url});
-				if (postExist) return false;
+        let postId = Posts.insert(metadata);
+        if (postId) tweeet_create(metadata.company, metadata.position, postId, metadata.tags);
+        console.log('GITHUB ADDED');
+        if (!countZERO) return countZERO;
+      }
+      tmp++;
+    }
+  }
+};
 
-				request(stackoLoc, Meteor.bindEnvironment(function(error, response, body) {
-					if (!body) return false;
-					$$ = Cheerio.load(body);
-					var description ="";
-					for (var i=1;i<6;i++){
-						var clas = $$('.jobdetail').children().eq(i).attr('class');
-						if (clas && clas.indexOf('apply') >= 0){
-							break;
-						}
-						description +=$$('.jobdetail').children().eq(i).html() ;
-					}
-					var company = $$('#hed').children('.employer').text().trim(),
-					position =  $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, "").replace(reg_r_tire,''),
-					same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
-					if (same_post) return false;
+parseStackO = function() {
+  request('http://careers.stackoverflow.com/jobs?allowsremote=true&sort=i', Meteor.bindEnvironment(function(error, response, body) {
+    if (!error && response.statusCode === 200) {
+      $ = Cheerio.load(body);
+      $('div.-title').each(function() {
+        let stackBody = $(this).children().children('.job-link'),
+        stackoLoc = 'http://careers.stackoverflow.com' + stackBody.attr('href'),
+        postExist = Posts.findOne({apply_url: stackoLoc}),
+        future = new Future(),
+        maskLink = urlapi.parse(stackoLoc);
 
-					var description = UniHTML.purify(description);
+        maskLink = maskLink.pathname;
+        if (postExist) return false;
+        postExist = Posts.findOne({maskLink: maskLink});
+        if (postExist) return false;
 
+        request(stackoLoc, Meteor.bindEnvironment(function(error, response, body) {
+          if (!body) return false;
+          $$ = Cheerio.load(body);
+          let description = '';
+          for (let i = 1; i < 6; i++) {
+            let clas = $$('.jobdetail').children().eq(i).attr('class');
+            if (clas && clas.indexOf('apply') >= 0 ) {
+              break;
+            }
+            description += $$('.jobdetail').children().eq(i).html();
+          }
+          let company = $$('#hed').children('.employer').text().trim(),
+          position =  $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''),
+          samePost = Posts.findOne({position: position, company: company, createdAt: {$gte: (new Date()).addDays(-3)}});
+          if (samePost) return false;
 
-					let image = $$('div.-logo').children().attr('src');
-					image = image !== undefined ? image : null;
+          description = UniHTML.purify(description);
+          let image = $$('div.-logo').children().attr('src');
+          image = image !== undefined ? image : null;
 
-					let metadata = {
-						status:true,
-						source: "stack",
-						image: image,
-						position: position,
-						company: company,
-						company_url: addhttp($$('.jobdetail').children('#hed').children('.employer').attr('href')),
-						description: description,
-						apply_url: stackoLoc,
-						mask_url: mask_url,
-						tags: makeTAG($$('.h3').children('.job-link').text(),[],description),
-						category: makeCATEGORY($$('.h3').children('.job-link').text(), description)
-					}
+          let metadata = {
+            status: true,
+            source: 'stack',
+            image: image,
+            position: position,
+            company: company,
+            company_url: addhttp($$('.jobdetail').children('#hed').children('.employer').attr('href')),
+            description: description,
+            apply_url: stackoLoc,
+            maskLink: maskLink,
+            tags: __makeTAG($$('.h3').children('.job-link').text(), [], description),
+            category: __makeCATEGORY($$('.h3').children('.job-link').text(), description)
+          };
 
-					if (position === ''){
-						Slack.send({
-							text: "Position is emty STACKOVERFLOW",
-							channel: "remotewolfy"
-						});
-					} else {
-						var post_id = Posts.insert(metadata);
-						if (post_id) tweeet_create(metadata.company, metadata.position, post_id, metadata.tags);
-						console.log("STACK ADDED");
-					}
-					if (!countZERO) return countZERO;
-					future.return(true);
-				}));
-				var status = future.wait();
-			});
-		}
-	}));
-}
+          if (position === '') {
+            Slack.send({
+              text: 'Position is emty STACKOVERFLOW',
+              channel: 'remotewolfy'
+            });
+          } else {
+            let postId = Posts.insert(metadata);
+            if (postId) tweeet_create(metadata.company, metadata.position, postId, metadata.tags);
+            console.log('STACK ADDED');
+          }
+          if (!countZERO) return countZERO;
+          future.return(true);
+        }));
+        future.wait();
+      });
+    }
+  }));
+};
 
-parseAuthentic = function(){
-	request("https://authenticjobs.com/#onlyremote=1", Meteor.bindEnvironment(function(error, response, body) {
-		if (!error && response.statusCode == 200) {
-			$ = Cheerio.load(body);
-			$("span.location.anywhere").each(function() {
-				if (!!$(this).parent().parent().attr('href')){
+parseAuthentic = function() {
+  request('https://authenticjobs.com/#onlyremote=1', Meteor.bindEnvironment(function(error, response, body) {
+    if (!error && response.statusCode === 200) {
+      $ = Cheerio.load(body);
+      $('span.location.anywhere').each(function() {
+        if (!!$(this).parent().parent().attr('href')) {
+          let authUrl = ('https://authenticjobs.com' + $(this).parent().parent().attr('href')),
+          postExist = Posts.findOne({apply_url: authUrl}),
+          future = new Future();
 
-					var authUrl = ("https://authenticjobs.com" + $(this).parent().parent().attr('href')),
-					postExist = Posts.findOne({apply_url: authUrl}),
-					future = new Future();
+          if (postExist) return false;
+          request(authUrl, Meteor.bindEnvironment(function(error, response, body) {
+            if (!body) return false;
+            $$ = Cheerio.load(body);
 
-					if (postExist) return false;
-					request(authUrl, Meteor.bindEnvironment(function(error, response, body) {
-						if (!body) return false;
-						$$ = Cheerio.load(body);
+            let position = $$('.role').children('h1').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''),
+            company =  $$('.title').children().children().children().children('h2').text().trim();
+            if (company === '') company = 'Private Project';
+            let samePost = Posts.findOne({position: position, company: company, createdAt: {$gte: (new Date()).addDays(-3)}});
+            if (samePost) return false;
 
-						var position = $$('.role').children('h1').text().replace(reg_r_brackets, "").replace(reg_r_tire,''),
-						company =  $$('.title').children().children().children().children('h2').text().trim();
-						if (company === "") company = "Private Project";
-						let same_post = Posts.findOne({position:position, company:company, createdAt : {$gte : (new Date()).addDays(-3)}});
-						if (same_post) return false;
+            let description = UniHTML.purify($$('#description').html()),
+            company_url = $$('li.website').children('a').attr('href'),
+            image = `https://authenticjobs.com${$$('li.website').children('img').attr('src')}`;
+            if (company !== 'Private Project') company_url = addhttp(company_url);
 
-						let description = UniHTML.purify($$('#description').html()),
-						company_url = $$('li.website').children('a').attr('href'),
-						image = `https://authenticjobs.com${$$('li.website').children('img').attr('src')}`;
-						if (company !== "Private Project") company_url = addhttp(company_url);
+            let metadata = {
+              status: true,
+              source: 'auth',
+              image: image,
+              position: position,
+              company: company,
+              company_url: company_url,
+              description: description,
+              apply_url: authUrl,
+              tags: __makeTAG($$('.role').children('h1').text(), [], description),
+              category: __makeCATEGORY($$('.role').children('h1').text(), description)
+            };
 
-						let metadata = {
-							status:true,
-							source: "auth",
-							image:image,
-							position: position,
-							company: company,
-							company_url: company_url,
-							description:description,
-							apply_url: authUrl,
-							tags: makeTAG($$('.role').children('h1').text(),[],description),
-							category: makeCATEGORY($$('.role').children('h1').text(),description)
-						}
-						var post_id = Posts.insert(metadata);
-						if (post_id) tweeet_create(metadata.company, metadata.position, post_id, metadata.tags);
-						console.log("AUTHENTIC ADDED");
-						if (!countZERO) return countZERO;
-						future.return(true);
-					}));
-					var status = future.wait();
-				}
-			});
-		}
-	}));
-}
+            let postId = Posts.insert(metadata);
+            if (postId) tweeet_create(metadata.company, metadata.position, postId, metadata.tags);
+            console.log('AUTHENTIC ADDED');
+            if (!countZERO) return countZERO;
+            future.return(true);
+          }));
+          future.wait();
+        }
+      });
+    }
+  }));
+};

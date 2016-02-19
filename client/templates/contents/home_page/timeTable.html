@@ -1,56 +1,56 @@
 <template name="time_table">
 <div class="body">
-	<div class="body-right">
-		{{#if tags}}
-			<div class="search-tag-wrap no-select">
-				{{#each tags}}
-					<div class="search-tag  inline-block">
-						<div class="tags-wrap tags-form search-tags-style">
-							<div class="tags"><i class="fa fa-times"></i> {{this}}</div>
-						</div>
-					</div>
-				{{/each}}
-			</div>
-		{{/if}}
-		<div class="table-start">
-			<div class="main-table table">
-				{{#EasySearch.IfInputEmpty index=postsIndex}}
+  <div class="body-right">
+    {{#if tags}}
+      <div class="search-tag-wrap no-select">
+        {{#each tags}}
+          <div class="search-tag  inline-block">
+            <div class="tags-wrap tags-form search-tags-style">
+              <div class="tags"><i class="fa fa-times"></i> {{this}}</div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+    <div class="table-start">
+      <div class="main-table table">
+        {{#EasySearch.IfInputEmpty index=postsIndex}}
 
-					{{> table posts=posts}}
+          {{> table posts=posts}}
 
-					{{#if ready}}
-						{{#if no_tags_found}}
-							<div class="no-results text-center">No results found</div>
-						{{/if}}
-					{{/if}}
+          {{#if ready}}
+            {{#if no_tags_found}}
+              <div class="no-results text-center">No results found</div>
+            {{/if}}
+          {{/if}}
 
-				{{else}}
+        {{else}}
 
-					{{#EasySearch.Each index=postsIndex }}
-						{{> jobs}}
-					{{/EasySearch.Each}}
+          {{#EasySearch.Each index=postsIndex }}
+            {{> jobs}}
+          {{/EasySearch.Each}}
 
-					{{#EasySearch.IfNoResults index=postsIndex}}
-						<div class="no-results text-center">No results found</div>
-					{{/EasySearch.IfNoResults}}
+          {{#EasySearch.IfNoResults index=postsIndex}}
+            <div class="no-results text-center">No results found</div>
+          {{/EasySearch.IfNoResults}}
 
-				{{/EasySearch.IfInputEmpty}}
-			{{#if ready}}
-			{{else}}
+        {{/EasySearch.IfInputEmpty}}
+      {{#if ready}}
+      {{else}}
 
-				<div class="show-780">
-					{{> loading}}
-				</div>
-				<div class="hide-780">
-					{{> fake_loading}}
-				</div>
-			{{/if}}
-			</div>
-		</div>
-	</div>
-	<div class="body-left" id="make-fix">
-		{{> left_side}}
-	</div>
+        <div class="show-780">
+          {{> loading}}
+        </div>
+        <div class="hide-780">
+          {{> fake_loading}}
+        </div>
+      {{/if}}
+      </div>
+    </div>
+  </div>
+  <div class="body-left" id="make-fix">
+    {{> left_side}}
+  </div>
 </div>
 
 </template>
