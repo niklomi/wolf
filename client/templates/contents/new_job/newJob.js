@@ -55,7 +55,7 @@ Template.new_job.events({
 			highlight : $(e.target).find('[id=f_highlight]:checked').val(),
 			apply_url: apply_url
 		}
-		Meteor.call('valid1', post, function(error, result) {
+		Meteor.call('adminSubmitJob', post, function(error, result) {
 			if (error){
 				errors.global = `*${error}`;
 				return template.error.set(errors);

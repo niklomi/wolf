@@ -1,78 +1,85 @@
 @import 'colors.import';
 
 .btn-outline
-	padding: 11px 22px;
-	font-size: 15px;
-	background: transparent none repeat scroll 0% 0%;
-	color: #FFF;
-	line-height: 1;
-	border-color: #FFF;
+  padding: 11px 22px;
+  font-size: 15px;
+  background: transparent none repeat scroll 0% 0%;
+  color: #FFF;
+  line-height: 1;
+  border-color: #FFF;
 
 .btn-outline-big
-	padding: 5px 12px;
-	font-weight: bold;
-	border: 2px solid body-color;
+  padding: 5px 12px;
+  font-weight: bold;
+  border: 2px solid body-color;
 
 .btn-outline-small
-	padding: 6px 12px;
+  padding: 6px 12px;
 
 .btn-outline:hover
-	background: transparent none repeat scroll 0% 0%;
+  background: transparent none repeat scroll 0% 0%;
 
-.btnM
-	background: main-color
-	border: medium none;
-	padding: 14px 20px;
-	letter-spacing: 0.03em;
-	display:inline-block;
-	font-weight: 600;
-	text-align: center;
-	text-decoration: none;
-	border-radius: 4px;
-	-webkit-font-smoothing: antialiased;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	color: #FFF;
-	transition: all 0.1s;
+.button
+  background: main-color
+  border: medium none;
+  padding: 14px 20px;
+  letter-spacing: 0.03em;
+  display:inline-block;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  color: #FFF;
+  transition: all 0.1s;
 
-.btnM-apply
-	text-transform: uppercase;
-	display: block;
-	width: 100%;
+.button-apply
+  text-transform: uppercase;
+  display: block;
+  width: 100%;
 
-.btnM-red
-	background-color: main-color
-	&:hover
-		background: lighten(main-color, 20%) !important;
-	&:active
-		background: darken(main-color, 20%) !important;
-	&:disabled
-		background: lighten(main-color, 30%)!important;
+.button-reverse-full
+  background: main-color;
+  color: #fff;
+  border: 2px solid main-color
+  &:hover
+    background: #fff
+    color: main-color
+    border-color: main-color
+  &:active
+    background: #fff
+    color: main-color
+    border-color: main-color
+  &:disabled
+    background: lighten(main-color, 30%)!important;
+    color:#fff
+    border-color: main-color
 
-.btnM-reverse
-	font-size: 18px;
-	background: #fff;
-	color: main-color;
-	border: 2px solid;
-	&:hover
-		background: main-color
-		color:#fff
-		border-color: main-color
-	&:active
-		background: main-color
-		color:#fff
-		border-color: main-color
-	&:disabled
-		background: lighten(main-color, 30%)!important;
-		color:#fff
-		border-color: main-color
+.button-reverse
+  background: #fff;
+  color: main-color;
+  border: 2px solid;
+  &:hover
+    background: main-color
+    color:#fff
+    border-color: main-color
+  &:active
+    background: main-color
+    color:#fff
+    border-color: main-color
+  &:disabled
+    background: lighten(main-color, 30%)!important;
+    color:#fff
+    border-color: main-color
 
 .effect-for-buttons
-	transition:all 0.1s
-	&:hover
-		background: lighten(main-color, 20%) !important;
-	&:active
-		background: darken(main-color, 20%) !important;
-	&:disabled
-		background: lighten(main-color, 30%)!important;
+  transition:all 0.1s
+  &:hover
+    background: lighten(main-color, 20%) !important;
+  &:active
+    background: darken(main-color, 20%) !important;
+  &:disabled
+    background: lighten(main-color, 30%)!important;

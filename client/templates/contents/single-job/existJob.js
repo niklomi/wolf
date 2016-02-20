@@ -52,7 +52,7 @@ Template.exist_job.helpers({
 		let instance = Template.instance(),
 		suggest = instance.suggest.get()
 		if (suggest) return suggest;
-		Meteor.call('suggest_jobs', this._id, function(err, res){
+		Meteor.call('suggestJobs', this._id, function(err, res){
 			if (!err && res) {
 				instance.suggest.set(res);
 			}

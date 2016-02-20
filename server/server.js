@@ -5,43 +5,34 @@ urlapi = Meteor.npmRequire('url');
 Twit = Meteor.npmRequire('twit');
 request = Meteor.npmRequire('request');
 SlackAPI = Meteor.npmRequire( 'node-slack' );
+htmlToText = Meteor.npmRequire('html-to-text');
 Slack = new SlackAPI( Meteor.settings.private.slack.hook );
-
-let sanitiseTags = function(){
-  _.each(Posts.find().fetch(), function(post){
-    let newTags = [];
-    _.each(post.tags, function(tag){
-      if (tag in tagsObject) newTags.push(tagsObject[tag]);
-      else newTags.push(tag);
-    });
-   Posts.update(post._id, { $set : { 'tags': _.uniq(newTags) }});
-  });
-}
 
 Meteor.startup(() => {
   SyncedCron.start();
   sitemap();
   __generateTags();
-  sanitiseTags();
-  if ( Meteor.users.find().count() === 0 ) {
-    let newUser = Accounts.createUser({
-      username: Meteor.settings.private.admin.username,
-      password: Meteor.settings.private.admin.password,
-    });
-    Roles.addUsersToRoles(newUser, ['admin']);
-  }
-  Accounts.config({
-    forbidClientAccountCreation: true,
+  __createRssFeed();
+});
+
+if ( Meteor.users.find().count() === 0 ) {
+  let newUser = Accounts.createUser({
+    username: Meteor.settings.private.admin.username,
+    password: Meteor.settings.private.admin.password,
   });
+  Roles.addUsersToRoles(newUser, ['admin']);
+}
+Accounts.config({
+  forbidClientAccountCreation: true,
 });
 
 Meteor.methods({
-  suggest_jobs(_id) {
+  suggestJobs(_id) {
     check(_id, String);
     let tags = Posts.findOne(_id).tags;
     return Posts.find({ '_id': { $ne: _id }, 'tags': { $in: tags}}, {fields: {image: 1, position: 1, company: 1}, skip: 1, limit: 5}).fetch();
   },
-  valid1(post) {
+  adminSubmitJob(post) {
     if (this.userId && Roles.userIsInRole(this.userId, ['admin'])) {
       if (typeof post.highlight === 'undefined') post.highlight = '';
       check(post, Object);

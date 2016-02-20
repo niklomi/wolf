@@ -1,36 +1,63 @@
 @import '{}/client/stylesheets/colors.import';
 
 .filter-logo
-	padding: 1.5rem 2rem
-	font-weight: 600
-	font-size: 22px
-	border-bottom:1px solid border-color
+  padding: 1.5rem 2rem
+  font-weight: 600
+  font-size: 22px
+  border-bottom:1px solid border-color
 
 .filter-logo-mob
-	padding: 1rem 0
-	display:inline-block
-	font-weight: 600
-	width:100%
-	font-size: 22px
-	cursor: pointer
-	border-bottom:1px solid border-color
+  padding: 1rem 0
+  display:inline-block
+  font-weight: 600
+  width:100%
+  font-size: 22px
+  cursor: pointer
+  border-bottom:1px solid border-color
 
 .filter-body
-	ul
-		list-style: none;
-		margin: 0
-		padding: 0
-		li
-			padding: 1rem 2rem
-			border-bottom: 1px solid border-color
-			font-size:16px
-			.less-more-wrap
-				.less-more
-					display: flex
-					align-items: center
-					justify-content: space-between;
-			.skills
-				.skills-head
-					display: flex;
-					align-items: center;
-					justify-content: space-between;
+  ul
+    list-style: none;
+    margin: 0
+    padding: 0
+    li
+      padding: 1rem 2rem
+      border-bottom: 1px solid border-color
+      font-size:16px
+      .less-more-wrap
+        .less-more
+          display: flex
+          align-items: center
+          justify-content: space-between;
+      .skills
+        .skills-head
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+.createdBy
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%;
+  background: border-color;
+  padding: 1rem
+  text-align: center;
+  &:hover
+    background-color: #222028
+    transition: all 0.1s
+  p
+    color: #fff
+    display: inline-block
+    vertical-align: middle;
+    font-size: 18px
+    font-weight: 600
+    &:first-child
+      margin-right: 0.5rem
+    &:last-child
+      margin-left: 0.5rem
+  .image
+    border-radius: 50%;
+    vertical-align: middle;
+    width: 4rem
+    height: 4rem

@@ -3,6 +3,7 @@
   <div class="body-right">
     {{#if tags}}
       <div class="search-tag-wrap no-select">
+        <h4>Search by Tags: </h4>
         {{#each tags}}
           <div class="search-tag  inline-block">
             <div class="tags-wrap tags-form search-tags-style">
@@ -20,7 +21,7 @@
 
           {{#if ready}}
             {{#if no_tags_found}}
-              <div class="no-results text-center">No results found</div>
+              <div class="no-results text-center">No results found :( <br> Try another tags <br> </div>
             {{/if}}
           {{/if}}
 

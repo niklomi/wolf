@@ -22,6 +22,7 @@ SyncedCron.add({
     parseBehance();
     parseDribbble();
     parseWFH();
+    __createRssFeed();
   },
 });
 
