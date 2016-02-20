@@ -12,17 +12,17 @@ Posts.remove({})
 SyncedCron.add({
   name: 'Parsing Websites',
   schedule(parser) {
-    return parser.text('every 30 seconds');
+    return parser.text('every 30 minutes');
   },
   job() {
     parseStackO();
-    // parseGitHub();
-    // parseAuthentic();
-    // parseWWR2();
-    // parseWWM();
-    // parseBehance();
-    // parseDribbble();
-    // parseWFH();
+    parseGitHub();
+    parseAuthentic();
+    parseWWR2();
+    parseWWM();
+    parseBehance();
+    parseDribbble();
+    parseWFH();
   },
 });
 
