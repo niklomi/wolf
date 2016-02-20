@@ -29,6 +29,7 @@ Template.skills.helpers({
 Template.skills.events({
   'click .skills-head':function(e,template){
     template.select.get() === true ? template.select.set(false) : template.select.set(true);
+    true === template.select.get() ? Session.set('searchTagsOpen', true) : Session.set('searchTagsOpen', false);
     if (template.tags.get()) return false;
     Meteor.call('tagsToClient',function(err,res){
       if (!err) {
