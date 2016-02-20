@@ -7,21 +7,22 @@ SyncedCron.add({
     sitemap();
   },
 });
+Posts.remove({})
 
 SyncedCron.add({
-  name: 'parseWWR2',
+  name: 'Parsing Websites',
   schedule(parser) {
     return parser.text('every 30 seconds');
   },
   job() {
     parseStackO();
-    parseGitHub();
-    parseAuthentic();
-    parseWWR2();
-    parseWWM();
-    parseBehance();
-    parseDribbble();
-    parseWFH();
+    // parseGitHub();
+    // parseAuthentic();
+    // parseWWR2();
+    // parseWWM();
+    // parseBehance();
+    // parseDribbble();
+    // parseWFH();
   },
 });
 

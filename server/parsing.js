@@ -342,7 +342,7 @@ parseStackO = function() {
             }
             description += $$('.jobdetail').children().eq(i).html();
           }
-          let company = $$('#hed').children('.employer').text().trim(),
+          let company = $$('#hed').children('.detail-header-block').children('.employer').text().trim(),
           position =  $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''),
           samePost = Posts.findOne({position: position, company: company, createdAt: {$gte: (new Date()).addDays(-3)}});
           if (samePost) return false;
@@ -351,29 +351,32 @@ parseStackO = function() {
           let image = $$('div.-logo').children().attr('src');
           image = image !== undefined ? image : null;
 
-          let metadata = {
-            status: true,
-            source: 'stack',
-            image: image,
-            position: position,
-            company: company,
-            company_url: addhttp($$('.jobdetail').children('#hed').children('.employer').attr('href')),
-            description: description,
-            apply_url: stackoLoc,
-            maskLink: maskLink,
-            tags: __makeTAG($$('.h3').children('.job-link').text(), [], description),
-            category: __makeCATEGORY($$('.h3').children('.job-link').text(), description)
-          };
-
-          if (position === '') {
+          if (position === '' || company === '') {
             Slack.send({
-              text: 'Position is emty STACKOVERFLOW',
+              text: `StackOverflow emty:
+              position - ${position}
+              company - ${company}`,
               channel: 'remotewolfy'
             });
           } else {
-            let postId = Posts.insert(metadata);
-            if (postId) tweeet_create(metadata.company, metadata.position, postId, metadata.tags);
-            console.log('STACK ADDED');
+            let metadata = {
+              status: true,
+              source: 'stack',
+              image: image,
+              position: position,
+              company: company,
+              company_url: addhttp($$('.jobdetail').children('#hed').children('.employer').attr('href')),
+              description: description,
+              apply_url: stackoLoc,
+              maskLink: maskLink,
+              tags: __makeTAG($$('.h3').children('.job-link').text(), [], description),
+              category: __makeCATEGORY($$('.h3').children('.job-link').text(), description)
+            };
+
+
+              let postId = Posts.insert(metadata);
+              if (postId) tweeet_create(metadata.company, metadata.position, postId, metadata.tags);
+              console.log('STACK ADDED');
           }
           if (!countZERO) return countZERO;
           future.return(true);
