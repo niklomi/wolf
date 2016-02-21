@@ -19,11 +19,11 @@ Template.exist_job.onCreated(function(){
       checkedImage = image !== null ? checkImage(image) : image,
       seoImage = undefined;
 
-      if (image && checkedImage.indexOf(image) >= 0){
+      if (image && checkedImage.indexOf(image) >= 0 && checkedImage !== image){
         seoImage = Meteor.absoluteUrl().slice(0, -1) + checkedImage;
       }else
         seoImage = Meteor.absoluteUrl() + 'image/twitter-image-262x262.png';
-
+      console.log(image, checkedImage, checkedImage !== image);
       setSEO(title, description, `http://remotewolfy.com${FlowRouter.current().path}`, seoImage);
     });
     self.ready.set(handle.ready());
