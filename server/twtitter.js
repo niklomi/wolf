@@ -55,6 +55,13 @@ let t_ios = new Twit({
 });
 
 let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id) {
+  let secretTitterTags = ['digitalnomad', 'remotejobs', 'remotework'];
+
+  function randomTag() {
+    let index = Math.floor(secretTitterTags.length * Math.random());
+    return secretTitterTags[index];
+  }
+
   let company_body = tw_company_full;
   tw_company = tw_company_full;
 
@@ -70,7 +77,8 @@ let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id) {
       tw_tags += ' #' + tag;
     });
   }
-  else tags = '';
+  if (tw_tags.length === 3)
+    tw_tags[2] = randomTag();
 
   let tweet_array = [
     tw_company + ' need some cool remote ' + tw_position   + tw_tags +  ' 📢 ' + tw_url ,
@@ -81,7 +89,7 @@ let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id) {
     'Want to be remote ' + tw_position + ' in ' + company_body + ' ? ' + tw_tags + ' ➡ ' + tw_url,
     tw_position + ' in ' + company_body + ' Interesting ? ' + tw_tags + ' 📢 ' + tw_url,
     'BOOM! Remote ' + tw_position + ' in ' + company_body  + ' Are you in ? ' + ' 📣 ' + tw_url ,
-    'Do you know some 🌟 ' + tw_position + ' who can work in ' + company_body + ' ? ' +  tw_url ,
+    'Do you know some cool ' + tw_position + ' who can work in ' + company_body + ' ? ' +  tw_url ,
     ' 🔥🔥🔥 remote ' + tw_position + ' in ' + company_body  + tw_tags + ' / ' + tw_url,
   ];
 
