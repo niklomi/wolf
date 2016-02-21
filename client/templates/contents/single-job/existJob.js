@@ -19,9 +19,7 @@ Template.exist_job.onCreated(function(){
       checkedImage = image !== null ? checkImage(image) : image,
       seoImage = undefined;
 
-      if(image && image === checkedImage){
-        seoImage = image;
-      }else if (image && checkedImage.indexOf(image) >= 0){
+      if (image && checkedImage.indexOf(image) >= 0){
         seoImage = Meteor.absoluteUrl().slice(0, -1) + checkedImage;
       }else
         seoImage = Meteor.absoluteUrl() + 'image/twitter-image-262x262.png';
