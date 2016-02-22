@@ -127,6 +127,7 @@ tweeet_create = function(company,position,id,tags) {
 
   T.get('users/search', { q : tw_company , page :1 , count : 1}, function(err, data, response) {
     let tweet_body = twit_body(data,tw_company_full,tw_company,tw_position,tags,id);
+
     if (inProduction()) {
       T.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
         if (err) console.log('! TWITTER | ' + err + moment().format());

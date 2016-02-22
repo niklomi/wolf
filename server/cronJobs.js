@@ -9,6 +9,24 @@ SyncedCron.add({
 });
 
 SyncedCron.add({
+  name: 'Twitter 24 report',
+  schedule(parser) {
+    return parser.text('at 10:00 pm every 1 day');
+  },
+  job() {
+    if (inProduction()){
+      let postsCount = Posts.find({ createdAt: {$gte: (new Date()).addDays(-1)}}).count();
+      if (postsCount > 0){
+        let tweet = `Daily report: ${postsCount} new remote jobs today #digitalnomad #remotejobs #remotework`;
+        T.post('statuses/update', { status:  tweet }, function(err, data, response) {
+          if (err) console.log('Twitter daily report | ' + err + moment().format());
+        });
+      }
+    }
+  },
+});
+
+SyncedCron.add({
   name: 'Parsing Websites',
   schedule(parser) {
     return parser.text('every 30 minutes');
