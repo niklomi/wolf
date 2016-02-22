@@ -71,14 +71,15 @@ let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id) {
   }
 
   let tw_tags = '', tw_url = ' remotewolfy.com/job/' + id;
+
+  if (tags && tags.length < 3)
+    tags.push(randomTag());
   if (tags) {
     tags.forEach(function(tag) {
       if (tag === 'c#') tag = 'csharp';
       tw_tags += ' #' + tag;
     });
   }
-  if (tw_tags.length === 3)
-    tw_tags[2] = randomTag();
 
   let tweet_array = [
     tw_company + ' need some cool remote ' + tw_position   + tw_tags +  ' 📢 ' + tw_url ,
