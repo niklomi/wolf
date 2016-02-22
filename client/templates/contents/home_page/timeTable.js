@@ -7,7 +7,7 @@ Template.time_table.onCreated(function(){
     FlowRouter.watchPathChange();
     let tags = FlowRouter.getQueryParam('tags'), title, desc;
     if (tags && tags.split(' ').length > 0) {
-      title = tags.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' and ') + ' Remote Jobs',
+      title = tags.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' and ') + ' Remote Work Jobs',
       desc = `Show all new ${title} for Digital Nomads to work from anywhere`;
       setSEO(title, desc);
 
