@@ -244,7 +244,7 @@ if (inProduction()) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+          t_nodejs.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
             if(!response.favorited) {
               t_nodejs.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
@@ -301,7 +301,7 @@ if (inProduction()) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+          t_java.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
             if(!response.favorited) {
               t_java.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
@@ -358,7 +358,7 @@ if (inProduction()) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+          t_meteorjs.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
             if(!response.favorited) {
               t_meteorjs.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
@@ -415,7 +415,7 @@ if (inProduction()) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+          t_php.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
             if(!response.favorited) {
               t_php.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
@@ -472,7 +472,7 @@ if (inProduction()) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+          t_android.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
             if(!response.favorited) {
               t_android.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
@@ -529,7 +529,7 @@ if (inProduction()) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+          t_dotnet.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
             if(!response.favorited) {
               t_dotnet.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
@@ -586,7 +586,7 @@ if (inProduction()) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+          t_ios.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
             if(!response.favorited) {
               t_ios.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
