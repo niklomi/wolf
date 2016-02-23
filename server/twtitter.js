@@ -72,7 +72,7 @@ let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id) {
 
   let tw_tags = '', tw_url = ' remotewolfy.com/job/' + id;
 
-  if (tags && tags.length < 3)
+  if (tags && tags.length === 1)
     tags.push(randomTag());
   if (tags) {
     tags.forEach(function(tag) {
@@ -126,7 +126,7 @@ tweeet_create = function(company,position,id,tags) {
   tw_company_full = company.trim();
 
   T.get('users/search', { q : tw_company , page :1 , count : 1}, function(err, data, response) {
-    let tweet_body = twit_body(data,tw_company_full,tw_company,tw_position,tags,id);
+    let tweet_body = twit_body(data, tw_company_full, tw_company, tw_position, tags, id);
 
     if (inProduction()) {
       T.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
@@ -178,18 +178,19 @@ if (inProduction()) {
     return arr[index];
   }
 
-  let twitterBot = '#nomads OR #digitalnomads OR #remotejob OR remote work OR remote jobs OR digital nomad';
+  let twitterBotWords = 'remote work OR remote jobs';
   SyncedCron.add({
     name: 'BOT_FAVORITE',
     schedule: function(parser) {
-      return parser.text('every 1 minutes');
+      return parser.text('every 10 minutes');
     },
     job: function() {
-      T.get('search/tweets', {q: twitterBot, resulttype: 'recent'}, function(err, data,response) {
+      T.get('search/tweets', {q: twitterBotWords, resulttype: 'recent'}, function(err, data,response) {
         if (!err && data.statuses.length > 0) {
-          let tweets = data.statuses;
-          let randomTweet = randIndex(tweets);
-            if(!randomTweet.favorited) {
+          let tweets = data.statuses,
+          randomTweet = randIndex(tweets);
+          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+            if(!response.favorited) {
               T.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
@@ -200,6 +201,7 @@ if (inProduction()) {
                 }
               });
             }
+          });
         }
         else { console.log('Like Search Error: ', err);}
       });
@@ -235,14 +237,15 @@ if (inProduction()) {
   SyncedCron.add({
     name: 'BOT_FAVORITE',
     schedule: function(parser) {
-      return parser.text('every 1 minutes');
+      return parser.text('every 10 minutes');
     },
     job: function() {
-      t_nodejs.get('search/tweets', {q: twitterBot, resulttype: 'recent'}, function(err, data,response) {
+      t_nodejs.get('search/tweets', {q: twitterBotWords, resulttype: 'recent'}, function(err, data,response) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-            if(!randomTweet.favorited) {
+          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+            if(!response.favorited) {
               t_nodejs.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
@@ -253,6 +256,7 @@ if (inProduction()) {
                 }
               });
             }
+          });
         }
         else { console.log('Like Search Error: ', err);}
       });
@@ -290,14 +294,15 @@ if (inProduction()) {
   SyncedCron.add({
     name: 'BOT_FAVORITE',
     schedule: function(parser) {
-      return parser.text('every 1 minutes');
+      return parser.text('every 10 minutes');
     },
     job: function() {
-      t_java.get('search/tweets', {q: twitterBot, resulttype: 'recent'}, function(err, data,response) {
+      t_java.get('search/tweets', {q: twitterBotWords, resulttype: 'recent'}, function(err, data,response) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-            if(!randomTweet.favorited) {
+          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+            if(!response.favorited) {
               t_java.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
@@ -308,6 +313,7 @@ if (inProduction()) {
                 }
               });
             }
+          });
         }
         else { console.log('Like Search Error: ', err);}
       });
@@ -345,14 +351,15 @@ if (inProduction()) {
   SyncedCron.add({
     name: 'BOT_FAVORITE',
     schedule: function(parser) {
-      return parser.text('every 1 minutes');
+      return parser.text('every 10 minutes');
     },
     job: function() {
-      t_meteorjs.get('search/tweets', {q: twitterBot, resulttype: 'recent'}, function(err, data,response) {
+      t_meteorjs.get('search/tweets', {q: twitterBotWords, resulttype: 'recent'}, function(err, data,response) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-            if(!randomTweet.favorited) {
+          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+            if(!response.favorited) {
               t_meteorjs.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
@@ -363,6 +370,7 @@ if (inProduction()) {
                 }
               });
             }
+          });
         }
         else { console.log('Like Search Error: ', err);}
       });
@@ -400,14 +408,15 @@ if (inProduction()) {
   SyncedCron.add({
     name: 'BOT_FAVORITE',
     schedule: function(parser) {
-      return parser.text('every 1 minutes');
+      return parser.text('every 10 minutes');
     },
     job: function() {
-      t_php.get('search/tweets', {q: twitterBot, resulttype: 'recent'}, function(err, data,response) {
+      t_php.get('search/tweets', {q: twitterBotWords, resulttype: 'recent'}, function(err, data,response) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-            if(!randomTweet.favorited) {
+          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+            if(!response.favorited) {
               t_php.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
@@ -418,6 +427,7 @@ if (inProduction()) {
                 }
               });
             }
+          });
         }
         else { console.log('Like Search Error: ', err);}
       });
@@ -455,14 +465,15 @@ if (inProduction()) {
   SyncedCron.add({
     name: 'BOT_FAVORITE',
     schedule: function(parser) {
-      return parser.text('every 1 minutes');
+      return parser.text('every 10 minutes');
     },
     job: function() {
-      t_android.get('search/tweets', {q: twitterBot, resulttype: 'recent'}, function(err, data,response) {
+      t_android.get('search/tweets', {q: twitterBotWords, resulttype: 'recent'}, function(err, data,response) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-            if(!randomTweet.favorited) {
+          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+            if(!response.favorited) {
               t_android.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
@@ -473,6 +484,7 @@ if (inProduction()) {
                 }
               });
             }
+          });
         }
         else { console.log('Like Search Error: ', err);}
       });
@@ -510,14 +522,15 @@ if (inProduction()) {
   SyncedCron.add({
     name: 'BOT_FAVORITE',
     schedule: function(parser) {
-      return parser.text('every 1 minutes');
+      return parser.text('every 10 minutes');
     },
     job: function() {
-      t_dotnet.get('search/tweets', {q: twitterBot, resulttype: 'recent'}, function(err, data,response) {
+      t_dotnet.get('search/tweets', {q: twitterBotWords, resulttype: 'recent'}, function(err, data,response) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-            if(!randomTweet.favorited) {
+          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+            if(!response.favorited) {
               t_dotnet.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
@@ -528,6 +541,7 @@ if (inProduction()) {
                 }
               });
             }
+          });
         }
         else { console.log('Like Search Error: ', err);}
       });
@@ -565,14 +579,15 @@ if (inProduction()) {
   SyncedCron.add({
     name: 'BOT_FAVORITE',
     schedule: function(parser) {
-      return parser.text('every 1 minutes');
+      return parser.text('every 10 minutes');
     },
     job: function() {
-      t_ios.get('search/tweets', {q: twitterBot, resulttype: 'recent'}, function(err, data,response) {
+      t_ios.get('search/tweets', {q: twitterBotWords, resulttype: 'recent'}, function(err, data,response) {
         if (!err && data.statuses.length > 0) {
           let tweets = data.statuses;
           let randomTweet = randIndex(tweets);
-            if(!randomTweet.favorited) {
+          T.get('statuses/show', {id : randomTweet.id_str}, function(err, response) {
+            if(!response.favorited) {
               t_ios.post('favorites/create', {id : randomTweet.id_str}, function(err, response) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
@@ -583,6 +598,7 @@ if (inProduction()) {
                 }
               });
             }
+          });
         }
         else { console.log('Like Search Error: ', err);}
       });
