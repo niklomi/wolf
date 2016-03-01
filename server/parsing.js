@@ -21,6 +21,7 @@ __insertJobModule = function(data){
       channel: 'remotewolfy'
     });
   } else {
+    data.createdAt = new Date();
     let postId = Posts.insert(data);
     if (postId) tweeet_create(company, position, postId, data.tags);
     console.log(`Add ${source} - ${moment().format('MMM Do YY, h:mm:ss')}`);

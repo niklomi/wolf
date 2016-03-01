@@ -36,12 +36,8 @@ Meteor.publish('posts', function(count, tags, id) {
   self.ready();
 });
 
-Meteor.publish('list_of_jobs', function() {
+Meteor.publish('testJobs', function() {
   return Posts.find({test: true});
 });
 
 Posts.permit(['update', 'remove', 'insert']).ifHasRole('admin').apply();
-
-Posts.before.insert(function(userId, doc) {
-  doc.createdAt = new Date();
-});

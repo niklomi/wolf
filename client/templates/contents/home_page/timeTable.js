@@ -1,10 +1,11 @@
 Template.time_table.onCreated(function(){
   Session.setDefault('countofshow', 50)
-
   var self = this;
   self.ready = new ReactiveVar(false);
   self.autorun(function() {
     FlowRouter.watchPathChange();
+    if (FlowRouter.getRouteName() === 'admin.alljobs') Session.set('countofshow', 100000);
+
     let tags = FlowRouter.getQueryParam('tags'), title, desc;
     if (tags && tags.split(' ').length > 0) {
       title = tags.split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' and ') + ' Remote Work Jobs',
@@ -12,9 +13,7 @@ Template.time_table.onCreated(function(){
       setSEO(title, desc);
 
       tags = _.clone(tags.split(' ')) || [];
-    } else {
-      setSEO();
-    }
+    } else {setSEO();}
 
     let handle = self.subscribe('posts', Session.get('countofshow'), tags);
     self.ready.set(handle.ready());

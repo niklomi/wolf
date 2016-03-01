@@ -11,7 +11,7 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Twitter 24 report',
   schedule(parser) {
-    return parser.text('at 10:00 pm every day');
+    return parser.text('every 24 hours');
   },
   job() {
     if (inProduction()){
