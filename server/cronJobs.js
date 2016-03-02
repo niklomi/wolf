@@ -29,7 +29,7 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Parsing Websites',
   schedule(parser) {
-    return parser.text('every 30 seconds');
+    return parser.text('every 30 minutes');
   },
   job() {
     parseStackO();

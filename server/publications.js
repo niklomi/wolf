@@ -40,4 +40,8 @@ Meteor.publish('testJobs', function() {
   return Posts.find({test: true});
 });
 
+Meteor.publish('API', function() {
+  return Posts.find();
+});
+
 Posts.permit(['update', 'remove', 'insert']).ifHasRole('admin').apply();
