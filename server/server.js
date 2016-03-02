@@ -1,13 +1,3 @@
-Cheerio = Meteor.npmRequire('cheerio');
-Future = Meteor.npmRequire('fibers/future');
-xml2js = Meteor.npmRequire('xml2js');
-urlapi = Meteor.npmRequire('url');
-Twit = Meteor.npmRequire('twit');
-request = Meteor.npmRequire('request');
-SlackAPI = Meteor.npmRequire( 'node-slack' );
-htmlToText = Meteor.npmRequire('html-to-text');
-Slack = new SlackAPI( Meteor.settings.private.slack.hook );
-
 Meteor.startup(() => {
   SyncedCron.start();
   sitemap();

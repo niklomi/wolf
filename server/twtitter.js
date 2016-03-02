@@ -1,59 +1,3 @@
-let T = new Twit({
-  consumer_key: Meteor.settings.private.twitter.consumer_key,
-  consumer_secret: Meteor.settings.private.twitter.consumer_key_secret,
-  access_token: Meteor.settings.private.twitter.access_token,
-  access_token_secret: Meteor.settings.private.twitter.access_token_secret
-});
-
-let t_nodejs = new Twit({
-  consumer_key: Meteor.settings.private.t_nodejs.consumer_key,
-  consumer_secret: Meteor.settings.private.t_nodejs.consumer_key_secret,
-  access_token: Meteor.settings.private.t_nodejs.access_token,
-  access_token_secret: Meteor.settings.private.t_nodejs.access_token_secret
-});
-
-let t_java = new Twit({
-  consumer_key: Meteor.settings.private.t_java.consumer_key,
-  consumer_secret: Meteor.settings.private.t_java.consumer_key_secret,
-  access_token: Meteor.settings.private.t_java.access_token,
-  access_token_secret: Meteor.settings.private.t_java.access_token_secret
-});
-
-let t_meteorjs = new Twit({
-  consumer_key: Meteor.settings.private.t_meteorjs.consumer_key,
-  consumer_secret: Meteor.settings.private.t_meteorjs.consumer_key_secret,
-  access_token: Meteor.settings.private.t_meteorjs.access_token,
-  access_token_secret: Meteor.settings.private.t_meteorjs.access_token_secret
-});
-
-let t_php = new Twit({
-  consumer_key: Meteor.settings.private.t_php.consumer_key,
-  consumer_secret: Meteor.settings.private.t_php.consumer_key_secret,
-  access_token: Meteor.settings.private.t_php.access_token,
-  access_token_secret: Meteor.settings.private.t_php.access_token_secret
-});
-
-let t_android = new Twit({
-  consumer_key: Meteor.settings.private.t_android.consumer_key,
-  consumer_secret: Meteor.settings.private.t_android.consumer_key_secret,
-  access_token: Meteor.settings.private.t_android.access_token,
-  access_token_secret: Meteor.settings.private.t_android.access_token_secret
-});
-
-let t_dotnet = new Twit({
-  consumer_key: Meteor.settings.private.t_dotnet.consumer_key,
-  consumer_secret: Meteor.settings.private.t_dotnet.consumer_key_secret,
-  access_token: Meteor.settings.private.t_dotnet.access_token,
-  access_token_secret: Meteor.settings.private.t_dotnet.access_token_secret
-});
-
-let t_ios = new Twit({
-  consumer_key: Meteor.settings.private.t_ios.consumer_key,
-  consumer_secret: Meteor.settings.private.t_ios.consumer_key_secret,
-  access_token: Meteor.settings.private.t_ios.access_token,
-  access_token_secret: Meteor.settings.private.t_ios.access_token_secret
-});
-
 let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id) {
   let secretTitterTags = ['digitalnomad', 'remotejobs', 'remotework'];
 
@@ -195,8 +139,7 @@ if (inProduction()) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
                   Slack.send({
-                    text: 'twiter err 261 - 1',
-                    channel: 'remotewolfy'
+                    text: 'twiter err 261 - 1'
                   });
                 }
               });
@@ -250,8 +193,7 @@ if (inProduction()) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
                   Slack.send({
-                    text: 'twiter err 261 - 2',
-                    channel: 'remotewolfy'
+                    text: 'twiter err 261 - 2'
                   });
                 }
               });
@@ -307,8 +249,7 @@ if (inProduction()) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
                   Slack.send({
-                    text: 'twiter err 261 - 3',
-                    channel: 'remotewolfy'
+                    text: 'twiter err 261 - 3'
                   });
                 }
               });
@@ -364,8 +305,7 @@ if (inProduction()) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
                   Slack.send({
-                    text: 'twiter err 261 - 4',
-                    channel: 'remotewolfy'
+                    text: 'twiter err 261 - 4'
                   });
                 }
               });
@@ -421,8 +361,7 @@ if (inProduction()) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
                   Slack.send({
-                    text: 'twiter err 261 - 5',
-                    channel: 'remotewolfy'
+                    text: 'twiter err 261 - 5'
                   });
                 }
               });
@@ -478,8 +417,7 @@ if (inProduction()) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
                   Slack.send({
-                    text: 'twiter err 261 - 6',
-                    channel: 'remotewolfy'
+                    text: 'twiter err 261 - 6'
                   });
                 }
               });
@@ -535,8 +473,7 @@ if (inProduction()) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
                   Slack.send({
-                    text: 'twiter err 261 - 7',
-                    channel: 'remotewolfy'
+                    text: 'twiter err 261 - 7'
                   });
                 }
               });
@@ -592,8 +529,7 @@ if (inProduction()) {
                 if (err) console.log('Like Error: ', err);
                 if (err && err.code === 261) {
                   Slack.send({
-                    text: 'twiter err 261 - 8',
-                    channel: 'remotewolfy'
+                    text: 'twiter err 261 - 8'
                   });
                 }
               });

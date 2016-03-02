@@ -11,14 +11,12 @@ __insertJobModule = function(data){
   if (!position || position === '') {
     Slack.send({
       text: `${source} Position Error:
-      position - ${position}`,
-      channel: 'remotewolfy'
+      position - ${position}`
     });
   } else if(!company || company === ''){
     Slack.send({
-      text: `${source} Company Error:
-      company - ${company}`,
-      channel: 'remotewolfy'
+      text: `${source} Company
+      Error: company - ${company}`
     });
   } else {
     data.createdAt = new Date();
@@ -353,7 +351,7 @@ parseStackO = function() {
             }
             description += $$('.jobdetail').children().eq(i).html();
           }
-          let company = $$('#hed').children('.detail-header-block').children('.employer').text().trim(),
+          let company = $$('#hed').find('.employer').text().trim(),
           position =  $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''),
           samePost = Posts.findOne({position: position, company: company, createdAt: {$gte: (new Date()).addDays(-3)}});
           if (samePost) return false;
