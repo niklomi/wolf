@@ -20,8 +20,8 @@ makeUrl = function({position, company, createdAt}){
     return tmp.replace(/(^\-+|[^a-zA-Z0-9\/_| -]+|\-+$)/g, '').toLowerCase().replace(/[\/_| -]+/g, '-').trim();
   }
 
-  let url = `${sanitize(position)}-in-${sanitize(company)}-${moment(createdAt).format('YYYY-MM-DD')}`;
-  if (Posts.findOne({url: url})) return `${url}#${(Math.random() + 1).toString(36).substr(2, 5)}`
+  let url = `${sanitize(position)}-${sanitize(company)}`;
+  if (Posts.findOne({createdAt: {$ne : createdAt}, url: url})) return `${url}-${moment(createdAt).format('YYYY-MM-DD')}`
   return url;
 }
 
