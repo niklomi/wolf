@@ -1,16 +1,10 @@
 //DELTE AFTER COMPLETED
-function fix(){
-  _.each(Posts.find({status: true}).fetch(), function(post){
-    Posts.update(post._id, {$set: {url: makeUrl(post)}});
-  })
-}
 
 Meteor.startup(() => {
   SyncedCron.start();
   sitemap();
   __generateTags();
   __createRssFeed();
-  fix();
 });
 
 if ( Meteor.users.find().count() === 0 ) {

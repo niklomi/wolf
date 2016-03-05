@@ -1,4 +1,4 @@
-let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id) {
+let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id, url) {
   let secretTitterTags = ['digitalnomad', 'remotejobs', 'remotework'];
 
   function randomTag() {
@@ -14,7 +14,7 @@ let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id) {
     company_body = '@' + data[0].screen_name.toLowerCase();
   }
 
-  let tw_tags = '', tw_url = ' remotewolfy.com/job/' + id;
+  let tw_tags = '', tw_url = ' remotewolfy.com/job/' + url;
 
   if (tags && tags.length === 1)
     tags.push(randomTag());
@@ -64,13 +64,13 @@ let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id) {
   return tweet_body;
 }
 
-tweeet_create = function(company,position,id,tags) {
+tweeet_create = function(company,position,id,tags, url) {
   let tw_company = company.replace(/\s/g,'').replace(/[^A-Za-z\s!?]/g,'');
   let tw_position = position.trim(),
   tw_company_full = company.trim();
 
   T.get('users/search', { q : tw_company , page :1 , count : 1}, function(err, data, response) {
-    let tweet_body = twit_body(data, tw_company_full, tw_company, tw_position, tags, id);
+    let tweet_body = twit_body(data, tw_company_full, tw_company, tw_position, tags, id, url);
 
     if (inProduction()) {
       T.post('statuses/update', { status:  tweet_body }, function(err, data, response) {
