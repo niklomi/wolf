@@ -63,7 +63,6 @@ Template.exist_job.helpers({
       if (!err && res) {
         instance.suggest.set(res);
       }
-      console.log(res);
     });
   }
 });
