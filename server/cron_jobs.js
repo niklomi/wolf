@@ -33,13 +33,13 @@ SyncedCron.add({
   },
   job() {
     parseStackO();
-    // parseGitHub();
-    // parseAuthentic();
-    // parseWWR2();
-    // parseWWM();
-    // parseBehance();
-    // parseDribbble();
-    // parseWFH();
+    parseGitHub();
+    parseAuthentic();
+    parseWWR2();
+    parseWWM();
+    parseBehance();
+    parseDribbble();
+    parseWFH();
     __createRssFeed();
   },
 });

@@ -3,15 +3,15 @@ Template.exist_job.onCreated(function(){
   self.current_path = new ReactiveVar(FlowRouter.current().path);
   self.ready = new ReactiveVar(false);
   self.suggest = new ReactiveVar();
+  self.url = new ReactiveVar(FlowRouter.getParam("_id"));
 
-  Session.setDefault('post_id',FlowRouter.getParam("_id"));
   self.autorun(function() {
     FlowRouter.watchPathChange();
     self.current_path.set(FlowRouter.current().path);
-    Session.set('post_id', FlowRouter.getParam("_id"));
+    self.url.set(FlowRouter.getParam("_id"));
 
-    let handle = self.subscribe('posts', null, null, FlowRouter.getParam("_id"),function(){
-      let post = Posts.findOne(FlowRouter.getParam("_id")), company = post.company.replace(/^\s+|\s+$/g, "");
+    let handle = self.subscribe('posts', null, null, self.url.get(), function(){
+      let post = Posts.findOne({url: self.url.get()}), company = post.company.replace(/^\s+|\s+$/g, "");
 
       let title = post.position.capitalize() + ' at ' + company + ' ' + moment(post.createdAt).format('YYYY-MM-DD'),
       description = company.capitalize() + ' is looking for remote freelance '  + post.position + ' ' + moment(post.createdAt).format('YYYY-MM-DD'),
@@ -42,7 +42,7 @@ Template.exist_job.onRendered(function(){
 Template.exist_job.helpers({
   ready:() => Template.instance().ready.get(),
   job:function(){
-    return Posts.findOne(Session.get('post_id'));
+    return Posts.findOne({url: Template.instance().url.get()});
   },
   company_have_url:function(){
     if(this.company_url && isURL(this.company_url)) return true;
@@ -63,6 +63,7 @@ Template.exist_job.helpers({
       if (!err && res) {
         instance.suggest.set(res);
       }
+      console.log(res);
     });
   }
 });

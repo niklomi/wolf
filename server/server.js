@@ -1,8 +1,16 @@
+//DELTE AFTER COMPLETED
+function fix(){
+  _.each(Posts.find({status: true}).fetch(), function(post){
+    Posts.update(post._id, {$set: {url: makeUrl(post)}});
+  })
+}
+
 Meteor.startup(() => {
   SyncedCron.start();
   sitemap();
   __generateTags();
   __createRssFeed();
+  fix();
 });
 
 if ( Meteor.users.find().count() === 0 ) {
@@ -20,7 +28,7 @@ Meteor.methods({
   suggestJobs(_id) {
     check(_id, String);
     let tags = Posts.findOne(_id).tags;
-    return Posts.find({ '_id': { $ne: _id }, 'tags': { $in: tags}}, {fields: {image: 1, position: 1, company: 1}, skip: 1, limit: 5}).fetch();
+    return Posts.find({ '_id': { $ne: _id }, 'tags': { $in: tags}}, {fields: {image: 1, position: 1, company: 1, url: 1}, skip: 1, limit: 5}).fetch();
   },
   adminSubmitJob(post) {
     if (this.userId && Roles.userIsInRole(this.userId, ['admin'])) {

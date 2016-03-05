@@ -1,60 +1,60 @@
 <template name="jobs">
-	<div itemscope itemtype="http://schema.org/JobPosting" class="smurf {{premium_back}} animated fadeIn">
-		{{#unless show_less_info}}
-			<a href="job/{{_id}}">
-				<div class="job-date">
-					{{date_from_now createdAt}}
-				</div>
-				<div class="hidden-xs-sl td-pics">
-					{{#if image}}
-						<div class="company-image" style="background-image: url('{{check_img image}}');"></div>
-					{{else}}
-						<div class="company-image no-image no-select">{{set_image_name company}}</div>
-					{{/if}}
-				</div>
-				<div class="job-companents">
-					<p class="position">{{checklength position}}</p>
-					<span class="company">{{company}}</span>
-				</div>
-				<p class="description hide-500">{{{description}}}</p>
-			</a>
-			<div class="hide-500 td-tags" >
-				{{#each tags}}
-					{{> tag}}
-				{{/each}}
-			</div>
-		{{else}}
-			<a href="job/{{_id}}">
-				<div class="job-date">
-					{{date_from_now createdAt}}
-				</div>
-				<div class="hidden-xs-sl td-pics">
-					{{#if image}}
-						<div class="company-image" style="background-image: url('{{check_img image}}');"></div>
-					{{else}}
-						<div class="company-image no-image no-select">{{set_image_name company}}</div>
-					{{/if}}
-				</div>
-				<div class="job-companents">
-					<p class="position">{{checklength position}}</p>
-					<span class="company">{{company}}</span>
-				</div>
-			</a>
-		{{/unless}}
+  <div itemscope itemtype="http://schema.org/JobPosting" class="smurf {{premium_back}} animated fadeIn">
+    {{#unless show_less_info}}
+      <a href="job/{{url}}">
+        <div class="job-date">
+          {{date_from_now createdAt}}
+        </div>
+        <div class="hidden-xs-sl td-pics">
+          {{#if image}}
+            <div class="company-image" style="background-image: url('{{check_img image}}');"></div>
+          {{else}}
+            <div class="company-image no-image no-select">{{set_image_name company}}</div>
+          {{/if}}
+        </div>
+        <div class="job-companents">
+          <p class="position">{{checklength position}}</p>
+          <span class="company">{{company}}</span>
+        </div>
+        <p class="description hide-500">{{{description}}}</p>
+      </a>
+      <div class="hide-500 td-tags" >
+        {{#each tags}}
+          {{> tag}}
+        {{/each}}
+      </div>
+    {{else}}
+      <a href="job/{{url}}">
+        <div class="job-date">
+          {{date_from_now createdAt}}
+        </div>
+        <div class="hidden-xs-sl td-pics">
+          {{#if image}}
+            <div class="company-image" style="background-image: url('{{check_img image}}');"></div>
+          {{else}}
+            <div class="company-image no-image no-select">{{set_image_name company}}</div>
+          {{/if}}
+        </div>
+        <div class="job-companents">
+          <p class="position">{{checklength position}}</p>
+          <span class="company">{{company}}</span>
+        </div>
+      </a>
+    {{/unless}}
 
-		<div class="schemaorg">
-			<span><a itemprop="url" href="job/{{_id}}"> <span itemprop="title">{{position}} </span><span itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization"><span itemprop="name">{{company}} </span></span></a></span>
-			<span itemprop="skills"> {{#each tags}} {{this}} {{/each}} </span>
-			<span itemprop="datePosted">{{formatTimeshema createdAt}}</span>
-			<span itemprop="workHours">Flexible</span>
-			<span itemprop="jobLocation">Remote</span>
-		</div>
-	</div>
+    <div class="schemaorg">
+      <span><a itemprop="url" href="job/{{url}}"> <span itemprop="title">{{position}} </span><span itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization"><span itemprop="name">{{company}} </span></span></a></span>
+      <span itemprop="skills"> {{#each tags}} {{this}} {{/each}} </span>
+      <span itemprop="datePosted">{{formatTimeshema createdAt}}</span>
+      <span itemprop="workHours">Flexible</span>
+      <span itemprop="jobLocation">Remote</span>
+    </div>
+  </div>
 
 </template>
 
 <template name="tag">
-		<div class="tags-wrap tags-form tags-style no-select {{#if active_tag this}}search-tags-style{{/if}}" data-toggle="tooltip" data-placement="top" title="View all {{this}} remote jobs">
-			<div class="tags">{{#if active_tag this}}<i class="fa fa-times"></i> {{/if}}{{this}}</div>
-		</div>
+    <div class="tags-wrap tags-form tags-style no-select {{#if active_tag this}}search-tags-style{{/if}}" data-toggle="tooltip" data-placement="top" title="View all {{this}} remote jobs">
+      <div class="tags">{{#if active_tag this}}<i class="fa fa-times"></i> {{/if}}{{this}}</div>
+    </div>
 </template>

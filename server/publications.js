@@ -1,9 +1,9 @@
-Meteor.publish('posts', function(count, tags, id) {
+Meteor.publish('posts', function(count, tags, url) {
   if (!tags) tags = undefined;
 
-  if (id) {
-    check(id, String);
-    return Posts.find({ _id: id, status: true}, {fields: { status: 0}});
+  if (url) {
+    check(url, String);
+    return Posts.find({url: url, status: true}, {fields: { status: 0}});
   }
 
   check(count, Number);

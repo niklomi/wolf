@@ -2,15 +2,33 @@ inProduction = function() {
   return process.env.NODE_ENV === 'production';
 }
 
-Date.prototype.addDays = function( d ) {
-  this.setDate( this.getDate() + d );
-  return this;
-};
+addhttp = function(url) {
+  if (!url) return null;
+  if (!isURL(url)) {
+    url = 'http://' + url;
+  }
+  return url;
+}
 
 isURL = function(s) {
   let regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
   return regexp.test(s);
 }
+
+makeUrl = function({position, company, createdAt}){
+  let sanitize = function sanitize(tmp){
+    return tmp.replace(/(^\-+|[^a-zA-Z0-9\/_| -]+|\-+$)/g, '').toLowerCase().replace(/[\/_| -]+/g, '-').trim();
+  }
+
+  let url = `${sanitize(position)}-in-${sanitize(company)}-${moment(createdAt).format('YYYY-MM-DD')}`;
+  if (Posts.findOne({url: url})) return `${url}#${(Math.random() + 1).toString(36).substr(2, 5)}`
+  return url;
+}
+
+Date.prototype.addDays = function( d ) {
+  this.setDate( this.getDate() + d );
+  return this;
+};
 
 sitemap = function() {
   sitemaps.add('/sitemap.xml', function() {
@@ -33,13 +51,6 @@ sitemap = function() {
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
-
-addhttp = function(url) {
-  if (!isURL(url)) {
-    url = 'http://' + url;
-  }
-  return url;
-}
 
 reg_r_brackets = / *\([^)]*\) */g;
 reg_r_tire = /\s(-[^-]*)\b.*/;

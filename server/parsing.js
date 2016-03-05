@@ -20,6 +20,7 @@ __insertJobModule = function(data){
     });
   } else {
     data.createdAt = new Date();
+    data.url = makeUrl(data);
     let postId = Posts.insert(data);
     if (postId) tweeet_create(company, position, postId, data.tags);
     console.log(`Add ${source} - ${moment().format('MMM Do YY, h:mm:ss')}`);
