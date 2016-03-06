@@ -28,13 +28,14 @@ __insertJobModule = function(data){
 };
 
 parseWWR2 = function() {
-  request('https://weworkremotely.com/categories/2-programming/jobs.xml', Meteor.bindEnvironment(function(error, response, body) {
-  if (!error && response.statusCode === 200) {
-    let $ = Cheerio.load(body);
+  HTTP.call("GET", 'https://weworkremotely.com/categories/2-programming/jobs.xml', function(error, body) {
+  if (!error) {
+    let $ = Cheerio.load(body.content);
     let parser = new xml2js.Parser(), tmp;
     parser.parseString($.xml(), function(err, result) {
       tmp = result.jobs.job.length - 1;
-      while(true) {
+
+      (function loop(){
         //проверки
         let mainBodyData = result.jobs.job[tmp];
         if (!mainBodyData) return false;
@@ -48,8 +49,8 @@ parseWWR2 = function() {
         // конец проверок
 
         if (!samePost) {
-          request(apply_url, Meteor.bindEnvironment( (error, response, body) => {
-            let $ = Cheerio.load(body),
+          HTTP.call("GET", apply_url, (error, body) => {
+            let $ = Cheerio.load(body.content),
             image = $('div.listing-logo').children().attr('src');
 
             let metadata = {
@@ -67,32 +68,32 @@ parseWWR2 = function() {
 
             __insertJobModule(metadata);
             if(!countZERO) return countZERO;
-          }));
+          });
         }
         tmp--;
-      }
+        loop();
+      }());
     });
   }
-  }));
+  });
 };
 
 parseWFH = function() {
-  request('https://www.wfh.io/jobs.atom', Meteor.bindEnvironment(function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      $ = Cheerio.load(body);
+  HTTP.call("GET", 'https://www.wfh.io/jobs.atom', (error, body) => {
+    if (!error) {
+      $ = Cheerio.load(body.content);
       let parser = new xml2js.Parser(), tmp;
       parser.parseString($.xml(), function(err, result) {
         tmp = 0;
-        while(true) {
+        (function loop(){
           let mainBodyData = result.feed.entry[tmp];
           if (!mainBodyData) return false;
           let apply_url = mainBodyData.link[0].$.href,
           postExist = Posts.findOne({apply_url: apply_url});
           if (postExist) return false;
 
-          let future = new Future();
-          request(mainBodyData.link[0].$.href, Meteor.bindEnvironment(function(error, response, body) {
-            $ = Cheerio.load(body);
+          HTTP.call("GET", mainBodyData.link[0].$.href, (error, body) => {
+            $ = Cheerio.load(body.content);
             let company = $('div.col-md-3').children('.panel').children('.panel-body').children().children().next().children().children().html(),
             company_url = urlapi.parse(company);
             company = company_url.hostname.split('.');
@@ -124,19 +125,18 @@ parseWFH = function() {
 
             tmp++;
             if (!countZERO) return countZERO;
-            future.return(true);
-          }));
-          future.wait();
-        }
+            loop();
+          });
+        }());
       });
     }
-  }));
+  });
 };
 
 parseWWM = function() {
   let tmp = 0,
   body = HTTP.call('GET', 'http://www.weworkmeteor.com/api/jobs');
-  while(true) {
+  (function loop(){
     mainBodyData = body.data.data[tmp];
     tmp++;
     if (tmp > body.data.data.length) return false;
@@ -168,19 +168,20 @@ parseWWM = function() {
 
       __insertJobModule(metadata);
       if(!countZERO) return countZERO;
+      loop();
     }
-  }
+  }());
 };
 
 parseDribbble = function() {
-  request('https://dribbble.com/jobs.rss', Meteor.bindEnvironment(function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      $ = Cheerio.load(body);
+  HTTP.call("GET", 'https://dribbble.com/jobs.rss', (error, body) => {
+    if (!error) {
+      $ = Cheerio.load(body.content);
       let parser = new xml2js.Parser(), tmp;
       parser.parseString($.xml(), function(err, result) {
         let RSS = result.rss.channel[0]['atom:link'][0];
         tmp = 0;
-        while (true) {
+        (function loop(){
           let mainBodyData = RSS.item[tmp];
           if (!mainBodyData) return false;
 
@@ -231,16 +232,17 @@ parseDribbble = function() {
             if(!countZERO) return countZERO;
           }
           tmp++;
-        }
+          loop();
+        }());
       });
     }
-  }));
+  });
 };
 
 parseBehance = function() {
-  request('https://www.behance.net/joblist', Meteor.bindEnvironment(function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      $ = Cheerio.load(body);
+  HTTP.call("GET", 'https://www.behance.net/joblist', (error, body) => {
+    if (!error) {
+      $ = Cheerio.load(body.content);
       $('div.job-location').each(function() {
         let divLocation = $(this),
         wordRemote = divLocation.text().toLowerCase();
@@ -254,9 +256,8 @@ parseBehance = function() {
           } else postExist = false;
           if (postExist) return false;
 
-          let future = new Future();
-          request(apply_url, Meteor.bindEnvironment(function(error, response, body) {
-            let $$ = Cheerio.load(body), image = $$('img.team-image').attr('src');
+          HTTP.call("GET", apply_url, (error, body) => {
+            let $$ = Cheerio.load(body.content), image = $$('img.team-image').attr('src');
             if (image === 'https://a3.behance.net/img/rendition/team/230.jpg') image = null;
 
             let description = UniHTML.purify($$('.job-description').html()),
@@ -275,19 +276,17 @@ parseBehance = function() {
 
             __insertJobModule(metadata);
             if (!countZERO) return countZERO;
-            future.return(true);
-          }));
-          future.wait();
+          });
         }
       });
     }
-  }));
+  });
 };
 
 parseGitHub = function() {
   let tmp = 0,
   bodyGIT = HTTP.call('GET', 'https://jobs.github.com/positions.json');
-  while(true) {
+  (function loop(){
     parseGIT = bodyGIT.data[tmp];
     if (!parseGIT) return false;
     if (parseGIT.company.toLowerCase().indexOf('github') >= 0) tmp++;
@@ -322,18 +321,18 @@ parseGitHub = function() {
       }
       tmp++;
     }
-  }
+    loop();
+  }());
 };
 
 parseStackO = function() {
-  request('http://careers.stackoverflow.com/jobs?allowsremote=true&sort=i', Meteor.bindEnvironment(function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      $ = Cheerio.load(body);
+  HTTP.call("GET", 'http://careers.stackoverflow.com/jobs?allowsremote=true&sort=i', (error, body) => {
+    if (!error) {
+      $ = Cheerio.load(body.content);
       $('div.-title').each(function() {
         let stackBody = $(this).children().children('.job-link'),
         stackoLoc = 'http://careers.stackoverflow.com' + stackBody.attr('href'),
         postExist = Posts.findOne({apply_url: stackoLoc}),
-        future = new Future(),
         maskLink = urlapi.parse(stackoLoc);
 
         maskLink = maskLink.pathname;
@@ -341,9 +340,9 @@ parseStackO = function() {
         postExist = Posts.findOne({maskLink: maskLink});
         if (postExist) return false;
 
-        request(stackoLoc, Meteor.bindEnvironment(function(error, response, body) {
-          if (!body) return false;
-          $$ = Cheerio.load(body);
+        HTTP.call("GET", stackoLoc, (error, body) => {
+          if (!body.content) return false;
+          $$ = Cheerio.load(body.content);
           let description = '';
           for (let i = 1; i < 6; i++) {
             let clas = $$('.jobdetail').children().eq(i).attr('class');
@@ -377,28 +376,25 @@ parseStackO = function() {
 
           __insertJobModule(metadata);
           if (!countZERO) return countZERO;
-          future.return(true);
-        }));
-        future.wait();
+        });
       });
     }
-  }));
+  });
 };
 
 parseAuthentic = function() {
-  request('https://authenticjobs.com/#onlyremote=1', Meteor.bindEnvironment(function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      $ = Cheerio.load(body);
+  HTTP.call("GET", 'https://authenticjobs.com/#onlyremote=1', (error, body) => {
+    if (!error) {
+      $ = Cheerio.load(body.content);
       $('span.location.anywhere').each(function() {
         if (!!$(this).parent().parent().attr('href')) {
           let apply_url = ('https://authenticjobs.com' + $(this).parent().parent().attr('href')),
-          postExist = Posts.findOne({apply_url: apply_url}),
-          future = new Future();
+          postExist = Posts.findOne({apply_url: apply_url});
 
           if (postExist) return false;
-          request(apply_url, Meteor.bindEnvironment(function(error, response, body) {
-            if (!body) return false;
-            $$ = Cheerio.load(body);
+          HTTP.call("GET", apply_url, (error, body) => {
+            if (!body.content) return false;
+            $$ = Cheerio.load(body.content);
 
             let position = $$('.role').children('h1').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''),
             company =  $$('.title').children().children().children().children('h2').text().trim();
@@ -426,11 +422,9 @@ parseAuthentic = function() {
 
             __insertJobModule(metadata);
             if (!countZERO) return countZERO;
-            future.return(true);
-          }));
-          future.wait();
+          });
         }
       });
     }
-  }));
+  });
 };
