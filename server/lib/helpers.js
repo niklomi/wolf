@@ -36,7 +36,7 @@ sitemap = function() {
     pages = Posts.find({status: true}).fetch();
     _.each(pages, function(page) {
       out.push({
-        page: 'job/' + page._id,
+        page: 'job/' + page.url,
         lastmod: page.createdAt,
         priority: 0.9
       });

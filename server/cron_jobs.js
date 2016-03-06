@@ -5,7 +5,7 @@ SyncedCron.add({
   },
   job() {
     sitemap();
-  },
+  }
 });
 
 SyncedCron.add({
@@ -40,6 +40,15 @@ SyncedCron.add({
     parseBehance();
     parseDribbble();
     parseWFH();
+  },
+});
+
+SyncedCron.add({
+  name: 'Create RSS',
+  schedule(parser) {
+    return parser.text('every 1 hour');
+  },
+  job() {
     __createRssFeed();
   },
 });

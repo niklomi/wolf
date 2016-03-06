@@ -358,7 +358,7 @@ parseStackO = function() {
 
           description = UniHTML.purify(description);
           let image = $$('div.-logo').children().attr('src');
-          image = image !== undefined ? image : null;
+          image = image ? image : null;
 
           let metadata = {
             status: true,

@@ -41,6 +41,8 @@ easy:search
 browser-policy
 summernote:standalone
 raix:rssfeed
+meteorhacks:kadira
+meteorhacks:zones
 
 npm-container
 okgrow:analytics
