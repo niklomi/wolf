@@ -1,12 +1,12 @@
-SyncedCron.add({
-  name: 'Sitemap generate',
-  schedule(parser) {
-    return parser.text('every 12 hours');
-  },
-  job() {
-    sitemap();
-  }
-});
+// SyncedCron.add({
+//   name: 'Sitemap generate',
+//   schedule(parser) {
+//     return parser.text('every 12 hours');
+//   },
+//   job() {
+//     sitemap();
+//   }
+// });
 
 SyncedCron.add({
   name: 'Twitter 24 report',
@@ -32,14 +32,14 @@ SyncedCron.add({
     return parser.text('every 30 minutes');
   },
   job() {
-    // parseStackO();
-    // parseGitHub();
-    // parseAuthentic();
-    // parseWWR2();
-    // parseWWM();
-    // parseBehance();
-    // parseDribbble();
-    // parseWFH();
+    parseStackO();
+    parseGitHub();
+    parseAuthentic();
+    parseWWR2();
+    parseWWM();
+    parseBehance();
+    parseDribbble();
+    parseWFH();
   },
 });
 

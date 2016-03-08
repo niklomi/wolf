@@ -81,7 +81,7 @@ parseWWR2 = function() {
 parseWFH = function() {
   HTTP.call("GET", 'https://www.wfh.io/jobs.atom', (error, body) => {
     if (!error) {
-      $ = Cheerio.load(body.content);
+      let $ = Cheerio.load(body.content);
       let parser = new xml2js.Parser(), tmp;
       parser.parseString($.xml(), function(err, result) {
         tmp = 0;
@@ -93,8 +93,8 @@ parseWFH = function() {
           if (postExist) return false;
 
           HTTP.call("GET", mainBodyData.link[0].$.href, (error, body) => {
-            $ = Cheerio.load(body.content);
-            let company = $('div.col-md-3').children('.panel').children('.panel-body').children().children().next().children().children().html(),
+            let $$ = Cheerio.load(body.content);
+            let company = $$('div.col-md-3').children('.panel').children('.panel-body').children().children().next().children().children().html(),
             company_url = urlapi.parse(company);
             company = company_url.hostname.split('.');
             company_url = company_url.href;
@@ -176,7 +176,7 @@ parseWWM = function() {
 parseDribbble = function() {
   HTTP.call("GET", 'https://dribbble.com/jobs.rss', (error, body) => {
     if (!error) {
-      $ = Cheerio.load(body.content);
+      let $ = Cheerio.load(body.content);
       let parser = new xml2js.Parser(), tmp;
       parser.parseString($.xml(), function(err, result) {
         let RSS = result.rss.channel[0]['atom:link'][0];
@@ -242,7 +242,7 @@ parseDribbble = function() {
 parseBehance = function() {
   HTTP.call("GET", 'https://www.behance.net/joblist', (error, body) => {
     if (!error) {
-      $ = Cheerio.load(body.content);
+      let $ = Cheerio.load(body.content);
       $('div.job-location').each(function() {
         let divLocation = $(this),
         wordRemote = divLocation.text().toLowerCase();
@@ -324,11 +324,11 @@ parseGitHub = function() {
     loop();
   }());
 };
-
+Posts.remove({source: 'stack'})
 parseStackO = function() {
   HTTP.call("GET", 'http://careers.stackoverflow.com/jobs?allowsremote=true&sort=i', (error, body) => {
     if (!error) {
-      $ = Cheerio.load(body.content);
+      let $ = Cheerio.load(body.content);
       $('div.-title').each(function() {
         let stackBody = $(this).children().children('.job-link'),
         stackoLoc = 'http://careers.stackoverflow.com' + stackBody.attr('href'),
@@ -342,8 +342,8 @@ parseStackO = function() {
 
         HTTP.call("GET", stackoLoc, (error, body) => {
           if (!body.content) return false;
-          $$ = Cheerio.load(body.content);
-          let description = '';
+          let $$ = Cheerio.load(body.content),
+          description = '';
           for (let i = 1; i < 6; i++) {
             let clas = $$('.jobdetail').children().eq(i).attr('class');
             if (clas && clas.indexOf('apply') >= 0 ) {
@@ -351,6 +351,9 @@ parseStackO = function() {
             }
             description += $$('.jobdetail').children().eq(i).html();
           }
+
+          console.log(1, $$('div.-logo').children().attr('src'), $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''));
+
           let company = $$('#hed').find('.employer').text().trim(),
           position =  $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''),
           samePost = Posts.findOne({position: position, company: company, createdAt: {$gte: (new Date()).addDays(-3)}});
@@ -358,10 +361,9 @@ parseStackO = function() {
 
           description = UniHTML.purify(description);
 
-          let image = '';
-          image = $$('div.-logo').children().attr('src');
-          image = image !== undefined ? image : null;
+          let image = $$('div.-logo').children().attr('src') ? $$('div.-logo').children().attr('src') : null;
 
+          console.log(2, image,  $$('div.-logo').children().attr('src'), position, $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''));
           let metadata = {
             status: true,
             source: 'stack',
@@ -387,7 +389,7 @@ parseStackO = function() {
 parseAuthentic = function() {
   HTTP.call("GET", 'https://authenticjobs.com/#onlyremote=1', (error, body) => {
     if (!error) {
-      $ = Cheerio.load(body.content);
+      let $ = Cheerio.load(body.content);
       $('span.location.anywhere').each(function() {
         if (!!$(this).parent().parent().attr('href')) {
           let apply_url = ('https://authenticjobs.com' + $(this).parent().parent().attr('href')),
@@ -396,7 +398,7 @@ parseAuthentic = function() {
           if (postExist) return false;
           HTTP.call("GET", apply_url, (error, body) => {
             if (!body.content) return false;
-            $$ = Cheerio.load(body.content);
+            let $$ = Cheerio.load(body.content);
 
             let position = $$('.role').children('h1').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''),
             company =  $$('.title').children().children().children().children('h2').text().trim();
