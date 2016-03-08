@@ -324,7 +324,7 @@ parseGitHub = function() {
     loop();
   }());
 };
-Posts.remove({source: 'stack'})
+
 parseStackO = function() {
   HTTP.call("GET", 'http://careers.stackoverflow.com/jobs?allowsremote=true&sort=i', (error, body) => {
     if (!error) {
@@ -352,8 +352,6 @@ parseStackO = function() {
             description += $$('.jobdetail').children().eq(i).html();
           }
 
-          console.log(1, $$('div.-logo').children().attr('src'), $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''));
-
           let company = $$('#hed').find('.employer').text().trim(),
           position =  $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''),
           samePost = Posts.findOne({position: position, company: company, createdAt: {$gte: (new Date()).addDays(-3)}});
@@ -363,7 +361,6 @@ parseStackO = function() {
 
           let image = $$('div.-logo').children().attr('src') ? $$('div.-logo').children().attr('src') : null;
 
-          console.log(2, image,  $$('div.-logo').children().attr('src'), position, $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''));
           let metadata = {
             status: true,
             source: 'stack',
