@@ -3,6 +3,7 @@ Meteor.startup(() => {
   sitemap();
   __generateTags();
   __createRssFeed();
+  console.log(`Start ${moment().format('MMMM Do YYYY, h:mm:ss a')}`);
 });
 
 if ( Meteor.users.find().count() === 0 ) {

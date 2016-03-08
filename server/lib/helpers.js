@@ -33,7 +33,7 @@ Date.prototype.addDays = function( d ) {
 sitemap = function() {
   sitemaps.add('/sitemap.xml', function() {
     let out = [],
-    pages = Posts.find({status: true}).fetch();
+    pages = Posts.find({status: true}, {fields: {url: 1, createdAt: 1}}).fetch();
     _.each(pages, function(page) {
       out.push({
         page: 'job/' + page.url,

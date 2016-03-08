@@ -357,8 +357,10 @@ parseStackO = function() {
           if (samePost) return false;
 
           description = UniHTML.purify(description);
-          let image = $$('div.-logo').children().attr('src');
-          image = image ? image : null;
+
+          let image = '';
+          image = $$('div.-logo').children().attr('src');
+          image = image !== undefined ? image : null;
 
           let metadata = {
             status: true,

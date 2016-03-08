@@ -17,7 +17,7 @@ kadira:dochead
 kadira:blaze-layout
 kadira:flow-router
 meteorhacks:fast-render
-
+meteorhacks:kadira-profiler
 meteorhacks:subs-manager
 meteorhacks:npm
 amr:parsley.js

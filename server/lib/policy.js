@@ -27,9 +27,11 @@ BrowserPolicy.content.allowImageOrigin('https://authenticjobs.com');
 BrowserPolicy.content.allowImageOrigin('https://authenticjobs.comundefined');
 BrowserPolicy.content.allowImageOrigin('https://*.behance.net');
 
-
+BrowserPolicy.content.allowOriginForAll('*.kadiraio.com');
+BrowserPolicy.content.allowOriginForAll('*.kadira.io');
 BrowserPolicy.content.allowOriginForAll('*.twitter.com');
 BrowserPolicy.content.allowInlineScripts('*.twitter.com');
+
 BrowserPolicy.content.allowEval('*.twitter.com');
 
 let rootUrl = __meteor_runtime_config__.ROOT_URL;

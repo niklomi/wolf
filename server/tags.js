@@ -255,17 +255,16 @@ __makeCATEGORY = function(position, desc) {
 // ---------------TAGS to client ------------------------------
 __generateTags = function () {
   let array = [];
-  _.each(Posts.find({status: true}).fetch(), function(post) {
+  _.each(Posts.find({status: true}, {fields: {tags: 1}}).fetch(), function(post) {
     array.push(post.tags);
   });
-  array = _.uniq(_.flatten(array));
-  activeTags = array;
+  activeTags = _.uniq(_.flatten(array));
 }
 
 SyncedCron.add({
   name: 'Generate Tags',
   schedule: function(parser) {
-    return parser.text('every 15 minutes');
+    return parser.text('every 30 minutes');
   },
   job: function() {
     __generateTags();

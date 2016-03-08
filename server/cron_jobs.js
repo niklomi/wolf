@@ -32,14 +32,14 @@ SyncedCron.add({
     return parser.text('every 30 minutes');
   },
   job() {
-    parseStackO();
-    parseGitHub();
-    parseAuthentic();
-    parseWWR2();
-    parseWWM();
-    parseBehance();
-    parseDribbble();
-    parseWFH();
+    // parseStackO();
+    // parseGitHub();
+    // parseAuthentic();
+    // parseWWR2();
+    // parseWWM();
+    // parseBehance();
+    // parseDribbble();
+    // parseWFH();
   },
 });
 
