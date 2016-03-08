@@ -38,8 +38,8 @@ Meteor.methods({
       post.description = UniHTML.purify(post.description, { noFormatting: true });
 
       if (post.company_url === '') delete post.company_url;
-      let tags = __makeTAG(post.position, [], post.description);
-      let category = __makeCATEGORY(post.position, post.description);
+      let tags = __makeTAG(post.position, [], post.description),
+      category = __makeCATEGORY(post.position, post.description),
       job = ({
         image: 'WOLFY',
         tags: tags,
@@ -48,9 +48,7 @@ Meteor.methods({
         category: category
       });
       let newpost = _.extend(post, job );
-
-      let postId = Posts.insert(newpost);
-      tweeet_create(post.company, post.position, postId, post.tag);
+      __insertJobModule(newpost);
     }
   },
   send_job(data) {

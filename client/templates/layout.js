@@ -19,7 +19,6 @@ Template.layout.onRendered(function(){
   });
 
   this.autorun(function(){
-    console.log(Session.get('searchTagsOpen'));
     if (Session.get('searchTagsOpen')){
         $('.createdBy').addClass('fixed');
         $('.createdBy').css('width', '25rem');

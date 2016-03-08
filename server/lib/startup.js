@@ -8,8 +8,10 @@ SlackAPI = Meteor.npmRequire( 'node-slack' );
 htmlToText = Meteor.npmRequire('html-to-text');
 Slack = new SlackAPI( Meteor.settings.private.slack.hook );
 
-Kadira.connect('xdmf4dYGxkhuRGq2d', '164c6e61-1ea2-486c-9894-a2661a2f2777');
-process.env.KADIRA_PROFILE_LOCALLY = 1
+if (inProduction()){
+  Kadira.connect('xdmf4dYGxkhuRGq2d', '164c6e61-1ea2-486c-9894-a2661a2f2777');
+  process.env.KADIRA_PROFILE_LOCALLY = 1
+}
 
 T = new Twit({
   consumer_key: Meteor.settings.private.twitter.consumer_key,

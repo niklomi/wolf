@@ -1,36 +1,8 @@
 @import '{}/client/stylesheets/colors.import';
 
-.header-search
-    width: 30rem
-    margin: 0 auto
-    position: relative
-    @media(max-width:400px)
-        width:26rem
-    label
-        position: absolute;
-        font-size: 18px;
-        left: 2px;
-        cursor: pointer;
-        color: #fff;
-        margin: 0
-        bottom: 7px
-    input
-        width: 100%
-        font-size: 22px
-        background: transparent
-        border: 0
-        border-bottom: 2px solid main-color
-        color: #FFF
-        padding: 0.3rem 0.5rem 0.3rem 3rem
-    input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.2s ease;}
-    input::-moz-placeholder                {opacity: 1; transition: opacity 0.2s ease;}
-    input:-moz-placeholder                 {opacity: 1; transition: opacity 0.2s ease;}
-    input:-ms-input-placeholder            {opacity: 1; transition: opacity 0.2s ease;}
-    input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.2s ease;}
-    input:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.2s ease;}
-    input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.2s ease;}
-    input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.2s ease;}
-    input::-webkit-input-placeholder {color:#fff;}
-    input::-moz-placeholder          {color:#fff;}
-    input:-moz-placeholder           {color:#fff;}
-    input:-ms-input-placeholder      {color:#fff;}
+input.do-it-like-input
+    width: 100%
+    font-size: 16px
+    &:focus
+        box-shadow: none !important
+        border-color: #ccc !important

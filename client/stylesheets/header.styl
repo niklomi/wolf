@@ -1,119 +1,124 @@
 @import 'colors.import';
 
 .header-img
-	position: relative
-	&:before
-		background-image: url('/image/power.jpg')
-		background-size: cover;
-		background-position: 100% 50%
-		content: '';
-		position: absolute;
-		top: 0;
-		right: 0;
-		left: 0;
-		bottom: 0;
-		z-index: -1;
+  position: relative
+  background: rgba(0,0,0,0.4);
+  &:before
+    background-image: url('/image/main-hero-1.jpg')
+    background-size: cover;
+    background-position: 100% 100%
+    background-color: body-color
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
 
 .header-slim
-	height: auto !important;
+  height: auto !important;
 
 .header
-	position: relative
-	padding: 3rem 2rem;
-	height: 40rem
-	@media(max-width:500px)
-		height: auto
-	a
-		&:hover,&:focus
-			border:none
-	ul
-		list-style: none
-		display:inline-block
-		margin:0
-		padding:0
-		line-height: 3;
-		li
-			display:inline-block
-			padding:0 0.5rem
-			a
-				color: #FFF
-				text-transform: uppercase
-				font-weight: 600
-				font-size: 14px
-				&:hover
-					color: main-color
+  position: relative
+  padding: 3rem 2rem;
+  height: 30rem
+  @media(max-width:750px)
+    height: auto
+  a
+    &:hover,&:focus
+      border:none
+  ul
+    list-style: none
+    display:inline-block
+    margin:0
+    padding:0
+    line-height: 3;
+    li
+      display:inline-block
+      padding:0 0.5rem
+      a
+        color: #FFF
+        text-transform: uppercase
+        font-weight: 600
+        font-size: 14px
+        &:hover
+          color: main-color
 
 .hero-about
-	color: #FFF
-	font-weight: 600
-	font-size: 32px;
-	margin: 6rem 0 3rem;
-	@media(max-width:500px)
-		display: none
-	@media(max-width:650px)
-		font-size: 24px !important
-	@media(max-width:750px)
-		font-size: 28px
+  color: #FFF
+  font-weight: 600
+  font-size: 40px;
+  margin: 4rem 0 3rem;
+  @media(max-width:500px)
+    display: none
+  @media(max-width:650px)
+    font-size: 24px !important
+  @media(max-width:750px)
+    font-size: 28px
 
 .hero-title
-	color: #FFF
-	padding: 0 0 0.5rem
-	position:relative
-	margin: 0
+  color: #FFF
+  padding: 0 0 0.5rem
+  position:relative
+  margin: 0
 
 .south
-	font-family: 'Rezland','Montserrat', 'Proxima Nova', "Helvetica Neue", Arial, Helvetica, sans-serif
-	font-weight:600
-	display:inline-block
-	letter-spacing: 0.8px
-	position: relative
+  font-family: 'Rezland','Montserrat', 'Proxima Nova', "Helvetica Neue", Arial, Helvetica, sans-serif
+  font-weight:600
+  display:inline-block
+  letter-spacing: 0.8px
+  position: relative
 
 .mobile-header
-	.hamburger-menu
-		display: block;
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		width: 0;
-		height: 100%;
-		min-height: 100%;
-		background: main-color
-		font-size: 13px;
-		line-height: 36px;
-		text-transform: uppercase;
-		z-index: 1000;
-		-webkit-transition: width .25s ease-out;
-		transition: width .25s ease-out;
-		#hamburger
-			position: absolute;
-			left: -66px;
-			width: 66px;
-			height: 70px;
-			background: main-color
-			overflow: hidden;
-			cursor: pointer;
-			text-align:center;
-			-webkit-transition: all .25s ease-out;
-			transition: all .25s ease-out;
-			i
-				font-size:32px
-				color:#FFF
-				padding: 2rem 0
-		ul
-			position: relative;
-			bottom: 0;
-			width: 100%;
-			min-height: 100%;
-			background: main-color
-			overflow: hidden;
-			padding:0;
-			overflow-y: auto;
-			height:100vh
-			margin:1rem 0
-			text-align:center
-			li
-				display:block
-				a
-					color: #FFF
-	#open
-		width:15rem
+  .hamburger-menu
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    min-height: 100%;
+    background: color-f3f3f3
+    font-size: 13px;
+    line-height: 36px;
+    text-transform: uppercase;
+    z-index: 1000;
+    -webkit-transition: width .25s ease-out;
+    transition: width .25s ease-out;
+    #hamburger
+      position: absolute;
+      left: -7rem;
+      width: 7rem;
+      height: 9rem;
+      overflow: hidden;
+      cursor: pointer;
+      text-align:center;
+      -webkit-transition: all .25s ease-out;
+      transition: all .25s ease-out;
+      i
+        font-size:32px
+        color:#FFF
+        padding: 3rem 0
+    ul
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      min-height: 100%;
+      background: color-f3f3f3
+      overflow: hidden;
+      padding:0;
+      overflow-y: auto;
+      height:100vh
+      margin:1rem 0
+      text-align:center
+      li
+        display:block
+        a
+          color: body-color
+  #open
+    width:15rem
+    #hamburger
+      background: color-f3f3f3
+      i
+        color: body-color
