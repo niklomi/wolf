@@ -1,12 +1,12 @@
-// SyncedCron.add({
-//   name: 'Sitemap generate',
-//   schedule(parser) {
-//     return parser.text('every 12 hours');
-//   },
-//   job() {
-//     sitemap();
-//   }
-// });
+SyncedCron.add({
+  name: 'Sitemap generate',
+  schedule(parser) {
+    return parser.text('every 12 hours');
+  },
+  job() {
+    sitemap();
+  }
+});
 
 SyncedCron.add({
   name: 'Twitter 24 report',
