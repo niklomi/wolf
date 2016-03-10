@@ -140,8 +140,8 @@ parseWWM = function() {
     let mainBodyData = body.data.data[tmp];
     tmp++;
     if (tmp > body.data.data.length) return false;
-
     if(mainBodyData.remote) {
+
       let postExist = Posts.findOne({apply_url: mainBodyData.siteUrl});
       if (postExist) return false;
       let company_url = mainBodyData.company_url,
@@ -164,8 +164,8 @@ parseWWM = function() {
 
       __insertJobModule(metadata);
       if(!countZERO) return countZERO;
-      loop();
     }
+    loop();
   }());
 };
 
