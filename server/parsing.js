@@ -137,22 +137,18 @@ parseWWM = function() {
   let tmp = 0,
   body = HTTP.call('GET', 'http://www.weworkmeteor.com/api/jobs');
   (function loop(){
-    mainBodyData = body.data.data[tmp];
+    let mainBodyData = body.data.data[tmp];
     tmp++;
     if (tmp > body.data.data.length) return false;
 
     if(mainBodyData.remote) {
       let postExist = Posts.findOne({apply_url: mainBodyData.siteUrl});
       if (postExist) return false;
-
       let company_url = mainBodyData.company_url,
       company = mainBodyData.company,
       description = UniHTML.purify(mainBodyData.htmlDescription);
-
-      if (company_url === undefined) company_url = null;
-      else company_url = addhttp(company_url);
+      company_url = company_url ? addhttp(company_url) : null;
       if (!company) company = 'Private Project';
-
       let metadata = {
         status: true,
         source: 'wwm',
