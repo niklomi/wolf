@@ -1,6 +1,6 @@
 Meteor.startup(() => {
   SyncedCron.start();
-  sitemap();
+  // sitemap();
   __generateTags();
   __createRssFeed();
   console.log(`Start ${moment().format('MMMM Do YYYY, h:mm:ss a')}`);
