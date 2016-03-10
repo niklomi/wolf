@@ -1,170 +1,175 @@
 @import '{}/client/stylesheets/colors.import';
 
 .job-wrap
-	max-width: 100rem
-	margin: 0 auto
-	.company-mob
-		background-color: color-f3f3f3
-		padding: 1rem 2rem
-		margin-bottom: 2rem
-		width: 100%
-		h4
-			margin-left: 2rem
-			display: inline-block;
-		.company-image
-			display: inline-block;
-			vertical-align: middle;
-			width:8rem
-			height:8rem
-			background-size:cover
-			background-color: #FFF;
-			overflow: hidden
-		.no-image
-			line-height: 7.8rem;
-			text-transform: uppercase;
-			font-weight: 600;
-			font-size: 40px;
-			text-align:center
-			font-family: 'Playfair Display', serif;
-			color: #FFF;
-			background: body-color
-	.job-leftright
-		.job-left
-			float: left
-			width: 70%
-			padding-right: 3rem
-			margin-bottom: 5rem
-			@media(max-width: 1024px)
-				width:100%
-				padding-right:0
-			.apply-button
-				margin: 2rem 0
-		.job-right
-			float: right
-			width: 30%
-			padding: 0 2rem
-			margin-bottom:5rem
-			.company-wrap
-				text-align: center
-				.company-image
-					width:8rem
-					height:8rem
-					background-size:cover
-					background-color: #FFF;
-					overflow: hidden
-					margin: 0 auto
-				.no-image
-					line-height: 7.8rem;
-					text-transform: uppercase;
-					font-weight: 600;
-					font-size: 40px;
-					text-align:center
-					font-family: 'Playfair Display', serif;
-					color: #FFF;
-					background: body-color
-				h4
-					font-size: 24px;
-					font-weight: 600;
-					margin: 1rem 0
-			.suggest-spisok
-				margin-top: 5rem
-				animation-duration: 0.5s;
-				p
-					font-weight: 600
-				ul
-					list-style: none;
-					margin: 0
-					padding: 0
-					li
-						margin: 1rem 0
-						position:relative
-						a
-							border: none
-							display: table
-							span
-								padding-left:3.5rem
-								display: table-cell
-							div
-								vertical-align: middle;
-							.suggest-image
-								display: table-cell
-								position: absolute
-								width: 2.5rem
-								height: 2.5rem
-								background-size:cover
-								left: 0
-							.no-image
-								font-size: 10px;
-								font-family: 'Playfair Display', serif;
-								text-align: center;
-								line-height: 25px;
-								font-weight: 600;
-								text-transform: uppercase;
-								color: #FFF;
-								background: body-color
-					.fake
-						height: 2.5rem
-						background: color-f3f3f3
+  max-width: 100rem
+  margin: 0 auto
+  .company-mob
+    background-color: color-f3f3f3
+    padding: 1rem 2rem
+    margin-bottom: 2rem
+    width: 100%
+    h4
+      margin-left: 2rem
+      display: inline-block;
+    .company-image
+      display: inline-block;
+      vertical-align: middle;
+      width:8rem
+      height:8rem
+      background-size:cover
+      background-color: #FFF;
+      overflow: hidden
+    .no-image
+      line-height: 7.8rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 40px;
+      text-align:center
+      font-family: 'Playfair Display', serif;
+      color: #FFF;
+      background: body-color
+  .job-leftright
+    .job-left
+      float: left
+      width: 70%
+      padding-right: 3rem
+      margin-bottom: 5rem
+      @media(max-width: 1024px)
+        width:100%
+        padding-right:0
+      .apply-button
+        margin: 2rem 0
+    .job-right
+      float: right
+      width: 30%
+      padding: 0 2rem
+      margin-bottom:5rem
+      .company-wrap
+        text-align: center
+        .company-image
+          width:8rem
+          height:8rem
+          background-size:cover
+          background-color: #FFF;
+          overflow: hidden
+          margin: 0 auto
+        .no-image
+          line-height: 7.8rem;
+          text-transform: uppercase;
+          font-weight: 600;
+          font-size: 40px;
+          text-align:center
+          font-family: 'Playfair Display', serif;
+          color: #FFF;
+          background: body-color
+        h4
+          font-size: 24px;
+          font-weight: 600;
+          margin: 1rem 0
+      .suggest-spisok
+        margin-top: 5rem
+        animation-duration: 0.5s;
+        p
+          font-weight: 600
+        ul
+          list-style: none;
+          margin: 0
+          padding: 0
+          li
+            margin: 1rem 0 1.5rem
+            position:relative
+            a
+              border: none
+              display: table
+              span
+                padding-left:3.5rem
+                display: table-cell
+              div
+                vertical-align: middle;
+              .suggest-image
+                display: table-cell
+                position: absolute
+                width: 2.5rem
+                height: 2.5rem
+                background-size:cover
+                left: 0
+              .no-image
+                font-size: 10px;
+                font-family: 'Playfair Display', serif;
+                text-align: center;
+                line-height: 25px;
+                font-weight: 600;
+                text-transform: uppercase;
+                color: #FFF;
+                background: body-color
+          .fake
+            height: 2.5rem
+            background: color-f3f3f3
 
 .single-job-info
-	padding: 2rem
-	position: relative;
-	ul
-		display: table
-		margin: 0
-		padding: 0
-		list-style: none;
-		li
-			display: table-cell;
-			vertical-align: middle
-			padding:0 0.5rem
-			&:first-child
-				padding-left: 0
-			&:last-child
-				padding-right: 0
-			@media(max-width:500px)
-				display: block
-				margin:0.5rem 0
-		.date
-			font-size: 16px;
-			color: color-999;
-		.fa-circle
-			color: color-999
-			font-size:6px
-			position: relative
-			top:-3px
-		.remotework
-			color: color-999
-	.title
-		font-weight: 600
-		font-size: 36px
-		margin-bottom: 1rem
-		@media(max-width:500px)
-			font-size:30px
+  padding: 2rem
+  position: relative;
+  ul
+    display: table
+    margin: 0
+    padding: 0
+    list-style: none;
+    li
+      display: table-cell;
+      vertical-align: middle
+      padding:0 0.5rem
+      &:first-child
+        padding-left: 0
+      &:last-child
+        padding-right: 0
+      @media(max-width:500px)
+        display: block
+        margin:0.5rem 0
+    .date
+      font-size: 16px;
+      color: color-999;
+    .fa-circle
+      color: color-999
+      font-size:6px
+      position: relative
+      top:-3px
+    .remotework
+      color: color-999
+  .title
+    font-weight: 600
+    font-size: 36px
+    margin-bottom: 1rem
+    @media(max-width:500px)
+      font-size:30px
 
 .job-leftright
-	padding: 0 2rem
+  padding: 0 2rem
 
 #fullDescr
-	color: body-color
-	font-family: "Proxima Nova","Helvetica Neue", Helvetica,sans-serif
-	font-size: 16px
-	overflow:hidden
-	line-height: 26px
-	h1,h2,h3,h4,h5,h6,p:first-child
-		padding-top: 0 !important
-		margin-top: 0 !important
-	p
-		font-size: 16px
-		text-align: left
-	h1
-		font-size:24px
-		font-weight: 600;
-		padding: 2rem 0 1rem;
-	h2
-		font-size:20px
-		padding: 1rem 0 0.5rem;
-		font-weight: 600;
-	h3
-		font-size:18px
-		font-weight: 600
+  color: body-color
+  font-family: "Proxima Nova","Helvetica Neue", Helvetica,sans-serif
+  font-size: 16px
+  overflow:hidden
+  line-height: 26px
+  h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:first-child,p:first-child
+    padding-top: 0 !important
+    margin-top: 0 !important
+  p
+    font-size: 16px
+    text-align: left
+  h1
+    font-size:24px
+    font-weight: 600;
+    padding: 3rem 0 1rem;
+  h2
+    font-size:20px
+    padding: 2rem 0 1rem;
+    font-weight: 600;
+  h3
+    font-size:18px
+    padding: 1.5rem 0 1rem;
+    font-weight: 600
+  h4
+    font-size:18px
+    padding: 1.5rem 0 1rem;
+    font-weight: 600;

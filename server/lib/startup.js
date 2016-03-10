@@ -7,6 +7,7 @@ request = Meteor.npmRequire('request');
 SlackAPI = Meteor.npmRequire( 'node-slack' );
 htmlToText = Meteor.npmRequire('html-to-text');
 Slack = new SlackAPI( Meteor.settings.private.slack.hook );
+UniHTML.addNewAllowedTag('div', false);
 
 if (inProduction()){
   Kadira.connect('xdmf4dYGxkhuRGq2d', '164c6e61-1ea2-486c-9894-a2661a2f2777');

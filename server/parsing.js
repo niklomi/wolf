@@ -384,47 +384,39 @@ parseStackO = function() {
 };
 
 parseAuthentic = function() {
-  HTTP.call("GET", 'https://authenticjobs.com/#onlyremote=1', (error, body) => {
+  HTTP.call("GET", 'https://authenticjobs.com/#onlyremote=1&remote=true', (error, body) => {
     if (!error) {
       let $ = Cheerio.load(body.content);
-      $('span.location.anywhere').each(function() {
-        if (!!$(this).parent().parent().attr('href')) {
-          let apply_url = ('https://authenticjobs.com' + $(this).parent().parent().attr('href')),
-          postExist = Posts.findOne({apply_url: apply_url});
+      $('ul#listings').children('li').each(function() {
+        let apply_url = ('https://authenticjobs.com' + $(this).children('a').attr('href')),
+        postExist = Posts.findOne({apply_url: apply_url});
+        if (postExist) return false;
+        let image = 'https://authenticjobs.com' + $(this).children('a').children('img').attr('src'),
+        position = $(this).children('a').children('div.details').children('h3').text().trim(),
+        company = $(this).children('a').children('div.details').children('h4').attr('title').trim();
+        let samePost = Posts.findOne({position: position, company: company, createdAt: {$gte: (new Date()).addDays(-3)}});
+        if (samePost) return false;
 
-          if (postExist) return false;
-          HTTP.call("GET", apply_url, (error, body) => {
-            if (!body.content) return false;
-            let $$ = Cheerio.load(body.content);
-
-            let position = $$('.role').children('h1').text().replace(reg_r_brackets, '').replace(reg_r_tire, ''),
-            company =  $$('.title').children().children().children().children('h2').text().trim();
-            if (company === '') company = 'Private Project';
-            let samePost = Posts.findOne({position: position, company: company, createdAt: {$gte: (new Date()).addDays(-3)}});
-            if (samePost) return false;
-
-            let description = UniHTML.purify($$('#description').html()),
-            company_url = $$('li.website').children('a').attr('href'),
-            image = `https://authenticjobs.com${$$('li.website').children('img').attr('src')}`;
-            if (company !== 'Private Project') company_url = addhttp(company_url);
-
-            let metadata = {
-              status: true,
-              source: 'auth',
-              image,
-              position,
-              company,
-              company_url,
-              description,
-              apply_url,
-              tags: __makeTAG($$('.role').children('h1').text(), [], description),
-              category: __makeCATEGORY($$('.role').children('h1').text(), description)
-            };
-
-            __insertJobModule(metadata);
-            if (!countZERO) return countZERO;
-          });
-        }
+        HTTP.call("GET", apply_url, (error, body) => {
+          if (!body.content) return false;
+          let $$ = Cheerio.load(body.content);
+          let description = UniHTML.purify($$('.description').html()),
+          company_url = addhttp($$('#the_company').children('header').children('a').attr('href'));
+          let metadata = {
+            status: true,
+            source: 'auth',
+            image,
+            position,
+            company,
+            company_url,
+            description,
+            apply_url,
+            tags: __makeTAG($$('.role').children('h1').text(), [], description),
+            category: __makeCATEGORY($$('.role').children('h1').text(), description)
+          };
+          __insertJobModule(metadata);
+          if (!countZERO) return countZERO;
+        });
       });
     }
   });

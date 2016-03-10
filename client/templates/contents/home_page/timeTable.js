@@ -52,7 +52,8 @@ Template.time_table.helpers({
     return true;
   },
   posts: function(){
-    let posts = Posts.find({},{sort: { createdAt: -1 }});
+    let posts = Posts.find({},{sort: { createdAt: -1 }}).fetch();
+    if (posts && posts.length === 1) return false;
     return posts;
   },
   tags: function(){
