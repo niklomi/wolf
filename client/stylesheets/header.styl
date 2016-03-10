@@ -2,7 +2,7 @@
 
 .header-img
   position: relative
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.5);
   &:before
     background-image: url('/image/main-hero-1.jpg')
     background-size: cover;
@@ -22,7 +22,7 @@
 .header
   position: relative
   padding: 3rem 2rem;
-  height: 30rem
+  height: 40rem
   @media(max-width:750px)
     height: auto
   a
@@ -37,6 +37,8 @@
     li
       display:inline-block
       padding:0 0.5rem
+      &:last-child
+        padding-right: 0
       a
         color: #FFF
         text-transform: uppercase
@@ -44,12 +46,34 @@
         font-size: 14px
         &:hover
           color: main-color
+  .header-search
+    margin: 0 0 6rem
+    text-align: center;
+    .header-search-wrap
+      position: relative;
+      display: inline-block;
+      label
+        position: absolute;
+        font-size: 20px;
+        right: 16px;
+        cursor: pointer;
+        color: color-999;
+        margin: 0
+        bottom: 10px
+      input
+        background: #fff;
+        font-size: 20px;
+        width: 62rem;
+        height: 5rem;
+        margin: 0 auto;
+        padding: 0 4.5rem 0 2rem;
+        border: none
 
 .hero-about
   color: #FFF
   font-weight: 600
-  font-size: 40px;
-  margin: 4rem 0 3rem;
+  font-size: 36px;
+  margin: 6rem 0 2rem;
   @media(max-width:500px)
     display: none
   @media(max-width:650px)

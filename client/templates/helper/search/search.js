@@ -3,7 +3,7 @@ Template.search.helpers({
     getInputAttributes:function(){
         data = {
             class:"do-it-like-input form-control",
-            placeholder: 'Job title, company or skills',
+            placeholder: 'Job Title, Company or Skills',
             id:"live-search"
         }
         return data;

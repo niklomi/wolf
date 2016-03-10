@@ -396,7 +396,7 @@ parseAuthentic = function() {
         HTTP.call("GET", apply_url, (error, body) => {
           if (!body.content) return false;
           let $$ = Cheerio.load(body.content);
-          let description = UniHTML.purify($$('.description').html()),
+          let description = UniHTML.purify($$('.description').html(), {withoutTags: ['img']}),
           company_url = addhttp($$('#the_company').children('header').children('a').attr('href'));
           let metadata = {
             status: true,
