@@ -1,0 +1,32 @@
+<template name="header">
+<div class="header wrap-1000">
+    <div class="mobile-header show-780">
+        <a href="/" class="south hero-title">remote<span class="color-yellow">wolfy</span></a>
+        <div class="hamburger-menu" id=" ">
+            <span id="hamburger"><i class="fa fa-bars"></i></span>
+            <ul>
+                <li>
+                    <a class="effect-for-text" href="/post">Post job</a>
+                </li>
+                <li>
+                    <a class="effect-for-text" href="/info#about">About</a>
+                </li>
+                <li>
+                    <a class="effect-for-text" href="https://twitter.com/intent/follow?screen_name=remote_wolfy"> Twitter </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="relative hide-780">
+        <a href="/" class="south hero-title">remote<span class="color-yellow">wolfy</span></a>
+        <a class="pull-right button button-yellow " href="/post">Post a job</a>
+        <a class="nav-a" href="/info#about">About</a>
+        <a class="nav-a" href="https://twitter.com/intent/follow?screen_name=remote_wolfy"> Twitter </a>
+        <a class="nav-a" target="_blank" href="/rss/jobs">RSS </a>
+        {{#if isInRole 'admin'}}
+            <a href="/post-job" class="nav-a" id="link-new-job">Create </a>
+            <a href="/alljobs" class="nav-a">All Jobs</a>
+        {{/if}}
+    </div>
+</div>
+</template>

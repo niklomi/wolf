@@ -55,7 +55,7 @@ parseWWR2 = function() {
 
             let metadata = {
               status: true,
-              source: 'wwr',
+              source: 'WeWorkRemote',
               position,
               company,
               company_url: addhttp(mainBodyData.url[0]),
@@ -111,7 +111,7 @@ parseWFH = function() {
             metadata = {
               status: true,
               image: null,
-              source: 'wfh',
+              source: 'WFH.io',
               position,
               company,
               company_url: addhttp(company_url),
@@ -151,7 +151,7 @@ parseWWM = function() {
       if (!company) company = 'Private Project';
       let metadata = {
         status: true,
-        source: 'wwm',
+        source: 'WeWorkMeteor',
         image: 'METEOR',
         position: mainBodyData.title.replace(reg_r_brackets, '').replace(reg_r_tire, ''),
         company: company.trim(),
@@ -215,7 +215,7 @@ parseDribbble = function() {
             metadata = {
               status: true,
               image: 'DRIBBBLE',
-              source: 'dribbble',
+              source: 'Dribbble',
               position: positionBBB.replace(reg_r_brackets, '').replace(reg_r_tire, ''),
               company,
               description,
@@ -246,7 +246,7 @@ parseBehance = function() {
           let apply_url = divLocation.parent().next().children('.job-title').children().attr('href'),
           postExist, url1 = urlapi.parse(apply_url);
 
-          if (Posts.findOne({source: 'behance'})) {
+          if (Posts.findOne({source: 'Behance'})) {
             if (Posts.findOne({maskLink: url1.pathname})) postExist = true;
             else postExist = false;
           } else postExist = false;
@@ -259,7 +259,7 @@ parseBehance = function() {
             let description = UniHTML.purify($$('.job-description').html()),
             metadata = {
               status: true,
-              source: 'behance',
+              source: 'Behance',
               image,
               position: $$('.job-header-details ').children().eq(0).text().replace(reg_r_brackets, '').replace(reg_r_tire, ''),
               company: $$('.company-name ').children().eq(0).text().trim(),
@@ -300,7 +300,7 @@ parseGitHub = function() {
         description = UniHTML.purify(parseGIT.description),
         metadata = {
           status: true,
-          source: 'github',
+          source: 'Github',
           image: parseGIT.company_logo,
           type: parseGIT.type,
           position,
@@ -359,7 +359,7 @@ parseStackO = function() {
 
           let metadata = {
             status: true,
-            source: 'stack',
+            source: 'StackOverflow',
             image,
             position,
             company,
@@ -400,7 +400,7 @@ parseAuthentic = function() {
           company_url = addhttp($$('#the_company').children('header').children('a').attr('href'));
           let metadata = {
             status: true,
-            source: 'auth',
+            source: 'Authentic',
             image,
             position,
             company,

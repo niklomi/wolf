@@ -3,32 +3,13 @@
 .body
   position: relative
 
-.body-left
-  width: 25rem
-  position: absolute
-  z-index: 2
-  height: 100vh;
-  left: 0;
-  top: 0
-  background: color-f3f3f3
-  overflow-y: auto;
-  @media(max-width: 900px)
-    width: 0rem
-
-.fixed
-  position: fixed !important
-
-.body-right
-  padding-left: 25rem
-  .search-tag-wrap
-    padding: 2rem
-    background: lighten(main-color, 90%)
-    h4
-      display: inline-block;
-      color: lighten(main-color, 30%);
-      margin-right: 0.5rem;
-  @media(max-width: 900px)
-    padding-left: 0rem
+.table-header
+  margin: 7rem 0 1rem
+  border-bottom: 1px solid color-f3f3f3
+  padding: 0 2rem
+  h2
+    padding-bottom: 1rem
+    font-weight: 600
 
 .main-table
   border-collapse: separate;
@@ -38,37 +19,44 @@
     font-weight:600
     padding: 2rem 0
   .smurf
-    border-bottom:1px solid color-f3f3f3
-    padding: 2rem 2rem 2rem 7rem;
+    padding: 2rem 3rem;
     position:relative
     animation-duration: 1s;
-    a
-      &:hover
-        .description
-          color:body-color
-          transition:all 0.1s
-    .job-date
-      position:absolute
-      top: 2rem
-      right: 2rem
-      font-size: 16px
-      color: body-color
-      @media (max-width:500px)
-        display:none
-    .job-companents
-      padding-right: 9rem
-      @media (max-width:500px)
-        padding-right: 0px
+    min-height: 9rem
+    &:nth-child(2n+1)
+      background-color: color-f9f9f9;
+    .details
+      position: absolute;
+      right: 3rem;
+      top: 2.4rem;
+      @media (max-width: 768px)
+        position: initial;
+        margin-top: 1rem
+        width: 100%
+    .job-components
+      padding: 0 18rem 0 8rem;
+      @media (max-width: 768px)
+        padding: 0
       .position
         font-size:18px
         display:inline-block
         font-weight: 600
-        color: body-color
-      .company
-        font-size:18px
-        display:block
-        color: body-color
-        font-weight:400
+        color: color-black
+      .bottom
+        .fa-circle
+          color: color-yellow;
+          font-size: 10px;
+          position: relative;
+          top: -1px
+          padding-right: 1rem
+        span
+          font-size:16px
+          color: color-black
+          font-weight:400
+          display: inline-block;
+          padding-right: 1rem
+          &:last-child
+            padding-right: 0
     .description
       color:color-999
       font-size: 16px;
@@ -82,7 +70,7 @@
       background-color: #FFF;
       position: absolute;
       border-radius: 0;
-      left: 2rem;
+      left: 3rem;
       top: 2.3rem;
     .no-image
       font-size: 20px;
@@ -92,7 +80,10 @@
       font-weight: 600;
       text-transform: uppercase;
       color: #FFF;
-      background: body-color
+      background: color-black
 
 .hidden-xs-l.td-tags
   margin-top: 0.5rem
+
+.fixed
+  position: fixed !important

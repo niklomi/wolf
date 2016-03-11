@@ -1,7 +1,7 @@
 <template name="exist_job">
 {{#if ready}}
   {{#with job}}
-  <div class="job-wrap" itemscope itemtype="http://schema.org/JobPosting">
+  <div class="wrap-1000" itemscope itemtype="http://schema.org/JobPosting">
     <div class="schemaorg">
       <span itemprop="skills"> {{#each tag}} {{this}} {{/each}} </span>
       <span itemprop="datePosted">{{formatTimeshema createdAt}}</span>
@@ -12,11 +12,7 @@
       <div class="single-job-info">
         <h3 itemprop="title" class="title">{{position}}</h3>
         <ul>
-          <li class="exist-job-tags">
-            {{#each tags}}
-              <div class="tags-wrap search-tags-style tags-form inline-block"><div class="tags">{{this}}</div></div>
-            {{/each}}
-          </li>
+          <li class="source">On {{source}}</li>
           <li class="hide-500">
             <i class="fa fa-circle"></i>
           </li>
@@ -39,7 +35,7 @@
     <div class="job-leftright">
       <div class="job-left">
         <div id="fullDescr" itemprop="description">{{{description}}}</div>
-        <div class="text-center apply-button"><a href="{{apply_url}}" rel="nofollow"><button class="button button-reverse-full button-apply">Apply for  Job</button></a></div>
+        <div class="text-center apply-button"><a href="{{apply_url}}" rel="nofollow"><button class="button button-yellow button-big button-apply">Apply for  Job</button></a></div>
       </div>
 
       <div class="job-right hide-1024">
@@ -54,7 +50,7 @@
           {{else}}
             <h4><span itemprop="hiringOrganization">{{company}}</span></h4>
           {{/if}}
-          <a href="{{apply_url}}" rel="nofollow"><button class="button button-reverse-full button-apply">Apply for Job</button></a>
+          <a href="{{apply_url}}" rel="nofollow"><button class="button button-yellow button-big button-apply">Apply for Job</button></a>
         </div>
 
         <div class="suggest-spisok">

@@ -1,11 +1,9 @@
 Meteor.publish('posts', function(count, tags, url) {
   if (!tags) tags = undefined;
-
   if (url) {
     check(url, String);
     return Posts.find({url: url, status: true}, {fields: { status: 0}});
   }
-
   check(count, Number);
   check(tags, Match.Optional([String]));
   function transform(doc) {
@@ -13,27 +11,8 @@ Meteor.publish('posts', function(count, tags, url) {
     return doc;
   }
 
-  let self = this,
-  query = {status: true};
-  if (tags) query = {status: true, tags: {$all: tags}};
-
-  let observer = Posts.find(query, {sort: { createdAt: -1 }, limit: count}).observe({
-    added: function(document) {
-      self.added('posts', document._id, transform(document));
-    },
-    changed: function(newDocument, document) {
-      self.changed('posts', document._id, transform(newDocument));
-    },
-    removed: function(oldDocument) {
-      self.removed('posts', oldDocument._id);
-    }
-  });
-
-  self.onStop(function() {
-    observer.stop();
-  });
-
-  self.ready();
+  let query = tags ? {status: true, tags: {$all: tags}} : {status: true};
+  return Posts.find(query, {sort: { createdAt: -1 }, limit: count, fields: {position: 1, company: 1, tags: 1, createdAt: 1, category: 1, url: 1, image: 1, source: 1}});
 });
 
 Meteor.publish('testJobs', function() {

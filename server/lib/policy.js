@@ -24,11 +24,8 @@ BrowserPolicy.content.allowOriginForAll('*.googleapis.com');
 BrowserPolicy.content.allowImageOrigin('http://i.stack.imgur.com');
 BrowserPolicy.content.allowImageOrigin('http://github-jobs.s3.amazonaws.com');
 BrowserPolicy.content.allowImageOrigin('https://authenticjobs.com');
-BrowserPolicy.content.allowImageOrigin('https://authenticjobs.comundefined');
 BrowserPolicy.content.allowImageOrigin('https://*.behance.net');
 
-BrowserPolicy.content.allowOriginForAll('*.kadiraio.com');
-BrowserPolicy.content.allowOriginForAll('*.kadira.io');
 BrowserPolicy.content.allowOriginForAll('*.twitter.com');
 BrowserPolicy.content.allowInlineScripts('*.twitter.com');
 

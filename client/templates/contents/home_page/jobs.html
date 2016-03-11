@@ -1,46 +1,21 @@
 <template name="jobs">
-  <div itemscope itemtype="http://schema.org/JobPosting" class="smurf {{premium_back}} animated fadeIn">
-    {{#unless show_less_info}}
-      <a href="job/{{url}}">
-        <div class="job-date">
-          {{date_from_now createdAt}}
-        </div>
-        <div class="hidden-xs-sl td-pics">
-          {{#if image}}
-            <div class="company-image" style="background-image: url('{{check_img image}}');"></div>
-          {{else}}
-            <div class="company-image no-image no-select">{{set_image_name company}}</div>
-          {{/if}}
-        </div>
-        <div class="job-companents">
-          <p class="position">{{checklength position}}</p>
-          <span class="company">{{company}}</span>
-        </div>
-        <p class="description hide-500">{{{description}}}</p>
-      </a>
-      <div class="hide-500 td-tags" >
-        {{#each tags}}
-          {{> tag}}
-        {{/each}}
+  <div itemscope itemtype="http://schema.org/JobPosting" class="smurf animated fadeIn">
+      <div class="hidden-xs td-pics">
+        {{#if image}}
+          <div class="company-image" style="background-image: url('{{check_img image}}');"></div>
+        {{else}}
+          <div class="company-image no-image no-select">{{set_image_name company}}</div>
+        {{/if}}
       </div>
-    {{else}}
-      <a href="job/{{url}}">
-        <div class="job-date">
-          {{date_from_now createdAt}}
-        </div>
-        <div class="hidden-xs-sl td-pics">
-          {{#if image}}
-            <div class="company-image" style="background-image: url('{{check_img image}}');"></div>
-          {{else}}
-            <div class="company-image no-image no-select">{{set_image_name company}}</div>
-          {{/if}}
-        </div>
-        <div class="job-companents">
-          <p class="position">{{checklength position}}</p>
+      <div class="job-components">
+        <p class="position">{{position}}</p>
+        <div class="bottom">
           <span class="company">{{company}}</span>
+          <i class="fa fa-circle"></i>
+          <span class="date">{{date_from_now createdAt}}</span>
         </div>
-      </a>
-    {{/unless}}
+      </div>
+      <a href="job/{{url}}" ><button class="button button-yellow details">View Details</button></a>
 
     <div class="schemaorg">
       <span><a itemprop="url" href="job/{{url}}"> <span itemprop="title">{{position}} </span><span itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization"><span itemprop="name">{{company}} </span></span></a></span>
@@ -50,7 +25,6 @@
       <span itemprop="jobLocation">Remote</span>
     </div>
   </div>
-
 </template>
 
 <template name="tag">

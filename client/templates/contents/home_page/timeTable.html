@@ -1,6 +1,8 @@
 <template name="time_table">
-<div class="body">
-  <div class="body-right">
+<div class="body wrap-1000">
+    <div class="table-header">
+        <h2>Every day  we add <span class="color-yellow">20+</span> new remote jobs</h2>
+    </div>
     {{#if tags}}
       <div class="search-tag-wrap no-select">
         <h4>Search by Skills: </h4>
@@ -32,19 +34,12 @@
         {{/EasySearch.IfInputEmpty}}
       {{#if ready}}
       {{else}}
-        <div class="show-780">
-          {{> loading}}
-        </div>
-        <div class="hide-780">
+        <div>
           {{> fake_loading}}
         </div>
       {{/if}}
       </div>
     </div>
-  </div>
-  <div class="body-left" id="make-fix">
-    {{> left_side}}
-  </div>
 </div>
 
 </template>

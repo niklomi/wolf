@@ -8,21 +8,12 @@ Template.registerHelper("capitalize",function(str){
 
 Template.registerHelper('date_from_now', function(context, options) {
   if(!context) return false;
-  var time = moment(context).fromNow();
-  time = time.indexOf('minutes') > 0 ? time.replace('minutes','min') : time;
-  time = time.indexOf('minute') > 0 ? time.replace('minute','min') : time;
-  time = time.indexOf('seconds ago') > 0 ? time.replace('seconds ago','sec') : time;
-  time = time.indexOf('months') > 0 ? time.replace('months','mon') : time;
-  return time;
+  return moment(context).fromNow();
 });
 
 Template.registerHelper('formatTimeshema', function(context, options) {
   if(context)
     return moment(context).format('YYYY-MM-DD');
-});
-
-Template.registerHelper('show_less_info', function(){
-  return FlowRouter.getQueryParam('compact') == true ? true : false;
 });
 
 Template.registerHelper('set_image_name', function(word){

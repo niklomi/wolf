@@ -1,4 +1,4 @@
-Template.header_top.events({
+Template.header.events({
     'click #hamburger':function(event){
         let attr = $('.hamburger-menu').attr('id');
         if (typeof attr !== typeof undefined && attr !== false && attr !== 'open') {

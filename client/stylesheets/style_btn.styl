@@ -1,28 +1,9 @@
 @import 'colors.import';
 
-.btn-outline
-  padding: 11px 22px;
-  font-size: 15px;
-  background: transparent none repeat scroll 0% 0%;
-  color: #FFF;
-  line-height: 1;
-  border-color: #FFF;
-
-.btn-outline-big
-  padding: 5px 12px;
-  font-weight: bold;
-  border: 2px solid body-color;
-
-.btn-outline-small
-  padding: 6px 12px;
-
-.btn-outline:hover
-  background: transparent none repeat scroll 0% 0%;
-
 .button
   background: main-color
   border: medium none;
-  padding: 14px 20px;
+  padding: 8px 20px;
   letter-spacing: 0.03em;
   display:inline-block;
   font-weight: 600;
@@ -41,7 +22,27 @@
   display: block;
   width: 100%;
 
-.button-reverse-full
+.button-big
+  padding: 12px 20px
+
+.button-yellow
+  background: color-yellow
+  color: color-black
+  border: 2px solid color-yellow
+  &:hover
+    background: #fff
+    color: color-yellow
+    border-color: color-yellow
+  &:active
+    background: #fff
+    color: color-yellow
+    border-color: color-yellow
+  &:focus
+    background: #fff
+    color: color-yellow
+    border-color: color-yellow
+
+.button-blue
   background: main-color;
   color: #fff;
   border: 2px solid main-color
@@ -74,17 +75,3 @@
     background: lighten(main-color, 30%)!important;
     color:#fff
     border-color: main-color
-
-.effect-for-buttons
-  transition:all 0.1s
-  &:hover
-    background: lighten(main-color, 20%) !important;
-  &:active
-    background: darken(main-color, 20%) !important;
-  &:disabled
-    background: lighten(main-color, 30%)!important;
-
-.li-a-button
-  border: 2px solid !important;
-  padding: 1rem;
-  border-radius: 4px;

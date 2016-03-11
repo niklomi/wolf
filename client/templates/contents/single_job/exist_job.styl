@@ -1,16 +1,22 @@
 @import '{}/client/stylesheets/colors.import';
 
-.job-wrap
+.job
+  padding-top: 2rem;
+  border-top: 1px solid color-f3f3f3;
+
+
+.wrap-1000
   max-width: 100rem
   margin: 0 auto
   .company-mob
-    background-color: color-f3f3f3
-    padding: 1rem 2rem
+    background-color: color-f9f9f9
+    padding: 0 2rem
     margin-bottom: 2rem
     width: 100%
     h4
-      margin-left: 2rem
       display: inline-block;
+      font-weight: 600
+      margin-bottom: 1rem
     .company-image
       display: inline-block;
       vertical-align: middle;
@@ -19,6 +25,7 @@
       background-size:cover
       background-color: #FFF;
       overflow: hidden
+      margin: 1rem 1rem 1rem 0;
     .no-image
       line-height: 7.8rem;
       text-transform: uppercase;
@@ -27,7 +34,7 @@
       text-align:center
       font-family: 'Playfair Display', serif;
       color: #FFF;
-      background: body-color
+      background: color-black
   .job-leftright
     .job-left
       float: left
@@ -61,7 +68,7 @@
           text-align:center
           font-family: 'Playfair Display', serif;
           color: #FFF;
-          background: body-color
+          background: color-black
         h4
           font-size: 24px;
           font-weight: 600;
@@ -101,7 +108,7 @@
                 font-weight: 600;
                 text-transform: uppercase;
                 color: #FFF;
-                background: body-color
+                background: color-black
           .fake
             height: 2.5rem
             background: color-f3f3f3
@@ -124,15 +131,17 @@
         padding-right: 0
       @media(max-width:500px)
         display: block
-        margin:0.5rem 0
+        margin: 0.5rem 0
+        padding-left: 0
+    .source
+      color: color-999
+      font-size: 16px
     .date
       font-size: 16px;
       color: color-999;
     .fa-circle
-      color: color-999
-      font-size:6px
-      position: relative
-      top:-3px
+      color: color-yellow
+      font-size: 10px
     .remotework
       color: color-999
   .title
@@ -146,7 +155,7 @@
   padding: 0 2rem
 
 #fullDescr
-  color: body-color
+  color: color-black
   font-family: "Proxima Nova","Helvetica Neue", Helvetica,sans-serif
   font-size: 16px
   overflow:hidden
