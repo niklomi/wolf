@@ -327,15 +327,12 @@ parseStackO = function() {
       let $ = Cheerio.load(body.content);
       $('div.-title').each(function() {
         let stackBody = $(this).children().children('.job-link'),
-        stackoLoc = 'http://careers.stackoverflow.com' + stackBody.attr('href'),
+        stackoLoc = stackBody.attr('href'),
         postExist = Posts.findOne({apply_url: stackoLoc}),
-        maskLink = urlapi.parse(stackoLoc);
-
-        maskLink = maskLink.pathname;
+        maskLink = urlapi.parse(stackoLoc).pathname;
         if (postExist) return false;
         postExist = Posts.findOne({maskLink: maskLink});
         if (postExist) return false;
-
         HTTP.call("GET", stackoLoc, (error, body) => {
           if (!body.content) return false;
           let $$ = Cheerio.load(body.content),

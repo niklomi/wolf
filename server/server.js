@@ -4,34 +4,6 @@ Meteor.startup(() => {
   __generateTags();
   __createRssFeed();
   console.log(`Start ${moment().format('MMMM Do YYYY, h:mm:ss a')}`);
-  _.each(Posts.find().fetch(), (job) => {
-    switch (job.source) {
-      case 'wwr':
-        Posts.update(job._id, {$set: {source: 'WeWorkRemote'}});
-        break;
-      case 'wfh':
-        Posts.update(job._id, {$set: {source: 'WFH.io'}});
-        break;
-      case 'wwm':
-        Posts.update(job._id, {$set: {source: 'WeWorkMeteor'}});
-        break;
-      case 'dribbble':
-        Posts.update(job._id, {$set: {source: 'Dribbble'}});
-        break;
-      case 'behance':
-        Posts.update(job._id, {$set: {source: 'Behance'}});
-        break;
-      case 'github':
-        Posts.update(job._id, {$set: {source: 'Github'}});
-        break;
-      case 'stack':
-        Posts.update(job._id, {$set: {source: 'StackOverflow'}});
-        break;
-      case 'auth':
-        Posts.update(job._id, {$set: {source: 'Authentic'}});
-        break;
-    }
-  })
 });
 
 if ( Meteor.users.find().count() === 0 ) {
