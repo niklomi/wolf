@@ -1,4 +1,4 @@
-__createRssFeed = function(){
+createRssFeed = function(){
   RssFeed.publish('jobs', function() {
     let feed = this;
     let posts = Posts.find( { status: true }, {fields: {position: 1, description: 1, createdAt: 1, image: 1}} );

@@ -1,3 +1,4 @@
 Sitemap: http://remotewolfy.com/sitemap.xml
 User-agent: *
 Disallow: /jobs/
+Disallow: /admin/

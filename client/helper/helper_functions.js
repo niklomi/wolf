@@ -3,7 +3,7 @@ reg_r_tire = /\s(-[^-]*)\b.*/;
 
 checkImage = function(image){
   let array = [];
-  _.each(company_images, function(item){
+  _.each(companyImages, function(item){
     let background = item.name === image ? item.url : null;
     if (background) array.push(background);
   });
@@ -39,9 +39,7 @@ find_add_tag = function(tag){
 }
 
 isURL = function (s) {
-  if (s === "http://null") {
-    return false;
-  }
+  if (s === "http://null") return false;
   var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
     return regexp.test(s);
 }

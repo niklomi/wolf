@@ -1,12 +1,4 @@
-let countZERO;
-
-if (Posts.find().count() === 0) {
-  countZERO = false;
-} else {
-  countZERO = true;
-}
-
-__insertJobModule = function(data){
+insertJob = function(data){
   let {position, company, source} = data;
   if (!position || position === '') {
     Slack.send({
@@ -62,12 +54,12 @@ parseWWR2 = function() {
               description,
               image,
               apply_url: 'https://weworkremotely.com/jobs/' + mainBodyData.id[0]._,
-              tags: __makeTAG(mainBodyData.title[0], [], description),
-              category: __makeCATEGORY(mainBodyData.title[0], description)
+              tags: createTags(mainBodyData.title[0], [], description),
+              category: createCategory(mainBodyData.title[0], description)
             };
 
-            __insertJobModule(metadata);
-            if(!countZERO) return countZERO;
+            insertJob(metadata);
+            if(Posts.find().count() === 0) return false;
           });
         }
         tmp--;
@@ -117,14 +109,14 @@ parseWFH = function() {
               company_url: addhttp(company_url),
               description,
               apply_url: mainBodyData.link[0].$.href,
-              tags: __makeTAG(mainBodyData.title[0], [], description),
-              category: __makeCATEGORY(mainBodyData.title[0], description)
+              tags: createTags(mainBodyData.title[0], [], description),
+              category: createCategory(mainBodyData.title[0], description)
             };
 
-            __insertJobModule(metadata);
+            insertJob(metadata);
 
             tmp++;
-            if (!countZERO) return countZERO;
+            if (Posts.find().count() === 0) return false;
             loop();
           });
         }());
@@ -158,12 +150,12 @@ parseWWM = function() {
         company_url,
         description,
         apply_url: mainBodyData.siteUrl,
-        tags: __makeTAG(mainBodyData.title, ['meteorjs'], description),
-        category: __makeCATEGORY(mainBodyData.title, description)
+        tags: createTags(mainBodyData.title, ['meteorjs'], description),
+        category: createCategory(mainBodyData.title, description)
       };
 
-      __insertJobModule(metadata);
-      if(!countZERO) return countZERO;
+      insertJob(metadata);
+      if(Posts.find().count() === 0) return false;
     }
     loop();
   }());
@@ -220,12 +212,12 @@ parseDribbble = function() {
               company,
               description,
               apply_url,
-              tags: __makeTAG(positionBBB, tagsBBB, description),
-              category: __makeCATEGORY(positionBBB, description)
+              tags: createTags(positionBBB, tagsBBB, description),
+              category: createCategory(positionBBB, description)
             };
 
-            __insertJobModule(metadata);
-            if(!countZERO) return countZERO;
+            insertJob(metadata);
+            if(Posts.find().count() === 0) return false;
           }
           tmp++;
           loop();
@@ -266,12 +258,12 @@ parseBehance = function() {
               description,
               apply_url,
               maskLink: url1.pathname,
-              tags: __makeTAG($$('.job-header-details ').children().text(), [], description),
-              category: __makeCATEGORY($$('.job-header-details ').children().text(), description)
+              tags: createTags($$('.job-header-details ').children().text(), [], description),
+              category: createCategory($$('.job-header-details ').children().text(), description)
             };
 
-            __insertJobModule(metadata);
-            if (!countZERO) return countZERO;
+            insertJob(metadata);
+            if (Posts.find().count() === 0) return false;
           });
         }
       });
@@ -308,12 +300,12 @@ parseGitHub = function() {
           company_url,
           description,
           apply_url: parseGIT.url,
-          tags: __makeTAG(parseGIT.title, [], description),
-          category: __makeCATEGORY(parseGIT.title, description)
+          tags: createTags(parseGIT.title, [], description),
+          category: createCategory(parseGIT.title, description)
         };
 
-        __insertJobModule(metadata);
-        if (!countZERO) return countZERO;
+        insertJob(metadata);
+        if (Posts.find().count() === 0) return false;
       }
       tmp++;
     }
@@ -364,12 +356,12 @@ parseStackO = function() {
             description,
             apply_url: stackoLoc,
             maskLink,
-            tags: __makeTAG($$('.h3').children('.job-link').text(), [], description),
-            category: __makeCATEGORY($$('.h3').children('.job-link').text(), description)
+            tags: createTags($$('.h3').children('.job-link').text(), [], description),
+            category: createCategory($$('.h3').children('.job-link').text(), description)
           };
 
-          __insertJobModule(metadata);
-          if (!countZERO) return countZERO;
+          insertJob(metadata);
+          if (Posts.find().count() === 0) return false;
         });
       });
     }
@@ -404,11 +396,11 @@ parseAuthentic = function() {
             company_url,
             description,
             apply_url,
-            tags: __makeTAG($$('.role').children('h1').text(), [], description),
-            category: __makeCATEGORY($$('.role').children('h1').text(), description)
+            tags: createTags($$('.role').children('h1').text(), [], description),
+            category: createCategory($$('.role').children('h1').text(), description)
           };
-          __insertJobModule(metadata);
-          if (!countZERO) return countZERO;
+          insertJob(metadata);
+          if (Posts.find().count() === 0) return false;
         });
       });
     }

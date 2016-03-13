@@ -2,7 +2,7 @@ Template.skills.onCreated(function(){
   this.select = new ReactiveVar(false);
   this.tags = new ReactiveVar();
   let self = this;
-  Meteor.call('tagsToClient',function(err,res){
+  Meteor.call('getTags',function(err,res){
     if (!err) {
       let array = [];
       _.each(res,function(tag){
@@ -31,7 +31,7 @@ Template.skills.events({
     template.select.get() === true ? template.select.set(false) : template.select.set(true);
     true === template.select.get() ? Session.set('searchTagsOpen', true) : Session.set('searchTagsOpen', false);
     if (template.tags.get()) return false;
-    Meteor.call('tagsToClient',function(err,res){
+    Meteor.call('getTags',function(err,res){
       if (!err) {
         let array = [];
         _.each(res,function(tag){

@@ -202,7 +202,7 @@ returnTags = function(desc) {
   return xDescr;
 }
 
-__makeTAG = function(position, tagArray, desc) {
+createTags = function(position, tagArray, desc) {
   check(position, String);
   check(tagArray, Match.Optional([String]));
   check(desc, String);
@@ -218,12 +218,11 @@ __makeTAG = function(position, tagArray, desc) {
     tagArray = _.uniq(_.union(tagArray, desc));
     if (tagArray.length === 0) return _.shuffle(['web', 'js', 'uiux']);
     return _.first(tagArray, 3);
-  } else{
-    return ['web', 'js', 'uiux'];
   }
+  return ['web', 'js', 'uiux'];
 }
 
-__makeCATEGORY = function(position, desc) {
+createCategory = function(position, desc) {
   check(position, String);
   check(desc, String);
 
@@ -253,7 +252,7 @@ __makeCATEGORY = function(position, desc) {
 }
 
 // ---------------TAGS to client ------------------------------
-__generateTags = function () {
+generateTags = function () {
   let array = [];
   _.each(Posts.find({status: true}, {fields: {tags: 1}}).fetch(), function(post) {
     array.push(post.tags);
@@ -267,12 +266,12 @@ SyncedCron.add({
     return parser.text('every 30 minutes');
   },
   job: function() {
-    __generateTags();
+    generateTags();
   }
 });
 
 Meteor.methods({
-  tagsToClient: function(){
+  getTags: function(){
     return activeTags;
   }
 });

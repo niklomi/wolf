@@ -1,8 +1,8 @@
 Meteor.startup(() => {
   SyncedCron.start();
   sitemap();
-  __generateTags();
-  __createRssFeed();
+  generateTags();
+  createRssFeed();
   console.log(`Start ${moment().format('MMMM Do YYYY, h:mm:ss a')}`);
 });
 
@@ -23,7 +23,7 @@ Meteor.methods({
     let tags = Posts.findOne(_id).tags;
     return Posts.find({ '_id': { $ne: _id }, 'tags': { $in: tags}}, {fields: {image: 1, position: 1, company: 1, url: 1}, skip: 1, limit: 5}).fetch();
   },
-  adminSubmitJob(post) {
+  submitAdminJob(post) {
     if (this.userId && Roles.userIsInRole(this.userId, ['admin'])) {
       if (typeof post.highlight === 'undefined') post.highlight = '';
       check(post, Object);
@@ -38,8 +38,8 @@ Meteor.methods({
       post.description = UniHTML.purify(post.description, { noFormatting: true });
 
       if (post.company_url === '') delete post.company_url;
-      let tags = __makeTAG(post.position, [], post.description),
-      category = __makeCATEGORY(post.position, post.description),
+      let tags = createTags(post.position, [], post.description),
+      category = createCategory(post.position, post.description),
       job = ({
         image: 'WOLFY',
         tags: tags,
@@ -48,10 +48,10 @@ Meteor.methods({
         category: category
       });
       let newpost = _.extend(post, job );
-      __insertJobModule(newpost);
+      insertJob(newpost);
     }
   },
-  send_job(data) {
+  submitUserJob(data) {
     check(data, {
       title: String,
       desc: String,

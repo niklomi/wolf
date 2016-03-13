@@ -1,21 +1,19 @@
-let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id, url) {
-  let secretTitterTags = ['digitalnomad', 'remotejobs', 'remotework'];
-
+let twit_body = function(data, tw_company_full, tw_company, tw_position, tags, id, url) {
   function randomTag() {
     let index = Math.floor(secretTitterTags.length * Math.random());
     return secretTitterTags[index];
   }
+  const secretTitterTags = ['digitalnomad', 'remotejobs', 'remotework'];
 
-  let company_body = tw_company_full;
+  let company_body = tw_company_full,
+  tw_tags = '',
+  tw_url = ' remotewolfy.com/job/' + url;
   tw_company = tw_company_full;
 
   if (data.length > 0 && data[0].screen_name) {
     tw_company = '.@' + data[0].screen_name.toLowerCase();
     company_body = '@' + data[0].screen_name.toLowerCase();
   }
-
-  let tw_tags = '', tw_url = ' remotewolfy.com/job/' + url;
-
   if (tags && tags.length === 1)
     tags.push(randomTag());
   if (tags) {
@@ -26,16 +24,16 @@ let twit_body = function(data,tw_company_full,tw_company,tw_position,tags,id, ur
   }
 
   let tweet_array = [
-    tw_company + ' need some cool remote ' + tw_position   + tw_tags +  ' 📢 ' + tw_url ,
+    tw_company + ' hire remote ' + tw_position   + tw_tags +  ' 📢 ' + tw_url ,
     tw_company + ' is looking for remote '  + tw_position   + tw_tags + ' 📣 ' + tw_url ,
     'Want to work like ' + tw_position + ' in ' + company_body + ' ? ' + tw_tags + ' ➡ ' + tw_url,
     tw_company + ' wants to hire remote '  + tw_position   + tw_tags + ' 📣 ' + tw_url ,
     tw_company + ' seeking remote '  + tw_position   + tw_tags + ' 🌍 ' + tw_url ,
     'Want to be remote ' + tw_position + ' in ' + company_body + ' ? ' + tw_tags + ' ➡ ' + tw_url,
-    tw_position + ' in ' + company_body + ' Interesting ? ' + tw_tags + ' 📢 ' + tw_url,
-    'BOOM! Remote ' + tw_position + ' in ' + company_body  + ' Are you in ? ' + ' 📣 ' + tw_url ,
-    'Do you know some cool ' + tw_position + ' who can work in ' + company_body + ' ? ' +  tw_url ,
-    ' 🔥🔥🔥 remote ' + tw_position + ' in ' + company_body  + tw_tags + ' / ' + tw_url,
+    tw_position + ' in ' + company_body + tw_tags + ' 📢 ' + tw_url,
+    'Remote ' + tw_position + ' in ' + company_body  + ' Are you in? ' + ' 📣 ' + tw_url ,
+    'You know some cool ' + tw_position + ' who can work in ' + company_body + ' ? ' +  tw_url ,
+    'Remote ' + tw_position + ' in ' + company_body  + tw_tags + tw_url,
   ];
 
   let tweet_body = tweet_array[Math.floor(Math.random() * tweet_array.length)]

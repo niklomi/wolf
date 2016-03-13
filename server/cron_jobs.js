@@ -49,7 +49,7 @@ SyncedCron.add({
     return parser.text('every 1 hour');
   },
   job() {
-    __createRssFeed();
+    createRssFeed();
   },
 });
 

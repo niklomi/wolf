@@ -43,7 +43,7 @@ Template.post_job_full.events({
 			template.error_desc.set("");
 			$( '#pop-submit-job' ).attr("disabled", "disabled").button('refresh');
 			var data = {title, desc, apply};
-			Meteor.call('send_job', data, function(err,res){
+			Meteor.call('submitUserJob', data, function(err,res){
 				if (err) {
 					template.error_global.set(`${err.reason}`)
 					$( '#pop-submit-job' ).removeAttr("disabled").button('refresh');
