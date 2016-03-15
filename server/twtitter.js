@@ -34,28 +34,15 @@ let twit_body = function(data, tw_company_full, tw_company, tw_position, tags, i
     'Remote ' + tw_position + ' in ' + company_body  + ' Are you in? ' + ' 📣 ' + tw_url ,
     'You know some cool ' + tw_position + ' who can work in ' + company_body + ' ? ' +  tw_url ,
     'Remote ' + tw_position + ' in ' + company_body  + tw_tags + tw_url,
+    tw_company + ' is hiring ' + tw_position + ' 📢 ' + tw_url,
+    tw_position  + ' in ' + company_body + ' ' + tw_url
   ];
 
   let tweet_body = tweet_array[Math.floor(Math.random() * tweet_array.length)]
   tweet_body = tweet_body.replace(/^\s+|\s+$/g, '');
 
   if (tweet_body.length > 140) {
-    tweet_body = tweet_array[Math.floor(Math.random() * tweet_array.length)];
-    tweet_body = tweet_body.replace(/^\s+|\s+$/g, '');
-  }
-
-  if (tweet_body.length > 140) {
-    tweet_body = tw_company + ' is hiring ' + tw_position + ' 📢 ' + tw_url;
-    tweet_body = tweet_body.replace(/^\s+|\s+$/g, '');
-  }
-
-  if (tweet_body.length > 140) {
-    tweet_body = tw_position  + ' in ' + company_body + ' ' + tw_url;
-    tweet_body = tweet_body.replace(/^\s+|\s+$/g, '');
-  }
-
-  if (tweet_body.length > 140) {
-    tweet_body = 'We have interesting job in ' + company_body + ' ' + tw_url;
+    tweet_body = tw_position + ' ' + tw_url;
     tweet_body = tweet_body.replace(/^\s+|\s+$/g, '');
   }
 
