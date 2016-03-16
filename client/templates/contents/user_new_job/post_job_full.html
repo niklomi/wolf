@@ -2,7 +2,9 @@
 <div class="info-wrap">
   <h1>Post A Job</h1>
   <form id="job-send">
-    <p>It's 100% free. We will publish your job as soon as we approve it (24 hours).</p>
+    <p class="grey">It's 100% free. We will publish your job as soon as we approve it (24 hours).</p>
+    <p>We want to offer you the opportunity to advertise your position on Remote Wolfy for free, all data that we need you can simply provide from other job board. If you have any questions, just email me <span id="secr"></span>.</p>
+    <div class="border-bot"></div>
     <div class="form-group">
       <label for="post_title">Job Title</label>
       <input type="text" class="form-control" maxlength="100" id="post_title" placeholder="Senior PHP Developer *"  autocomplete="off">
@@ -10,7 +12,7 @@
     </div>
     <div class="form-group">
       <label for="post_desc">Link to the description</label>
-      <input type="text" class="form-control" id="post_desc" maxlength="200" placeholder="Link to job board with description *"  autocomplete="off">
+      <input type="text" class="form-control" id="post_desc" maxlength="200" placeholder="Your link here *"  autocomplete="off">
       {{#if error_desc}}<p class="error">{{error_desc}}</p>{{/if}}
     </div>
     <div class="form-group">

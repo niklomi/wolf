@@ -27,20 +27,6 @@ Template.skills.helpers({
 })
 
 Template.skills.events({
-  'click .skills-head':function(e,template){
-    template.select.get() === true ? template.select.set(false) : template.select.set(true);
-    true === template.select.get() ? Session.set('searchTagsOpen', true) : Session.set('searchTagsOpen', false);
-    if (template.tags.get()) return false;
-    Meteor.call('getTags',function(err,res){
-      if (!err) {
-        let array = [];
-        _.each(res,function(tag){
-          array.push(tag);
-        });
-        template.tags.set(_.uniq(array));
-      }
-    });
-  },
   'click .chose-tag':function(event,template){
     let tag = $(event.currentTarget).text().trim().toLowerCase();
     find_add_tag(tag);

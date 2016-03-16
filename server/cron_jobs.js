@@ -32,7 +32,7 @@ SyncedCron.add({
     return parser.text('every 30 minutes');
   },
   job() {
-    parseStackO();
+    parseStackRSS();
     parseGitHub();
     parseAuthentic();
     parseWWR2();
@@ -56,12 +56,10 @@ SyncedCron.add({
 SyncedCron.add({
   name: 'Clean Collection',
   schedule(parser) {
-    return parser.text('every 1 day');
+    return parser.text('every 24 hours');
   },
   job() {
-    let today = new Date(new Date().getTime() - (20 * 24 * 60 * 60 * 1000));
-    Posts.remove({ source: { $ne: 'WOLFY' }, createdAt: {$lte: today}});
-    let wolfyDay = new Date(new Date().getTime() - (30 * 24 * 60 * 60 * 1000));
-    Posts.remove({source: 'WOLFY', createdAt: {$lte: wolfyDay}});
+    const deleteDate = new Date(new Date().getTime() - (30 * 24 * 60 * 60 * 1000));
+    Posts.remove({status: true, createdAt: {$lte: deleteDate}});
   },
 });

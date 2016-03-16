@@ -6,6 +6,7 @@ Twit = Meteor.npmRequire('twit');
 request = Meteor.npmRequire('request');
 SlackAPI = Meteor.npmRequire( 'node-slack' );
 htmlToText = Meteor.npmRequire('html-to-text');
+RSSparser = Meteor.npmRequire('rss-parser');
 Slack = new SlackAPI( Meteor.settings.private.slack.hook );
 UniHTML.addNewAllowedTag('div', false);
 
