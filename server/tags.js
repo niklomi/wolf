@@ -207,25 +207,16 @@ createTags = function(position, tagArray, desc) {
   check(tagArray, Match.Optional([String]));
   check(desc, String);
 
-  if(tagArray.length === 3) {
-    return _.shuffle(_.uniq(tagArray));
-  }
   let descrTags = returnTags(position);
   tagArray = _.shuffle(_.uniq(_.union(tagArray, descrTags)));
-  if(tagArray.length >= 3) return _.first(tagArray, 3);
-  else if (tagArray.length < 3) {
-    desc = returnTags(desc);
-    tagArray = _.uniq(_.union(tagArray, desc));
-    if (tagArray.length === 0) return _.shuffle(['web', 'js', 'uiux']);
-    return _.first(tagArray, 3);
-  }
-  return ['web', 'js', 'uiux'];
+  if(tagArray.length >= 5) return _.first(tagArray, 5);
+  desc = returnTags(desc);
+  tagArray = _.uniq(_.union(tagArray, desc));
+  if (tagArray.length === 0) return [];
+  return _.first(tagArray, 5);
 }
 
 createCategory = function(position, desc) {
-  check(position, String);
-  check(desc, String);
-
   position = returnTags(position);
   desc = returnTags(desc);
   let retArr = [];
@@ -271,9 +262,7 @@ SyncedCron.add({
 });
 
 Meteor.methods({
-  getTags: function(){
-    return activeTags;
-  }
+  getTags: () => activeTags
 });
 
 // ---------------TAGS to client ------------------------------

@@ -3,13 +3,45 @@
 .body
   position: relative
 
-.table-header
-  margin: 7rem 0 1rem
-  border-bottom: 1px solid color-f3f3f3
-  padding: 0 2rem
-  h2
+.job-table-wrap
+  background: color-f9f9f9
+  min-height: 100vh
+  padding-top: 4rem
+
+.left
+  margin-right: 35rem
+  @media (max-width: 992px)
+    margin-right: 0
+
+.right
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 34rem
+  padding: 0 1rem
+  @media (max-width: 992px)
+    display: none
+  .head
+    border-bottom: 1px solid color-c1c1c1
+    margin-top: 1rem
     padding-bottom: 1rem
-    font-weight: 600
+    font-size: 16px
+  .content
+    margin-top: 2rem
+
+.search-tag-wrap
+  h4
+    display: inline-block;
+  .skill
+    display: inline-block;
+    text-transform: uppercase;
+    cursor: pointer;
+
+.table-header
+  padding-bottom: 1rem
+  font-weight: 600
 
 .main-table
   border-collapse: separate;
@@ -23,8 +55,10 @@
     position:relative
     animation-duration: 1s;
     min-height: 9rem
+    background-color: #fff;
+    margin-bottom: 1rem
     &:nth-child(2n+1)
-      background-color: color-f9f9f9;
+      background-color: #fff;
     .details
       position: absolute;
       right: 3rem;
@@ -58,7 +92,7 @@
           &:last-child
             padding-right: 0
     .description
-      color:color-999
+      color:color-c1c1c1
       font-size: 16px;
       font-weight:400
       line-height: 22px;

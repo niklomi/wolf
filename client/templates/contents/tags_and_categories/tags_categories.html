@@ -1,0 +1,11 @@
+<template name="tagsAndCategories">
+  {{#if skillsSearch}}
+  <div class="head clearfix"><p class="pull-left">Search</p></div>
+  <div class="content">
+    {{> tags tags=skillsSearch}}
+  </div>
+  {{/if}}
+
+  <div class="head clearfix"><p class="pull-left">Popular skills</p> <p class="pull-right show-more no-select">{{#if isMore}}More{{else}}Less{{/if}}</p></div>
+  <div class="content"> {{> skills limit=tagsLimit}} </div>
+</template>

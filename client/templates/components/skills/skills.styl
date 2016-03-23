@@ -1,26 +1,12 @@
 @import '{}/client/stylesheets/colors.import';
 
-
-.skills
-    cursor: pointer
-    .skills-body
-        display: none
-        ul
-            margin-top: 1rem
-            margin-left: 2rem
-            li
-                border: 0
-                padding: 3px 0
-                font-size: 14px
-                position: relative
-                &:hover
-                    color: main-color
-                .fa-times
-                    position: absolute
-                    z-index: 5
-                    left: -2rem;
-                    top: 6px;
-            .active
-                color: lighten(main-color, 30%)
-                &:hover
-                    color: main-color
+.tag
+  padding: 5px 8px
+  border: 1px solid color-f3f3f3
+  display: inline-block;
+  border-radius: 3px
+  background: #fff
+  cursor: pointer;
+  transition: all 0.1s;
+  &:hover
+    border-color: color-c1c1c1

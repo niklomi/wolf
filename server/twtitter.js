@@ -7,7 +7,7 @@ let twit_body = function(data, tw_company_full, tw_company, tw_position, tags, i
 
   let company_body = tw_company_full,
   tw_tags = '',
-  tw_url = ' remotewolfy.com/job/' + url;
+  tw_url = 'remotewolfy.com/job/' + url;
   tw_company = tw_company_full;
 
   if (data.length > 0 && data[0].screen_name) {
@@ -26,25 +26,24 @@ let twit_body = function(data, tw_company_full, tw_company, tw_position, tags, i
   let tweet_array = [
     tw_company + ' hire remote ' + tw_position   + tw_tags +  ' 📢 ' + tw_url ,
     tw_company + ' is looking for remote '  + tw_position   + tw_tags + ' 📣 ' + tw_url ,
-    'Want to work like ' + tw_position + ' in ' + company_body + ' ? ' + tw_tags + ' ➡ ' + tw_url,
-    tw_company + ' wants to hire remote '  + tw_position   + tw_tags + ' 📣 ' + tw_url ,
+    'Want to work like ' + tw_position + ' at ' + company_body + ' ? ' + tw_tags + ' ➡ ' + tw_url,
+    tw_company + ' wants to hire a remote '  + tw_position   + tw_tags + ' 📣 ' + tw_url ,
     tw_company + ' seeking remote '  + tw_position   + tw_tags + ' 🌍 ' + tw_url ,
-    'Want to be remote ' + tw_position + ' in ' + company_body + ' ? ' + tw_tags + ' ➡ ' + tw_url,
-    tw_position + ' in ' + company_body + tw_tags + ' 📢 ' + tw_url,
-    'Remote ' + tw_position + ' in ' + company_body  + ' Are you in? ' + ' 📣 ' + tw_url ,
-    'You know some cool ' + tw_position + ' who can work in ' + company_body + ' ? ' +  tw_url ,
-    'Remote ' + tw_position + ' in ' + company_body  + tw_tags + tw_url,
+    'Want to be remote ' + tw_position + ' at ' + company_body + ' ? ' + tw_tags + ' ➡ ' + tw_url,
+    tw_position + ' at ' + company_body + tw_tags + ' 📢 ' + tw_url,
+    'Remote ' + tw_position + ' at ' + company_body  + ' Are you in? ' + ' 📣 ' + tw_url ,
+    'Do you know a ' + tw_position + ' who can work at ' + company_body + ' ? ' +  tw_url ,
+    'Remote ' + tw_position + ' at ' + company_body  + tw_tags + tw_url,
     tw_company + ' is hiring ' + tw_position + ' 📢 ' + tw_url,
-    tw_position  + ' in ' + company_body + ' ' + tw_url
+    tw_position  + ' at ' + company_body + ' ' + tw_url
   ];
 
-  let tweet_body = tweet_array[Math.floor(Math.random() * tweet_array.length)]
-  tweet_body = tweet_body.replace(/^\s+|\s+$/g, '');
+  let tweet_body = tweet_array[Math.floor(Math.random() * tweet_array.length)].replace(/^\s+|\s+$/g, '');
 
-  if (tweet_body.length > 140) {
-    tweet_body = tw_position + ' ' + tw_url;
-    tweet_body = tweet_body.replace(/^\s+|\s+$/g, '');
-  }
+  // if (tweet_body.length > 140) {
+  //   tweet_body = `Remote ${tw_position} ➡ ${tw_url}`;
+  //   tweet_body = tweet_body.replace(/^\s+|\s+$/g, '');
+  // }
 
   return tweet_body;
 }

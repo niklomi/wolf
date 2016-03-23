@@ -18,6 +18,9 @@ Accounts.config({
 });
 
 Meteor.methods({
+  dailyReport() {
+    return Posts.find({ createdAt: {$gte: (new Date()).addDays(-1)}}).count();
+  },
   suggestJobs(_id) {
     check(_id, String);
     let tags = Posts.findOne(_id).tags;

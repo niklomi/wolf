@@ -53,19 +53,6 @@ Template.time_table.helpers({
   },
   posts: function(){
     let posts = Posts.find({},{sort: { createdAt: -1 }}).fetch();
-    if (posts && posts.length === 1) return false;
     return posts;
-  },
-  tags: function(){
-    let tags = FlowRouter.getQueryParam('tags');
-    if (tags && tags.split(' ').length > 0) return tags.split(' ');
-    return false;
-  }
-});
-
-Template.time_table.events({
-  'click .search-tag':function(event,template){
-    let tag = $(event.currentTarget).text().trim().toLowerCase();
-    find_add_tag(tag);
   }
 });

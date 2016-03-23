@@ -1,45 +1,31 @@
 <template name="time_table">
+<div class="job-table-wrap">
 <div class="body wrap-1000">
-    <div class="table-header">
-        <h2>New jobs <span class="color-yellow">every day</span>, work from anywhere with Remote Wolfy</h2>
-    </div>
-    {{#if tags}}
-      <div class="search-tag-wrap no-select">
-        <h4>Search by Skills: </h4>
-        {{#each tags}}
-          <div class="search-tag  inline-block">
-            <div class="tags-wrap tags-form search-tags-style">
-              <div class="tags"><i class="fa fa-times"></i> {{this}}</div>
+    <div class="left">
+        <div class="table-start">
+          <div class="main-table table">
+            {{#EasySearch.IfInputEmpty index=postsIndex}}
+                {{> table posts=posts}}
+                {{#if ready}}{{#if no_tags_found}}
+                  <div class="no-results text-center">No results found :( <br> Try another tags <br> </div>
+                {{/if}}{{/if}}
+            {{else}}
+              {{#EasySearch.Each index=postsIndex }}{{> jobs}}{{/EasySearch.Each}}
+              {{#EasySearch.IfNoResults index=postsIndex}}
+                <div class="no-results text-center">No results found</div>
+              {{/EasySearch.IfNoResults}}
+            {{/EasySearch.IfInputEmpty}}
+          {{#unless ready}}
+            <div>
+              {{> fakeLoading}}
             </div>
+          {{/unless}}
           </div>
-        {{/each}}
-      </div>
-    {{/if}}
-    <div class="table-start">
-      <div class="main-table table">
-        {{#EasySearch.IfInputEmpty index=postsIndex}}
-          {{> table posts=posts}}
-          {{#if ready}}
-            {{#if no_tags_found}}
-              <div class="no-results text-center">No results found :( <br> Try another tags <br> </div>
-            {{/if}}
-          {{/if}}
-        {{else}}
-          {{#EasySearch.Each index=postsIndex }}
-            {{> jobs}}
-          {{/EasySearch.Each}}
-          {{#EasySearch.IfNoResults index=postsIndex}}
-            <div class="no-results text-center">No results found</div>
-          {{/EasySearch.IfNoResults}}
-        {{/EasySearch.IfInputEmpty}}
-      {{#if ready}}
-      {{else}}
-        <div>
-          {{> fakeLoading}}
         </div>
-      {{/if}}
-      </div>
+    </div>
+    <div class="right">
+        {{> tagsAndCategories}}
     </div>
 </div>
-
+</div>
 </template>

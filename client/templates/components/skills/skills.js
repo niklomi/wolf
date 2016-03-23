@@ -1,33 +1,32 @@
 Template.skills.onCreated(function(){
-  this.select = new ReactiveVar(false);
   this.tags = new ReactiveVar();
   let self = this;
-  Meteor.call('getTags',function(err,res){
+  Meteor.call('getTags', function(err,res){
     if (!err) {
       let array = [];
-      _.each(res,function(tag){
+      _.each(res, function(tag){
         array.push(tag);
       });
-      self.tags.set(_.uniq(array));
+      self.tags.set(_.shuffle(_.uniq(array)));
     }
   });
 });
 
 Template.skills.helpers({
-  show:function(){
-    return Template.instance().select.get();
-  },
-  tags:function(){
-    let template = Template.instance();
-    if (template.tags.get() && template.tags.get().length > 0) return template.tags.get();
-  },
+  allTags: function(){
+    const instance = Template.instance();
+    if (instance.tags.get() && instance.tags.get().length > 0) return _.first(instance.tags.get(), this.limit);
+  }
+});
+
+Template.tags.helpers({
   tag: function(){
     return this.capitalize();
   }
 })
 
-Template.skills.events({
-  'click .chose-tag':function(event,template){
+Template.tags.events({
+  'click .tag': function(event, template){
     let tag = $(event.currentTarget).text().trim().toLowerCase();
     find_add_tag(tag);
   }
