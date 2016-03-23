@@ -1,31 +1,32 @@
 <template name="time_table">
 <div class="job-table-wrap">
 <div class="body wrap-1000">
-    <div class="left">
-        <div class="table-start">
-          <div class="main-table table">
-            {{#EasySearch.IfInputEmpty index=postsIndex}}
-                {{> table posts=posts}}
-                {{#if ready}}{{#if no_tags_found}}
-                  <div class="no-results text-center">No results found :( <br> Try another tags <br> </div>
-                {{/if}}{{/if}}
-            {{else}}
-              {{#EasySearch.Each index=postsIndex }}{{> jobs}}{{/EasySearch.Each}}
-              {{#EasySearch.IfNoResults index=postsIndex}}
-                <div class="no-results text-center">No results found</div>
-              {{/EasySearch.IfNoResults}}
-            {{/EasySearch.IfInputEmpty}}
-          {{#unless ready}}
-            <div>
-              {{> fakeLoading}}
+    {{#if ready}}
+        <div class="left">
+            <div class="table-start">
+              <div class="main-table table">
+                {{#EasySearch.IfInputEmpty index=postsIndex}}
+                    {{> table posts=posts}}
+                    {{#if ready}}{{#if no_tags_found}}
+                      <div class="no-results text-center">No results found :( <br> Try another tags <br> </div>
+                    {{/if}}{{/if}}
+                {{else}}
+                  {{#EasySearch.Each index=postsIndex }}{{> jobs}}{{/EasySearch.Each}}
+                  {{#EasySearch.IfNoResults index=postsIndex}}
+                    <div class="no-results text-center">No results found</div>
+                  {{/EasySearch.IfNoResults}}
+                {{/EasySearch.IfInputEmpty}}
+              </div>
             </div>
-          {{/unless}}
-          </div>
         </div>
-    </div>
-    <div class="right">
-        {{> tagsAndCategories}}
-    </div>
+        <div class="right">
+            {{> tagsAndCategories}}
+        </div>
+    {{else}}
+        <div class="main-table table">
+          {{> fakeLoading}}
+        </div>
+    {{/if}}
 </div>
 </div>
 </template>
