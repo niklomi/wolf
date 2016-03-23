@@ -7,7 +7,7 @@
                 {{#EasySearch.IfInputEmpty index=postsIndex}}
                     {{> table posts=posts}}
                     {{#if ready}}{{#if no_tags_found}}
-                      <div class="no-results text-center">No results found :( <br> Try another tags <br> </div>
+                      <div class="no-results text-center">No results found :( <br> Try another skills <br> </div>
                     {{/if}}{{/if}}
                 {{else}}
                   {{#EasySearch.Each index=postsIndex }}{{> jobs}}{{/EasySearch.Each}}
