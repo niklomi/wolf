@@ -11,6 +11,15 @@ checkImage = function(image){
   return image;
 }
 
+loadMorePosts = function(){
+  $(window).scroll(function(){
+    if ($(window).scrollTop() + $(window).height() >  $(document).height() - 250) {
+      if(Posts.find().count() % Session.get('countofshow') === 0 && Posts.find().count() > 0)
+        Session.set('countofshow', Session.get('countofshow') + 25);
+    }
+  });
+}
+
 find_add_tag = function(tag){
   $('#live-search').val("");
   PostsIndex.getComponentMethods().search("");
