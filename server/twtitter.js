@@ -33,7 +33,7 @@ let twit_body = function(data, tw_company_full, tw_company, tw_position, tags, i
     tw_position + ' at ' + company_body + tw_tags + ' 📢 ' + tw_url,
     'Remote ' + tw_position + ' at ' + company_body  + ' Are you in? ' + ' 📣 ' + tw_url ,
     'Do you know a ' + tw_position + ' who can work at ' + company_body + ' ? ' +  tw_url ,
-    'Remote ' + tw_position + ' at ' + company_body  + tw_tags + tw_url,
+    'Remote ' + tw_position + ' at ' + company_body  + tw_tags + ' ' + tw_url,
     tw_company + ' is hiring ' + tw_position + ' 📢 ' + tw_url,
     tw_position  + ' at ' + company_body + ' ' + tw_url
   ];
