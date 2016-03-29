@@ -389,7 +389,7 @@ parseAuthentic = function() {
         $('ul#listings').children('li').each(function() {
           let apply_url = ('https://authenticjobs.com' + $(this).children('a').attr('href'));
           if (isPostExist(apply_url)) return false;
-          let image = 'https://authenticjobs.com' + $(this).children('a').children('img').attr('src'),
+          let image = $(this).children('a').children('img').attr('src'),
           position = $(this).children('a').children('div.details').children('h3').text().trim(),
           company = $(this).children('a').children('div.details').children('h4').attr('title').trim();
           if (isSamePost(position, company)) return false;
