@@ -1,9 +1,8 @@
 @import 'colors.import';
 
 .button
-  background: color-blue
-  border: medium none;
-  padding: 8px 20px;
+  border: 0.1em solid;
+  padding: 10px 20px;
   letter-spacing: 0.03em;
   display:inline-block;
   font-weight: 600;
@@ -15,6 +14,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   color: #FFF;
+  position: relative;
   transition: all 0.1s;
 
 .button-apply
@@ -26,52 +26,15 @@
   padding: 12px 20px
 
 .button-yellow
-  background: color-yellow
-  color: color-black
-  border: 0.15em solid color-yellow
+  background: #fff
+  color: color-main
+  border-color: color-main
   &:hover
-    background: #fff
-    color: color-yellow
-    border-color: color-yellow
+    background: color-main
+    color: #fff
+    border: 0.1em solid #1096DC
   &:active
-    background: #fff
-    color: color-yellow
-    border-color: color-yellow
-  &:focus
-    background: #fff
-    color: color-yellow
-    border-color: color-yellow
-
-.button-blue
-  background: color-blue;
-  color: #fff;
-  border: 0.15em solid color-blue
-  &:hover
-    background: #fff
-    color: color-blue
-    border-color: color-blue
-  &:active
-    background: #fff
-    color: color-blue
-    border-color: color-blue
-  &:disabled
-    background: lighten(color-blue, 30%)!important;
-    color:#fff
-    border-color: color-blue
-
-.button-reverse
-  background: #fff;
-  color: color-blue;
-  border: 0.15em solid;
-  &:hover
-    background: color-blue
-    color:#fff
-    border-color: color-blue
-  &:active
-    background: color-blue
-    color:#fff
-    border-color: color-blue
-  &:disabled
-    background: lighten(color-blue, 30%)!important;
-    color:#fff
-    border-color: color-blue
+    background: color-main
+    color: #fff
+    border: 0.1em solid #1096DC
+    top: 1px

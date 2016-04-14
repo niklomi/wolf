@@ -17,8 +17,8 @@ h1, h2, h3, h4, h5, h6, p
 .cursor-default
   cursor: default !important;
 
-.color-blue
-  color: color-blue
+.color-main
+  color: color-main
 
 .b-600
   font-weight:600
@@ -36,13 +36,12 @@ button
   display:inline-block
 
 a
-  color:color-blue
+  color: color-main
   outline-style: none
 
 a:hover, a:focus, a:active
   text-decoration: none;
-  color: color-blue;
-  border-bottom:2px solid color-blue
+  color: color-main;
   outline-style: none;
 
 .a-noborder
@@ -100,15 +99,15 @@ a:hover, a:focus, a:active
 .tags-style
   background: border-color
   &:hover
-    background: lighten(color-blue, 30%)
+    background: lighten(color-main, 30%)
     .tags
       color: #fff
 
 .search-tags-style
-  background: lighten(color-blue, 30%)
+  background: lighten(color-main, 30%)
   color: #fff
   &:hover
-    background: color-blue
+    background: color-main
 
 .weight-400
   font-weight:400
@@ -169,7 +168,7 @@ input:focus
   outline: none
 
 .search-more:hover
-  color: color-blue;
+  color: color-main;
 
 .hidden
   display: none;
@@ -282,7 +281,7 @@ td
   font-size: 24px
 
 #count-num
-  color: color-blue
+  color: color-main
 
 #twent-hour
   float: right
@@ -321,5 +320,5 @@ td
   @media(max-width: 900px)
     display: block
 
-.color-yellow
-  color: color-yellow
+.color-main
+  color: color-main

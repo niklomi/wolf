@@ -38,17 +38,27 @@
       </div>
       <div class="job-right hide-1024">
         <div class="company-wrap">
-          {{#if image}}
-          <div class="company-image" style="background-image: url('{{check_img image}}');"></div>
-          {{else}}
-          <div class="company-image no-image">{{set_image_name company}}</div>
-          {{/if}} {{#if company_have_url}}
-          <h4><a href="{{company_url}}" target="_blank" ><span itemprop="hiringOrganization">{{company}}</span></a></h4> {{else}}
-          <h4><span itemprop="hiringOrganization">{{company}}</span></h4> {{/if}}
-          <a href="{{apply_url}}" rel="nofollow">
-            <button class="button button-yellow button-big button-apply">Apply for Job</button>
+          {{#if company_have_url}}
+          <a href="{{company_url}}" target="_blank" >
+            {{#if image}}
+            <div class="company-image" style="background-image: url('{{check_img image}}');"></div>
+            {{else}}
+            <div class="company-image no-image">{{set_image_name company}}</div>
+            {{/if}}
+            <h4><span itemprop="hiringOrganization">{{company}}</span></h4>
           </a>
+          {{else}}
+            {{#if image}}
+            <div class="company-image" style="background-image: url('{{check_img image}}');"></div>
+            {{else}}
+            <div class="company-image no-image">{{set_image_name company}}</div>
+            {{/if}}
+            <h4><span itemprop="hiringOrganization">{{company}}</span></h4>
+          {{/if}}
         </div>
+        <a href="{{apply_url}}" rel="nofollow">
+          <button class="button button-yellow button-big button-apply">Apply for Job</button>
+        </a>
         <div class="suggest-spisok">
           <p>You might also like</p>
           <ul class="animated fadeIn">
@@ -64,11 +74,8 @@
                 </a>
             </li>
             {{else}}
-            <li class="fake"><div></div></li>
-            <li class="fake"><div></div></li>
-            <li class="fake"><div></div></li>
-            <li class="fake"><div></div></li>
-            <li class="fake"><div></div></li>
+            <li class="fake"><p style="width: 95%"></p></li>
+            <li class="fake"><p style="width: 80%"></p></li>
             {{/each}}
           </ul>
         </div>

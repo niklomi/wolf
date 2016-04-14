@@ -1,5 +1,7 @@
 <template name="jobs">
+<a href="job/{{url}}" >
   <div itemscope itemtype="http://schema.org/JobPosting" class="smurf animated fadeIn">
+
       <div class="hidden-xs td-pics">
         {{#if image}}
           <div class="company-image" style="background-image: url('{{check_img image}}');"></div>
@@ -8,15 +10,16 @@
         {{/if}}
       </div>
       <div class="job-components">
-        <p class="position">{{position}}</p>
-        <div class="bottom">
-          <span class="company">{{company}}</span>
-          <i class="fa fa-circle"></i>
-          <span class="date">{{date_from_now createdAt}}</span>
+        <div class="pull-left">
+          <p class="position">{{position}}</p>
+          <div class="bottom">
+            <span class="company">{{company}}</span>
+            <i class="fa fa-circle"></i>
+            <span class="date">{{date_from_now createdAt}}</span>
+          </div>
         </div>
+        <div class="pull-right hidden-xs "><p class="job-from">{{source}}</p></div>
       </div>
-      <a href="job/{{url}}" ><button class="button button-yellow details">View Details</button></a>
-
     <div class="schemaorg">
       <span><a itemprop="url" href="job/{{url}}"> <span itemprop="title">{{position}} </span><span itemprop="hiringOrganization" itemscope itemtype="http://schema.org/Organization"><span itemprop="name">{{company}} </span></span></a></span>
       <span itemprop="skills"> {{#each tags}} {{this}} {{/each}} </span>
@@ -24,7 +27,9 @@
       <span itemprop="workHours">Flexible</span>
       <span itemprop="jobLocation">Remote</span>
     </div>
+
   </div>
+</a>
 </template>
 
 <template name="tag">
