@@ -11,6 +11,7 @@ insertJob = function(data){
       Error: company - ${company}`
     });
   } else {
+    if (isPostExist(data.apply_url) || isSamePost(position, company)) return;
     data.createdAt = new Date();
     data.url = makeUrl(data);
     let postId = Posts.insert(data);
@@ -31,8 +32,13 @@ function isSamePost(position, company){
 
 parseStackRSS = function() {
   try {
-    RSSparser.parseURL('http://careers.stackoverflow.com/jobs/feed?allowsremote=True', Meteor.bindEnvironment((err, parsed) => {
-      if (err) return;
+    RSSparser.parseURL('https://stackoverflow.com/jobs/feed?allowsremote=True', Meteor.bindEnvironment((err, parsed) => {
+      if (err) {
+        Slack.send({
+          text: err.toString()
+        });
+        return false;
+      };
       for(const entry of parsed.feed.entries){
         const {link: apply_url} = entry;
         if (isPostExist(apply_url)) return;

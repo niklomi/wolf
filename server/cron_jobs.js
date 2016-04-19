@@ -34,7 +34,6 @@ SyncedCron.add({
   job() {
     parseStackRSS();
     parseGitHub();
-    parseAuthentic();
     parseWWR2();
     parseWWM();
     parseBehance();
