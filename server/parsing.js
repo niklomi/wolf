@@ -45,10 +45,9 @@ parseStackRSS = function() {
         HTTP.call("GET", apply_url, (error, body) => {
           if (!body.content) return;
           const $$ = Cheerio.load(body.content),
-          company = $$('#hed').find('.employer').text().trim(),
-          position =  $$('.detail-jobTitle').children('.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, '');
+          company = $$('.detail-header-block').find('.employer').text().trim(),
+          position = $$('.detail-header-block').find('.title.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, '');
           if (isSamePost(position, company)) return;
-
           description = '';
           for (let i = 1; i < 6; i++) {
             const clas = $$('.jobdetail').children().eq(i).attr('class');
