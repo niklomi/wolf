@@ -26,7 +26,6 @@ SyncedCron.add({
   },
 });
 
-Posts.remove({})
 SyncedCron.add({
   name: 'Parsing Websites',
   schedule(parser) {
