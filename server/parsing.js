@@ -45,9 +45,11 @@ parseStackRSS = function() {
         HTTP.call("GET", apply_url, (error, body) => {
           if (!body.content) return;
           const $$ = Cheerio.load(body.content),
-          company = $$('.detail-header-block').find('.employer').text().trim(),
-          position = $$('.detail-header-block').find('.title.job-link').text().replace(reg_r_brackets, '').replace(reg_r_tire, '');
+          positionAndCompany = entry.title.replace(reg_r_brackets, ' ').split(' at '),
+          company = positionAndCompany[1].trim(),
+          position = positionAndCompany[0].trim();
           if (isSamePost(position, company)) return;
+
           description = '';
           for (let i = 1; i < 6; i++) {
             const clas = $$('.jobdetail').children().eq(i).attr('class');
@@ -56,14 +58,15 @@ parseStackRSS = function() {
           }
           description = UniHTML.purify(description);
           const image = $$('div.-logo').children().attr('src') ? $$('div.-logo').children().attr('src') : null;
-
+          const partOfCompanyUrl = $$('.company.companyPreview').find('.-link').attr('href');
+          const company_url = partOfCompanyUrl ? 'http://stackoverflow.com' + partOfCompanyUrl : null;
           let metadata = {
             status: true,
             source: 'StackOverflow',
             image,
             position,
             company,
-            company_url: addhttp($$('.jobdetail').children('#hed').children('.employer').attr('href')),
+            company_url,
             description,
             apply_url,
             maskLink: apply_url,
